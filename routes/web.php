@@ -29,7 +29,7 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
-    Route::get('/admin/home', [AdminController::class, 'adminHome'])->name('admin.home');
+    Route::get('/admin/home', [AdminsController::class, 'adminHome']);
 
     // Categories
     Route::get('categories', [AdminsController::class, 'categories']);

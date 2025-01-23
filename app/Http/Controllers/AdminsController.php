@@ -276,6 +276,10 @@ class AdminsController extends Controller
         return Redirect::back();
     }
 
+    public function adminHome(){
+        return view('admin.index');
+    }
+
 
     /* Generic Email Sender */
     public function emailSender($recepient,$recepientEmail,$Subject,$Message){

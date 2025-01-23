@@ -1,176 +1,544 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="zxx">
+<!--<< Header Area >>-->
 
-        <title>Laravel</title>
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Valorwide">
+    <meta name="description" content="pharmex - Laboratory & Research Html Template">
+    <!-- ======== Page title ============ -->
+    <title>pharmex - Laboratory & Research Html Template</title>
+    <!--<< Favcion >>-->
+    <link rel="shortcut icon" href="{{asset('theme/assets/images/favicon.png')}}">
+    <!--<< Bootstrap min.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/bootstrap.min.css')}}">
+    <!--<< All Min Css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/all.min.css')}}">
+    <!--<< Animate.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/animate.css')}}">
+    <!--<< Magnific popup.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/magnific-popup.css')}}">
+    <!--<< MeanMenu.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/meanmenu.css')}}">
+    <!--<< Swiper Bundle.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/swiper-bundle.min.css')}}">
+    <!--<< NiceSelect.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/nice-select.css')}}">
+    <!--<< Main.css >>-->
+    <link rel="stylesheet" href="{{asset('theme/assets/css/main.css')}}">
+</head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<body>
 
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-            <style>
-                /* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Figtree, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }.absolute{position:absolute}.relative{position:relative}.-left-20{left:-5rem}.top-0{top:0px}.-bottom-16{bottom:-4rem}.-left-16{left:-4rem}.-mx-3{margin-left:-0.75rem;margin-right:-0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-video{aspect-ratio:16 / 9}.size-12{width:3rem;height:3rem}.size-5{width:1.25rem;height:1.25rem}.size-6{width:1.5rem;height:1.5rem}.h-12{height:3rem}.h-40{height:10rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-full{width:100%}.w-\[calc\(100\%\+8rem\)\]{width:calc(100% + 8rem)}.w-auto{width:auto}.max-w-\[877px\]{max-width:877px}.max-w-2xl{max-width:42rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.rounded-\[10px\]{border-radius:10px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-sm{border-radius:0.125rem}.bg-\[\#FF2D20\]\/10{background-color:rgb(255 45 32 / 0.1)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.from-transparent{--tw-gradient-from:transparent var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 0 0 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-white{--tw-gradient-to:rgb(255 255 255 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #fff var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-white{--tw-gradient-to:#fff var(--tw-gradient-to-position)}.stroke-\[\#FF2D20\]{stroke:#FF2D20}.object-cover{object-fit:cover}.object-top{object-position:top}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pt-3{padding-top:0.75rem}.text-center{text-align:center}.font-sans{font-family:Figtree, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-sm\/relaxed{font-size:0.875rem;line-height:1.625}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-semibold{font-weight:600}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-\[0px_14px_34px_0px_rgba\(0\2c 0\2c 0\2c 0\.08\)\]{--tw-shadow:0px 14px 34px 0px rgba(0,0,0,0.08);--tw-shadow-colored:0px 14px 34px 0px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-transparent{--tw-ring-color:transparent}.ring-white\/\[0\.05\]{--tw-ring-color:rgb(255 255 255 / 0.05)}.drop-shadow-\[0px_4px_34px_rgba\(0\2c 0\2c 0\2c 0\.06\)\]{--tw-drop-shadow:drop-shadow(0px 4px 34px rgba(0,0,0,0.06));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-\[0px_4px_34px_rgba\(0\2c 0\2c 0\2c 0\.25\)\]{--tw-drop-shadow:drop-shadow(0px 4px 34px rgba(0,0,0,0.25));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.selection\:bg-\[\#FF2D20\] *::selection{--tw-bg-opacity:1;background-color:rgb(255 45 32 / var(--tw-bg-opacity))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.selection\:bg-\[\#FF2D20\]::selection{--tw-bg-opacity:1;background-color:rgb(255 45 32 / var(--tw-bg-opacity))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity))}.hover\:text-black\/70:hover{color:rgb(0 0 0 / 0.7)}.hover\:ring-black\/20:hover{--tw-ring-color:rgb(0 0 0 / 0.2)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus-visible\:ring-1:focus-visible{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus-visible\:ring-\[\#FF2D20\]:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(255 45 32 / var(--tw-ring-opacity))}@media (min-width: 640px){.sm\:size-16{width:4rem;height:4rem}.sm\:size-6{width:1.5rem;height:1.5rem}.sm\:pt-5{padding-top:1.25rem}}@media (min-width: 768px){.md\:row-span-3{grid-row:span 3 / span 3}}@media (min-width: 1024px){.lg\:col-start-2{grid-column-start:2}.lg\:h-16{height:4rem}.lg\:max-w-7xl{max-width:80rem}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:flex-col{flex-direction:column}.lg\:items-end{align-items:flex-end}.lg\:justify-center{justify-content:center}.lg\:gap-8{gap:2rem}.lg\:p-10{padding:2.5rem}.lg\:pb-10{padding-bottom:2.5rem}.lg\:pt-0{padding-top:0px}.lg\:text-\[\#FF2D20\]{--tw-text-opacity:1;color:rgb(255 45 32 / var(--tw-text-opacity))}}@media (prefers-color-scheme: dark){.dark\:block{display:block}.dark\:hidden{display:none}.dark\:bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity))}.dark\:bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity))}.dark\:via-zinc-900{--tw-gradient-to:rgb(24 24 27 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #18181b var(--tw-gradient-via-position), var(--tw-gradient-to)}.dark\:to-zinc-900{--tw-gradient-to:#18181b var(--tw-gradient-to-position)}.dark\:text-white\/50{color:rgb(255 255 255 / 0.5)}.dark\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.dark\:text-white\/70{color:rgb(255 255 255 / 0.7)}.dark\:ring-zinc-800{--tw-ring-opacity:1;--tw-ring-color:rgb(39 39 42 / var(--tw-ring-opacity))}.dark\:hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.dark\:hover\:text-white\/70:hover{color:rgb(255 255 255 / 0.7)}.dark\:hover\:text-white\/80:hover{color:rgb(255 255 255 / 0.8)}.dark\:hover\:ring-zinc-700:hover{--tw-ring-opacity:1;--tw-ring-color:rgb(63 63 70 / var(--tw-ring-opacity))}.dark\:focus-visible\:ring-\[\#FF2D20\]:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(255 45 32 / var(--tw-ring-opacity))}.dark\:focus-visible\:ring-white:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(255 255 255 / var(--tw-ring-opacity))}}
-            </style>
-        @endif
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" alt="Laravel background" />
-            <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                        <div class="flex lg:justify-center lg:col-start-2">
-                            <svg class="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M61.8548 14.6253C61.8778 14.7102 61.8895 14.7978 61.8897 14.8858V28.5615C61.8898 28.737 61.8434 28.9095 61.7554 29.0614C61.6675 29.2132 61.5409 29.3392 61.3887 29.4265L49.9104 36.0351V49.1337C49.9104 49.4902 49.7209 49.8192 49.4118 49.9987L25.4519 63.7916C25.3971 63.8227 25.3372 63.8427 25.2774 63.8639C25.255 63.8714 25.2338 63.8851 25.2101 63.8913C25.0426 63.9354 24.8666 63.9354 24.6991 63.8913C24.6716 63.8838 24.6467 63.8689 24.6205 63.8589C24.5657 63.8389 24.5084 63.8215 24.456 63.7916L0.501061 49.9987C0.348882 49.9113 0.222437 49.7853 0.134469 49.6334C0.0465019 49.4816 0.000120578 49.3092 0 49.1337L0 8.10652C0 8.01678 0.0124642 7.92953 0.0348998 7.84477C0.0423783 7.8161 0.0598282 7.78993 0.0697995 7.76126C0.0884958 7.70891 0.105946 7.65531 0.133367 7.6067C0.152063 7.5743 0.179485 7.54812 0.20192 7.51821C0.230588 7.47832 0.256763 7.43719 0.290416 7.40229C0.319084 7.37362 0.356476 7.35243 0.388883 7.32751C0.425029 7.29759 0.457436 7.26518 0.498568 7.2415L12.4779 0.345059C12.6296 0.257786 12.8015 0.211853 12.9765 0.211853C13.1515 0.211853 13.3234 0.257786 13.475 0.345059L25.4531 7.2415H25.4556C25.4955 7.26643 25.5292 7.29759 25.5653 7.32626C25.5977 7.35119 25.6339 7.37362 25.6625 7.40104C25.6974 7.43719 25.7224 7.47832 25.7523 7.51821C25.7735 7.54812 25.8021 7.5743 25.8196 7.6067C25.8483 7.65656 25.8645 7.70891 25.8844 7.76126C25.8944 7.78993 25.9118 7.8161 25.9193 7.84602C25.9423 7.93096 25.954 8.01853 25.9542 8.10652V33.7317L35.9355 27.9844V14.8846C35.9355 14.7973 35.948 14.7088 35.9704 14.6253C35.9792 14.5954 35.9954 14.5692 36.0053 14.5405C36.0253 14.4882 36.0427 14.4346 36.0702 14.386C36.0888 14.3536 36.1163 14.3274 36.1375 14.2975C36.1674 14.2576 36.1923 14.2165 36.2272 14.1816C36.2559 14.1529 36.292 14.1317 36.3244 14.1068C36.3618 14.0769 36.3942 14.0445 36.4341 14.0208L48.4147 7.12434C48.5663 7.03694 48.7383 6.99094 48.9133 6.99094C49.0883 6.99094 49.2602 7.03694 49.4118 7.12434L61.3899 14.0208C61.4323 14.0457 61.4647 14.0769 61.5021 14.1055C61.5333 14.1305 61.5694 14.1529 61.5981 14.1803C61.633 14.2165 61.6579 14.2576 61.6878 14.2975C61.7103 14.3274 61.7377 14.3536 61.7551 14.386C61.7838 14.4346 61.8 14.4882 61.8199 14.5405C61.8312 14.5692 61.8474 14.5954 61.8548 14.6253ZM59.893 27.9844V16.6121L55.7013 19.0252L49.9104 22.3593V33.7317L59.8942 27.9844H59.893ZM47.9149 48.5566V37.1768L42.2187 40.4299L25.953 49.7133V61.2003L47.9149 48.5566ZM1.99677 9.83281V48.5566L23.9562 61.199V49.7145L12.4841 43.2219L12.4804 43.2194L12.4754 43.2169C12.4368 43.1945 12.4044 43.1621 12.3682 43.1347C12.3371 43.1097 12.3009 43.0898 12.2735 43.0624L12.271 43.0586C12.2386 43.0275 12.2162 42.9888 12.1887 42.9539C12.1638 42.9203 12.1339 42.8916 12.114 42.8567L12.1127 42.853C12.0903 42.8156 12.0766 42.7707 12.0604 42.7283C12.0442 42.6909 12.023 42.656 12.013 42.6161C12.0005 42.5688 11.998 42.5177 11.9931 42.4691C11.9881 42.4317 11.9781 42.3943 11.9781 42.3569V15.5801L6.18848 12.2446L1.99677 9.83281ZM12.9777 2.36177L2.99764 8.10652L12.9752 13.8513L22.9541 8.10527L12.9752 2.36177H12.9777ZM18.1678 38.2138L23.9574 34.8809V9.83281L19.7657 12.2459L13.9749 15.5801V40.6281L18.1678 38.2138ZM48.9133 9.14105L38.9344 14.8858L48.9133 20.6305L58.8909 14.8846L48.9133 9.14105ZM47.9149 22.3593L42.124 19.0252L37.9323 16.6121V27.9844L43.7219 31.3174L47.9149 33.7317V22.3593ZM24.9533 47.987L39.59 39.631L46.9065 35.4555L36.9352 29.7145L25.4544 36.3242L14.9907 42.3482L24.9533 47.987Z" fill="currentColor"/></svg>
-                        </div>
-                        @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-end">
-                                @auth
-                                    <a
-                                        href="{{ url('/dashboard') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Dashboard
-                                    </a>
-                                @else
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Log in
-                                    </a>
-
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </a>
-                                    @endif
-                                @endauth
-                            </nav>
-                        @endif
-                    </header>
-
-                    <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                            <a
-                                href="https://laravel.com/docs"
-                                id="docs-card"
-                                class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                            >
-                                <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
-                                    <img
-                                        src="https://laravel.com/assets/img/welcome/docs-light.svg"
-                                        alt="Laravel documentation screenshot"
-                                        class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
-                                        onerror="
-                                            document.getElementById('screenshot-container').classList.add('!hidden');
-                                            document.getElementById('docs-card').classList.add('!row-span-1');
-                                            document.getElementById('docs-card-content').classList.add('!flex-row');
-                                            document.getElementById('background').classList.add('!hidden');
-                                        "
-                                    />
-                                    <img
-                                        src="https://laravel.com/assets/img/welcome/docs-dark.svg"
-                                        alt="Laravel documentation screenshot"
-                                        class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
-                                    />
-                                    <div
-                                        class="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"
-                                    ></div>
-                                </div>
-
-                                <div class="relative flex items-center gap-6 lg:items-end">
-                                    <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
-                                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                            <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="#FF2D20" d="M23 4a1 1 0 0 0-1.447-.894L12.224 7.77a.5.5 0 0 1-.448 0L2.447 3.106A1 1 0 0 0 1 4v13.382a1.99 1.99 0 0 0 1.105 1.79l9.448 4.728c.14.065.293.1.447.1.154-.005.306-.04.447-.105l9.453-4.724a1.99 1.99 0 0 0 1.1-1.789V4ZM3 6.023a.25.25 0 0 1 .362-.223l7.5 3.75a.251.251 0 0 1 .138.223v11.2a.25.25 0 0 1-.362.224l-7.5-3.75a.25.25 0 0 1-.138-.22V6.023Zm18 11.2a.25.25 0 0 1-.138.224l-7.5 3.75a.249.249 0 0 1-.329-.099.249.249 0 0 1-.033-.12V9.772a.251.251 0 0 1 .138-.224l7.5-3.75a.25.25 0 0 1 .362.224v11.2Z"/><path fill="#FF2D20" d="m3.55 1.893 8 4.048a1.008 1.008 0 0 0 .9 0l8-4.048a1 1 0 0 0-.9-1.785l-7.322 3.706a.506.506 0 0 1-.452 0L4.454.108a1 1 0 0 0-.9 1.785H3.55Z"/></svg>
-                                        </div>
-
-                                        <div class="pt-3 sm:pt-5 lg:pt-0">
-                                            <h2 class="text-xl font-semibold text-black dark:text-white">Documentation</h2>
-
-                                            <p class="mt-4 text-sm/relaxed">
-                                                Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience with Laravel, we recommend reading our documentation from beginning to end.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <svg class="size-6 shrink-0 stroke-[#FF2D20]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                                </div>
-                            </a>
-
-                            <a
-                                href="https://laracasts.com"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                            >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                    <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g fill="#FF2D20"><path d="M24 8.25a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5v12a2.5 2.5 0 0 0 2.5 2.5h19a2.5 2.5 0 0 0 2.5-2.5v-12Zm-7.765 5.868a1.221 1.221 0 0 1 0 2.264l-6.626 2.776A1.153 1.153 0 0 1 8 18.123v-5.746a1.151 1.151 0 0 1 1.609-1.035l6.626 2.776ZM19.564 1.677a.25.25 0 0 0-.177-.427H15.6a.106.106 0 0 0-.072.03l-4.54 4.543a.25.25 0 0 0 .177.427h3.783c.027 0 .054-.01.073-.03l4.543-4.543ZM22.071 1.318a.047.047 0 0 0-.045.013l-4.492 4.492a.249.249 0 0 0 .038.385.25.25 0 0 0 .14.042h5.784a.5.5 0 0 0 .5-.5v-2a2.5 2.5 0 0 0-1.925-2.432ZM13.014 1.677a.25.25 0 0 0-.178-.427H9.101a.106.106 0 0 0-.073.03l-4.54 4.543a.25.25 0 0 0 .177.427H8.4a.106.106 0 0 0 .073-.03l4.54-4.543ZM6.513 1.677a.25.25 0 0 0-.177-.427H2.5A2.5 2.5 0 0 0 0 3.75v2a.5.5 0 0 0 .5.5h1.4a.106.106 0 0 0 .073-.03l4.54-4.543Z"/></g></svg>
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Laracasts</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                    </p>
-                                </div>
-
-                                <svg class="size-6 shrink-0 self-center stroke-[#FF2D20]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                            </a>
-
-                            <a
-                                href="https://laravel-news.com"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                            >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                    <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g fill="#FF2D20"><path d="M8.75 4.5H5.5c-.69 0-1.25.56-1.25 1.25v4.75c0 .69.56 1.25 1.25 1.25h3.25c.69 0 1.25-.56 1.25-1.25V5.75c0-.69-.56-1.25-1.25-1.25Z"/><path d="M24 10a3 3 0 0 0-3-3h-2V2.5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2V20a3.5 3.5 0 0 0 3.5 3.5h17A3.5 3.5 0 0 0 24 20V10ZM3.5 21.5A1.5 1.5 0 0 1 2 20V3a.5.5 0 0 1 .5-.5h14a.5.5 0 0 1 .5.5v17c0 .295.037.588.11.874a.5.5 0 0 1-.484.625L3.5 21.5ZM22 20a1.5 1.5 0 1 1-3 0V9.5a.5.5 0 0 1 .5-.5H21a1 1 0 0 1 1 1v10Z"/><path d="M12.751 6.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 7.3v-.5a.75.75 0 0 1 .751-.753ZM12.751 10.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 11.3v-.5a.75.75 0 0 1 .751-.753ZM4.751 14.047h10a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-10A.75.75 0 0 1 4 15.3v-.5a.75.75 0 0 1 .751-.753ZM4.75 18.047h7.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-7.5A.75.75 0 0 1 4 19.3v-.5a.75.75 0 0 1 .75-.753Z"/></g></svg>
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Laravel News</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                    </p>
-                                </div>
-
-                                <svg class="size-6 shrink-0 self-center stroke-[#FF2D20]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                            </a>
-
-                            <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                    <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <g fill="#FF2D20">
-                                            <path
-                                                d="M16.597 12.635a.247.247 0 0 0-.08-.237 2.234 2.234 0 0 1-.769-1.68c.001-.195.03-.39.084-.578a.25.25 0 0 0-.09-.267 8.8 8.8 0 0 0-4.826-1.66.25.25 0 0 0-.268.181 2.5 2.5 0 0 1-2.4 1.824.045.045 0 0 0-.045.037 12.255 12.255 0 0 0-.093 3.86.251.251 0 0 0 .208.214c2.22.366 4.367 1.08 6.362 2.118a.252.252 0 0 0 .32-.079 10.09 10.09 0 0 0 1.597-3.733ZM13.616 17.968a.25.25 0 0 0-.063-.407A19.697 19.697 0 0 0 8.91 15.98a.25.25 0 0 0-.287.325c.151.455.334.898.548 1.328.437.827.981 1.594 1.619 2.28a.249.249 0 0 0 .32.044 29.13 29.13 0 0 0 2.506-1.99ZM6.303 14.105a.25.25 0 0 0 .265-.274 13.048 13.048 0 0 1 .205-4.045.062.062 0 0 0-.022-.07 2.5 2.5 0 0 1-.777-.982.25.25 0 0 0-.271-.149 11 11 0 0 0-5.6 2.815.255.255 0 0 0-.075.163c-.008.135-.02.27-.02.406.002.8.084 1.598.246 2.381a.25.25 0 0 0 .303.193 19.924 19.924 0 0 1 5.746-.438ZM9.228 20.914a.25.25 0 0 0 .1-.393 11.53 11.53 0 0 1-1.5-2.22 12.238 12.238 0 0 1-.91-2.465.248.248 0 0 0-.22-.187 18.876 18.876 0 0 0-5.69.33.249.249 0 0 0-.179.336c.838 2.142 2.272 4 4.132 5.353a.254.254 0 0 0 .15.048c1.41-.01 2.807-.282 4.117-.802ZM18.93 12.957l-.005-.008a.25.25 0 0 0-.268-.082 2.21 2.21 0 0 1-.41.081.25.25 0 0 0-.217.2c-.582 2.66-2.127 5.35-5.75 7.843a.248.248 0 0 0-.09.299.25.25 0 0 0 .065.091 28.703 28.703 0 0 0 2.662 2.12.246.246 0 0 0 .209.037c2.579-.701 4.85-2.242 6.456-4.378a.25.25 0 0 0 .048-.189 13.51 13.51 0 0 0-2.7-6.014ZM5.702 7.058a.254.254 0 0 0 .2-.165A2.488 2.488 0 0 1 7.98 5.245a.093.093 0 0 0 .078-.062 19.734 19.734 0 0 1 3.055-4.74.25.25 0 0 0-.21-.41 12.009 12.009 0 0 0-10.4 8.558.25.25 0 0 0 .373.281 12.912 12.912 0 0 1 4.826-1.814ZM10.773 22.052a.25.25 0 0 0-.28-.046c-.758.356-1.55.635-2.365.833a.25.25 0 0 0-.022.48c1.252.43 2.568.65 3.893.65.1 0 .2 0 .3-.008a.25.25 0 0 0 .147-.444c-.526-.424-1.1-.917-1.673-1.465ZM18.744 8.436a.249.249 0 0 0 .15.228 2.246 2.246 0 0 1 1.352 2.054c0 .337-.08.67-.23.972a.25.25 0 0 0 .042.28l.007.009a15.016 15.016 0 0 1 2.52 4.6.25.25 0 0 0 .37.132.25.25 0 0 0 .096-.114c.623-1.464.944-3.039.945-4.63a12.005 12.005 0 0 0-5.78-10.258.25.25 0 0 0-.373.274c.547 2.109.85 4.274.901 6.453ZM9.61 5.38a.25.25 0 0 0 .08.31c.34.24.616.561.8.935a.25.25 0 0 0 .3.127.631.631 0 0 1 .206-.034c2.054.078 4.036.772 5.69 1.991a.251.251 0 0 0 .267.024c.046-.024.093-.047.141-.067a.25.25 0 0 0 .151-.23A29.98 29.98 0 0 0 15.957.764a.25.25 0 0 0-.16-.164 11.924 11.924 0 0 0-2.21-.518.252.252 0 0 0-.215.076A22.456 22.456 0 0 0 9.61 5.38Z"
-                                            />
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Vibrant Ecosystem</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]">Forge</a>, <a href="https://vapor.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Vapor</a>, <a href="https://nova.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Nova</a>, <a href="https://envoyer.io" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Envoyer</a>, and <a href="https://herd.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Herd</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Echo</a>, <a href="https://laravel.com/docs/horizon" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Telescope</a>, and more.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
-
-                    <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </footer>
+    <!-- Preloader Start -->
+    <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+            <div class="spinner">
+            </div>
+            <div class="txt-loading">
+                <span data-text-preloader="L" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="A" class="letters-loading">
+                    H
+                </span>
+                <span data-text-preloader="B" class="letters-loading">
+                    A
+                </span>
+                <span data-text-preloader="W" class="letters-loading">
+                    M
+                </span>
+                <span data-text-preloader="I" class="letters-loading">
+                    E
+                </span>
+                <span data-text-preloader="D" class="letters-loading">
+                    X
+                </span>
+            </div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+
+    <!-- Mouse Cursor Start -->
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+
+    <!-- Back To Top Start -->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Offcanvas Area Start -->
+    <div class="fix-area">
+        <div class="offcanvas__info">
+            <div class="offcanvas__wrapper">
+                <div class="offcanvas__content">
+                    <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                        <div class="offcanvas__close">
+                            <button>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mobile-menu fix mb-3"></div>
+                    <div class="offcanvas__contact">
+                        <h4>Contact Info</h4>
+
+                        <div class="header-button mt-4">
+                            <a href="#" class="theme-btn text-center">
+                                <span>Get A Quote<i class="fa-solid fa-arrow-right-long"></i></span>
+                            </a>
+                        </div>
+                        <div class="social-icon d-flex align-items-center">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas__overlay"></div>
+
+    <!-- Header Section Two Start -->
+    <header class="header-section-1">
+        <div id="header-sticky" class="header-1">
+            <div class="container">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="header-left">
+                            <div class="logo">
+                                <a href="{{url('/')}}" class="header-logo">
+                                    <img width="150" src="{{asset('theme/assets/images/logo/logo.png')}}" alt="logo-img">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="header-middle">
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('/')}}">Merch</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{url('/')}}/login">Admin Login &nbsp; <span class="fa fa-lock"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('/')}}/login">Merchant Login &nbsp; <span class="fa fa-user"></span></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                            <div class="header-search search-trigger search-icon d-none d-lg-block">
+                                <input type="text">
+                                <button
+                                    class="search-button d-flex justify-content-center align-items-center rounded-pill">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"
+                                        fill="none">
+                                        <g clip-path="url(#clip0_43_80)">
+                                            <path
+                                                d="M14.8579 14.1839L10.9851 10.3731C11.9993 9.27122 12.6224 7.81401 12.6224 6.21051C12.6219 2.78032 9.79654 0 6.31104 0C2.82553 0 0.000183105 2.78032 0.000183105 6.21051C0.000183105 9.6407 2.82553 12.421 6.31104 12.421C7.81702 12.421 9.19827 11.9001 10.2832 11.0341L14.171 14.86C14.3604 15.0466 14.668 15.0466 14.8574 14.86C15.0473 14.6734 15.0473 14.3705 14.8579 14.1839ZM6.31104 11.4655C3.36192 11.4655 0.971197 9.11277 0.971197 6.21051C0.971197 3.30825 3.36192 0.955523 6.31104 0.955523C9.26018 0.955523 11.6509 3.30825 11.6509 6.21051C11.6509 9.11277 9.26018 11.4655 6.31104 11.4655Z"
+                                                fill="#1B3A57" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_43_80">
+                                                <rect width="15" height="15" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="header__hamburger my-auto">
+                                <div class="sidebar__toggle">
+                                    <img src="{{asset('theme/assets/images/icon/slide-bar.svg')}}" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Area Start -->
+    <div class="search-wrap">
+        <div class="search-inner">
+            <i class="fas fa-times search-close" id="search-close"></i>
+            <div class="search-cell">
+                <form method="get">
+                    <div class="search-field-holder">
+                        <input type="search" class="main-search-input" placeholder="Search...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro Section S T A R T -->
+    <section class="intro-section">
+        <div class="intro-container-wrapper style1">
+            <div class="container">
+                <div class="intro-main">
+                    <div class="intro-wrapper style1 fix" style="background-image: url('{{asset('theme/assets/images/bg/bg-1.jpg')}}');">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-8">
+                                    <div class="intro-content wow fadeInUp" data-wow-delay=".3s">
+                                        <h1>High Quality Drugs <br> <span class="thin-text"> Discounted </span> <span
+                                                class="bold-text"> Exchange </span> </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-box">
+                        <div class="shape"><img src="{{asset('theme/assets/images/shape/introShape1_1.png')}}" alt="shape"></div>
+                        <h3 class="wow fadeInUp" data-wow-delay=".3s">Best Bulk Offering</h3>
+                        <p class="text wow fadeInUp" data-wow-delay=".6s">
+                            Pharmeceutical exchange plartform Pharmex
+                        </p>
+                        <div class="fancy-box-wrapper style1 wow fadeInUp" data-wow-delay=".8s">
+                            <a class="theme-btn style1" href="{{url('/')}}">View More</a>
+                            <div class="item">
+                                <h6>Drugs Exchange</h6>
+                                <div class="counter">
+                                    <span class="counter-number">400</span> <span class="plus">+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Section S T A R T -->
+    <section class="service-section section-padding fix">
+        <div class="service-container-wrapper style1">
+            <div class="shape"><img src="{{asset('theme/assets/images/shape/serviceShape1_1.png')}}" alt="shape"></div>
+            <div class="container">
+                <div class="section-title mxw-612">
+                    <h6 class="subtitle wow fadeInUp" data-wow-delay=".3s">Our Research</h6>
+                    <h2 class="title wow fadeInUp" data-wow-delay=".6s">Trusted and Reliable <span class="color-text">
+                            Laboratory Studies </span></h2>
+                </div>
+                <div class="service-wrapper style1">
+                    <div class="slider-area serviceSliderOne">
+                        <div class="swiper gt-slider" id="serviceSliderOne"
+                            data-slider-options='{"loop": true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":1,"centeredSlides":true},"768":{"slidesPerView":1},"992":{"slidesPerView":2},"1200":{"slidesPerView":3}}}'>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="service-box-wrapper style1">
+                                        <div class="service-box">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                    viewBox="0 0 50 50" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M20.1146 7.08345C21.8144 7.63608 23.4518 8.36504 25 9.25845C26.5482 8.36504 28.1855 7.63608 29.8854 7.08345C34.1437 5.73761 38.3854 5.9772 41.2042 8.79595C44.0229 11.6147 44.2625 15.8584 42.9167 20.1147C42.364 21.8146 41.6351 23.452 40.7417 25.0001C41.6917 26.673 42.4187 28.3126 42.9167 29.8855C44.2625 34.1418 44.0229 38.3855 41.2042 41.2043C38.3854 44.023 34.1417 44.2626 29.8854 42.9168C28.1855 42.3642 26.5482 41.6352 25 40.7418C23.4518 41.6352 21.8144 42.3642 20.1146 42.9168C15.8583 44.2605 11.6146 44.023 8.79583 41.2043C5.97708 38.3855 5.73958 34.1418 7.08333 29.8855C7.58125 28.3105 8.30833 26.673 9.25833 25.0001C8.36492 23.452 7.63596 21.8146 7.08333 20.1147C5.73958 15.8564 5.97916 11.6147 8.79583 8.79595C11.6146 5.9772 15.8583 5.73761 20.1146 7.08345ZM38.1042 28.9772C36.875 30.598 35.45 32.2272 33.8396 33.8397C32.3166 35.3684 30.692 36.7925 28.9771 38.1022C29.7257 38.4439 30.4472 38.7244 31.1417 38.9439C34.6792 40.0605 37.0083 39.5064 38.2583 38.2564C39.5083 37.0084 40.0625 34.6772 38.9458 31.1418C38.7104 30.4028 38.4293 29.6792 38.1042 28.9751V28.9772ZM11.8958 28.9772C11.5715 29.6807 11.2911 30.4036 11.0562 31.1418C9.93958 34.6793 10.4937 37.0084 11.7437 38.2584C12.9917 39.5084 15.3229 40.0605 18.8583 38.9439C19.5528 38.7244 20.275 38.4439 21.025 38.1022C19.31 36.7925 17.6855 35.3684 16.1625 33.8397C14.6331 32.3168 13.2062 30.6922 11.8958 28.9772ZM25 14.1668C22.888 15.6289 20.9157 17.2831 19.1083 19.1084C17.283 20.9158 15.6288 22.8881 14.1667 25.0001C15.6274 27.112 17.2803 29.0842 19.1042 30.8918C21.1104 32.898 23.0958 34.5376 25 35.8334C27.112 34.3714 29.0843 32.7171 30.8917 30.8918C32.7162 29.0843 34.3698 27.112 35.8312 25.0001C34.3734 22.8861 32.7203 20.9135 30.8937 19.1084C29.0857 17.283 27.1127 15.6288 25 14.1668ZM25 21.8751C25.8288 21.8751 26.6237 22.2044 27.2097 22.7904C27.7958 23.3765 28.125 24.1713 28.125 25.0001C28.125 25.8289 27.7958 26.6238 27.2097 27.2098C26.6237 27.7959 25.8288 28.1251 25 28.1251C24.1712 28.1251 23.3763 27.7959 22.7903 27.2098C22.2042 26.6238 21.875 25.8289 21.875 25.0001C21.875 24.1713 22.2042 23.3765 22.7903 22.7904C23.3763 22.2044 24.1712 21.8751 25 21.8751ZM11.7417 11.7418C10.4917 12.9918 9.93958 15.3209 11.0562 18.8584C11.2757 19.5529 11.5562 20.2751 11.8979 21.0251C13.1271 19.4001 14.55 17.773 16.1625 16.1605C17.6848 14.6319 19.3087 13.2078 21.0229 11.898C20.3195 11.573 19.5966 11.2919 18.8583 11.0564C15.3229 9.9397 12.9917 10.4939 11.7417 11.7418ZM31.1417 11.0564C30.4472 11.2758 29.7257 11.5564 28.9771 11.898C30.5979 13.1272 32.2271 14.5501 33.8396 16.1605C35.369 17.6835 36.7938 19.308 38.1042 21.023C38.4458 20.2744 38.7257 19.5529 38.9437 18.8584C40.0625 15.3209 39.5083 12.9918 38.2583 11.7418C37.0083 10.4918 34.6792 9.9397 31.1417 11.0564Z"
+                                                        fill="#00A6ED" />
+                                                </svg>
+                                            </div>
+                                            <h3><a href="service-details.html">Food Science Research</a></h3>
+                                            <p class="text">Liber iriure vix cu, fugit dicat no qui, posse detraxit has
+                                                cu.
+                                                Ex sint impedit vim.</p>
+                                        </div>
+                                        <div class="arrow-btn">
+                                            <a href="service-details.html">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24"
+                                                    viewBox="0 0 52 24" fill="none">
+                                                    <path
+                                                        d="M51.0607 13.0607C51.6464 12.4749 51.6464 11.5251 51.0607 10.9393L41.5147 1.3934C40.9289 0.807611 39.9792 0.807611 39.3934 1.3934C38.8076 1.97919 38.8076 2.92893 39.3934 3.51472L47.8787 12L39.3934 20.4853C38.8076 21.0711 38.8076 22.0208 39.3934 22.6066C39.9792 23.1924 40.9289 23.1924 41.5147 22.6066L51.0607 13.0607ZM0 13.5H50V10.5H0V13.5Z"
+                                                        fill="#2DCE98" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="service-box-wrapper style1">
+                                        <div class="service-box">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                    viewBox="0 0 50 50" fill="none">
+                                                    <path
+                                                        d="M16.6667 35.4167V31.2501H21.1979C21.0243 31.9445 20.9118 32.639 20.8604 33.3334C20.809 34.0279 20.8174 34.7223 20.8854 35.4167H16.6667ZM16.6667 45.8334C13.7847 45.8334 11.3285 44.8174 9.29791 42.7855C7.26736 40.7536 6.25138 38.2973 6.24999 35.4167V16.6667C5.10416 16.6667 4.12361 16.2591 3.30833 15.4438C2.49305 14.6286 2.08472 13.6473 2.08333 12.5001V8.33341C2.08333 7.18758 2.49166 6.20703 3.30833 5.39175C4.12499 4.57647 5.10555 4.16814 6.24999 4.16675H27.0833C28.2292 4.16675 29.2104 4.57508 30.0271 5.39175C30.8437 6.20841 31.2514 7.18897 31.25 8.33341V12.5001C31.25 13.6459 30.8424 14.6272 30.0271 15.4438C29.2118 16.2605 28.2305 16.6681 27.0833 16.6667V22.9688C26.25 23.4897 25.4861 24.0973 24.7917 24.7917C24.0972 25.4862 23.4896 26.2501 22.9687 27.0834H16.6667V22.9167H22.9167V16.6667H10.4167V35.4167C10.4167 37.1529 11.0243 38.6286 12.2396 39.8438C13.4549 41.0591 14.9305 41.6667 16.6667 41.6667C17.7083 41.6667 18.6549 41.4411 19.5062 40.9897C20.3576 40.5383 21.0778 39.9133 21.6667 39.1147C21.9444 39.8091 22.2569 40.4688 22.6042 41.0938C22.9514 41.7188 23.368 42.3265 23.8542 42.9167C22.9167 43.8195 21.8403 44.5313 20.625 45.0522C19.4097 45.573 18.0903 45.8334 16.6667 45.8334ZM6.24999 12.5001H27.0833V8.33341H6.24999V12.5001ZM34.375 39.5834C35.8333 39.5834 37.066 39.0799 38.0729 38.073C39.0799 37.0661 39.5833 35.8334 39.5833 34.3751C39.5833 32.9167 39.0799 31.6841 38.0729 30.6772C37.066 29.6702 35.8333 29.1667 34.375 29.1667C32.9167 29.1667 31.684 29.6702 30.6771 30.6772C29.6701 31.6841 29.1667 32.9167 29.1667 34.3751C29.1667 35.8334 29.6701 37.0661 30.6771 38.073C31.684 39.0799 32.9167 39.5834 34.375 39.5834ZM45 47.9167L39.375 42.2917C38.6111 42.7779 37.8125 43.1424 36.9792 43.3855C36.1458 43.6286 35.2778 43.7501 34.375 43.7501C31.7708 43.7501 29.5576 42.839 27.7354 41.0167C25.9132 39.1945 25.0014 36.9806 25 34.3751C24.9986 31.7695 25.9104 29.5563 27.7354 27.7355C29.5604 25.9147 31.7736 25.0029 34.375 25.0001C36.9764 24.9973 39.1903 25.9091 41.0167 27.7355C42.843 29.5619 43.7542 31.7751 43.75 34.3751C43.75 35.2779 43.6285 36.1459 43.3854 36.9792C43.1424 37.8126 42.7778 38.6112 42.2917 39.3751L47.9167 45.0001L45 47.9167Z"
+                                                        fill="#1B3A57" />
+                                                </svg>
+                                            </div>
+                                            <h3><a href="service-details.html">Biotechnology Services</a></h3>
+                                            <p class="text">Liber iriure vix cu, fugit dicat no qui, posse detraxit has
+                                                cu.
+                                                Ex sint impedit vim.</p>
+                                        </div>
+                                        <div class="arrow-btn">
+                                            <a href="service-details.html">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24"
+                                                    viewBox="0 0 52 24" fill="none">
+                                                    <path
+                                                        d="M51.0607 13.0607C51.6464 12.4749 51.6464 11.5251 51.0607 10.9393L41.5147 1.3934C40.9289 0.807611 39.9792 0.807611 39.3934 1.3934C38.8076 1.97919 38.8076 2.92893 39.3934 3.51472L47.8787 12L39.3934 20.4853C38.8076 21.0711 38.8076 22.0208 39.3934 22.6066C39.9792 23.1924 40.9289 23.1924 41.5147 22.6066L51.0607 13.0607ZM0 13.5H50V10.5H0V13.5Z"
+                                                        fill="#2DCE98" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="service-box-wrapper style1">
+                                        <div class="service-box">
+                                            <div class="icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                    viewBox="0 0 50 50" fill="none">
+                                                    <path
+                                                        d="M10.4167 43.75C8.64583 43.75 7.3875 42.9604 6.64166 41.3813C5.89583 39.8021 6.07777 38.3347 7.1875 36.9792L18.75 22.9167V10.4167H16.6667C16.0764 10.4167 15.5819 10.2167 15.1833 9.81667C14.7847 9.41667 14.5847 8.92222 14.5833 8.33333C14.5819 7.74444 14.7819 7.25 15.1833 6.85C15.5847 6.45 16.0792 6.25 16.6667 6.25H33.3333C33.9236 6.25 34.4187 6.45 34.8187 6.85C35.2187 7.25 35.4181 7.74444 35.4167 8.33333C35.4153 8.92222 35.2153 9.41736 34.8167 9.81875C34.4181 10.2201 33.9236 10.4194 33.3333 10.4167H31.25V22.9167L42.8125 36.9792C43.9236 38.3333 44.1062 39.8007 43.3604 41.3813C42.6146 42.9618 41.3556 43.7514 39.5833 43.75H10.4167ZM10.4167 39.5833H39.5833L27.0833 24.375V10.4167H22.9167V24.375L10.4167 39.5833Z"
+                                                        fill="#00A6ED" />
+                                                </svg>
+                                            </div>
+                                            <h3><a href="service-details.html">Instrumentation Services</a></h3>
+                                            <p class="text">Liber iriure vix cu, fugit dicat no qui, posse detraxit has
+                                                cu.
+                                                Ex sint impedit vim.</p>
+                                        </div>
+                                        <div class="arrow-btn">
+                                            <a href="service-details.html">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24"
+                                                    viewBox="0 0 52 24" fill="none">
+                                                    <path
+                                                        d="M51.0607 13.0607C51.6464 12.4749 51.6464 11.5251 51.0607 10.9393L41.5147 1.3934C40.9289 0.807611 39.9792 0.807611 39.3934 1.3934C38.8076 1.97919 38.8076 2.92893 39.3934 3.51472L47.8787 12L39.3934 20.4853C38.8076 21.0711 38.8076 22.0208 39.3934 22.6066C39.9792 23.1924 40.9289 23.1924 41.5147 22.6066L51.0607 13.0607ZM0 13.5H50V10.5H0V13.5Z"
+                                                        fill="#2DCE98" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-button-wrapper">
+                        <button data-slider-prev="#serviceSliderOne"
+                            class="slider-arrow slider-prev d-lg-block d-none wow fadeInUp" data-wow-delay=".3s">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="16" viewBox="0 0 31 16"
+                                fill="none">
+                                <path
+                                    d="M0.292891 8.70711C-0.0976334 8.31658 -0.0976334 7.68342 0.292891 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292891 8.70711ZM31 9H0.999998V7H31V9Z"
+                                    fill="#1B3A57" />
+                            </svg>
+                        </button>
+                        <button data-slider-next="#serviceSliderOne"
+                            class="slider-arrow style2 slider-next d-lg-block d-none wow fadeInUp" data-wow-delay=".6s">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="16" viewBox="0 0 31 16"
+                                fill="none">
+                                <path
+                                    d="M30.7071 8.70711C31.0976 8.31658 31.0976 7.68342 30.7071 7.29289L24.3431 0.928932C23.9526 0.538408 23.3195 0.538408 22.9289 0.928932C22.5384 1.31946 22.5384 1.95262 22.9289 2.34315L28.5858 8L22.9289 13.6569C22.5384 14.0474 22.5384 14.6805 22.9289 15.0711C23.3195 15.4616 23.9526 15.4616 24.3431 15.0711L30.7071 8.70711ZM0 9H30V7H0V9Z"
+                                    fill="white" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section S T A R T -->
+    <section class="about-section fix">
+        <div class="about-container-wrapper section-padding  style1">
+            <div class="shape"><img src="{{asset('theme/assets/images/shape/aboutShape1_1.png')}}" alt="shape"></div>
+            <div class="container">
+                <div class="about-wrapper style1">
+                    <div class="row gy-5 d-flex align-items-center">
+                        <div class="col-xl-5 col-md-6">
+                            <div class="section-title mxw-612">
+                                <h6 class="subtitle wow fadeInUp" data-wow-delay=".3s">About</h6>
+                                <h2 class="title wow fadeInUp" data-wow-delay=".6s">A hub for discovery <span
+                                        class="color-text"> and exploration </span>
+                                </h2>
+                                <p class="text wow fadeInUp" data-wow-delay=".8s">Proin efficitur, mauris vel
+                                    condimentum pulvinar, velit orci consectetur
+                                    ligula.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="about-content">
+                                <p class="desc wow fadeInUp" data-wow-delay=".2s">Vel condimentum pulvinar, velit orci
+                                    consectetur ligula, eget egestas
+                                    magna mi ut arcu. Phasellus nec odio orci. Nunc id massa ante. Suspendisse sit amet.
+                                </p>
+                                <a href="{{url('/')}}">Read More <svg xmlns="http://www.w3.org/2000/svg" width="7"
+                                        height="7" viewBox="0 0 7 7" fill="none">
+                                        <circle cx="3.5" cy="3.5" r="3.5" fill="#2DCE98" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 d-flex justify-content-end">
+                            <div class="about-thumb-wrapper">
+                                <div class="about-thumb img-custom-anim-left wow fadeInUp" data-wow-delay=".3s">
+                                    <img src="{{asset('theme/assets/images/about/aboutThumb1_1.jpg')}}" alt="thumb">
+                                </div>
+                                <a class="link-btn style1" href="{{url('/')}}">
+                                    <img src="{{asset('theme/assets/images/icon/arrowIcon1_1.svg')}}" alt="icon">
+                                </a>
+                                <div class="profile-box wow fadeInUp" data-wow-delay=".3s">
+                                    <img src="{{asset('theme/assets/images/about/aboutProfileThumb1_1.png')}}" alt="thumb">
+                                    <h6>Clinical Lab</h6>
+                                    <h4>20.1 Million</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Brand Slider Section S T A R T -->
+    <div class="brand-slider-section fix"><br><br>
+        <div class="container">
+            <div class="brand-slider-wrapper style1">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="swiper gt-slider brandSlider1" id="brandSlider1"
+                            data-slider-options='{"loop": true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":1,"centeredSlides":true},"768":{"slidesPerView":2},"992":{"slidesPerView":3},"1200":{"slidesPerView":4}}}'>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_1.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_2.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_3.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_4.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_1.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_2.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_3.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="brand-logo">
+                                        <img src="{{asset('theme/assets/images/brand/brandLogo1_4.png')}}" alt="logo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section S T A R T -->
+    <section class="video-section section-padding fix">
+        <div class="container">
+            <div class="video-wrapper style1">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="video-content" data-bg-src="{{asset('theme/assets/images/bg/videoBg1_1.jpg')}}">
+                            <div class="video-subtitle wow fadeInUp" data-wow-delay=".3s">
+                                WATCH VIDEO
+                            </div>
+                            <h2 class="video-title mxw-937 wow fadeInUp" data-wow-delay=".6s">Clinical and Biomedical
+                                Case Investigations</h2>
+                        </div>
+                        <div class="video-box ripple-animation">
+                            <a href="https://www.youtube.com/watch?v=f2Gzr8sAGB8" class="play-btn popup-video"><i
+                                    class="fa-sharp fa-solid fa-play"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section two Start -->
+    <footer class="footer-section-one" data-bg-src="{{asset('theme/assets/images/bg/footer-one-bg.png')}}">
+        <div class="container">
+            <div class="copyright text-center">
+                <p>Copyright © 2025 All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--<< All JS Plugins >>-->
+    <script src="{{asset('theme/assets/js/jquery-3.7.1.min.js')}}"></script>
+    <!--<< Bootstrap Js >>-->
+    <script src="{{asset('theme/assets/js/bootstrap.bundle.min.js')}}"></script>
+    <!--<< Waypoints Js >>-->
+    <script src="{{asset('theme/assets/js/jquery.waypoints.js')}}"></script>
+    <!--<< Counterup Js >>-->
+    <script src="{{asset('theme/assets/js/jquery.counterup.min.js')}}"></script>
+    <!--<< Viewport Js >>-->
+    <script src="{{asset('theme/assets/js/viewport.jquery.js')}}"></script>
+    <!--<< Tilt Js >>-->
+    <script src="{{asset('theme/assets/js/tilt.min.js')}}"></script>
+    <!--<< Swiper Slider Js >>-->
+    <script src="{{asset('theme/assets/js/swiper-bundle.min.js')}}"></script>
+    <!--<< MeanMenu Js >>-->
+    <script src="{{asset('theme/assets/js/jquery.meanmenu.min.js')}}"></script>
+    <!--<< Magnific popup Js >>-->
+    <script src="{{asset('theme/assets/js/magnific-popup.min.js')}}"></script>
+    <!--<< Wow Animation Js >>-->
+    <script src="{{asset('theme/assets/js/wow.min.js')}}"></script>
+    <!--<< NIce Select Js >>-->
+    <script src="{{asset('theme/assets/js/nice-select.min.js')}}"></script>
+    <!--<< Main.js >>-->
+    <script src="{{asset('theme/assets/js/main.js')}}"></script>
+</body>
+
 </html>
