@@ -5,9 +5,38 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Stevebauman\Location\Facades\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Datetime;
+use Hash;
+use Session;
+use BinaryCats\Sku\HasSku;
+use Redirect;
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 
 class AdminsController extends Controller
 {
+
+
+    /* Vednors Module */
+    public function vendors(){
+        activity()->log('Accessed All Categories');
+        $User = User::all();
+        $page_title = 'list';
+        $page_name = 'Categories';
+        return view('admin.vendors',compact('page_title','User','page_name'));
+    }
+
+    /* Vednors Module */
+    public function orders(){
+        activity()->log('Accessed All Categories');
+        $Orders = Order::all();
+        $page_title = 'list';
+        $page_name = 'Orders';
+        return view('admin.orders',compact('page_title','User','page_name'));
+    }
 
     /* Categories Module */
     public function categories(){
@@ -86,6 +115,88 @@ class AdminsController extends Controller
     public function deleteCategory($id){
         activity()->log('Deleted Category ID number '.$id.' ');
         DB::table('categories')->where('id',$id)->delete();
+        return Redirect::back();
+    }
+
+
+
+    /* brands Module */
+    public function brands(){
+        activity()->log('Accessed All brands');
+        $Brand = Brand::all();
+        $page_title = 'list';
+        $page_name = 'brands';
+        return view('admin.brands',compact('page_title','Brand','page_name'));
+    }
+
+    public function addBrand(){
+        activity()->log('Accessed Add Brand Page');
+        $page_title = 'formfiletext';
+        $page_name = 'Add Brand';
+        return view('admin.addBrand',compact('page_title','page_name'));
+    }
+
+
+    public function add_Brand(Request $request){
+        activity()->log('Evoked add Brand Operation');
+        $path = 'uploads/brands';
+
+        if(isset($request->image)){
+            $dir = 'uploads/brands';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $Brand = new Brand;
+        $Brand->title = $request->title;
+        $Brand->meta = $request->meta;
+        $Brand->slung = Str::slug($request->title);
+        $Brand->content = $request->ckeditor;
+        $Brand->image = $SaveFilePath;
+        $Brand->save();
+        Session::flash('message', "Brand Has Been Added");
+        return Redirect::back();
+    }
+
+    public function editbrands($id){
+        activity()->log('Access Edit Brand ID number '.$id.' ');
+        $Brand = Brand::find($id);
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Home Page Slider';
+        return view('admin.editBrand',compact('page_title','Brand','page_name'));
+    }
+
+    public function edit_Brand(Request $request, $id){
+        activity()->log('Evoked Edit Brand For Brand ID number '.$id.' ');
+
+        if(isset($request->image)){
+            $dir = 'uploads/brands';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $updateDetails = array(
+            'title'=>$request->title,
+            'slung' => Str::slug($request->title),
+            'meta'=>$request->meta,
+            'content'=>$request->ckeditor,
+            'image'=>$SaveFilePath
+
+        );
+        DB::table('brands')->where('id',$id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function deleteBrand($id){
+        activity()->log('Deleted Brand ID number '.$id.' ');
+        DB::table('brands')->where('id',$id)->delete();
         return Redirect::back();
     }
 
@@ -276,7 +387,7 @@ class AdminsController extends Controller
         return Redirect::back();
     }
 
-    public function adminHome(){
+    public function index(){
         return view('admin.index');
     }
 
