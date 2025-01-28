@@ -52,7 +52,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('products', [AdminsController::class, 'products'])->name('products');
         Route::get('addProduct', [AdminsController::class, 'addProduct'])->name('addProduct');
         Route::post('add_Product', [AdminsController::class, 'add_Product']);
-        Route::get('editCategories/{id}', [AdminsController::class, 'editCategories']);
+        Route::get('editProduct/{id}', [AdminsController::class, 'editProduct']);
         Route::post('edit_Product/{id}', [AdminsController::class, 'edit_Product']);
         Route::get('deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
 

@@ -15,6 +15,7 @@ use Redirect;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Logo;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -214,10 +215,11 @@ class AdminsController extends Controller
 
     public function addProduct(){
         $Category = Category::all();
+        $Products = Product::all();
         activity()->log('Accessed Add Product Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Product';
-        return view('admin.addProduct',compact('page_title','page_name','Category'));
+        return view('admin.addProduct',compact('page_title','page_name','Category','Products'));
     }
 
     public function add_Product(Request $request){
@@ -234,11 +236,11 @@ class AdminsController extends Controller
 
         $Product = new Product;
         $Product->name = $request->title;
-        $Product->user_id = $request->user_id;
+        $Product->user_id = Auth::User()->id;
         $Product->slung = Str::slug($request->title);
         $Product->meta = $request->meta;
         $Product->category = $request->category;
-        $Product->stock = $request->stock;
+        $Product->stock = "In Stock";
         $Product->price_raw = $request->price;
         $Product->price = $request->price;
         $Product->content = $request->content;
@@ -248,13 +250,14 @@ class AdminsController extends Controller
         return Redirect::back();
     }
 
-    public function editProducts($id){
+    public function editProduct($id){
         $Category = Category::all();
         $Product = Product::find($id);
+        $Products = Product::all();
         activity()->log('Access Edit Product: '.$Product->title.' ');
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editProduct',compact('page_title','Product','page_name','Category'));
+        return view('admin.editProduct',compact('page_title','Products','page_name','Category','Product'));
     }
 
     public function edit_Product(Request $request, $id){
