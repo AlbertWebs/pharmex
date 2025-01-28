@@ -106,25 +106,28 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <form method="POST" action="{{url('/')}}/admin-panel/add_Product" enctype="multipart/form-data">
+                                            <form method="POST" action="{{url('/')}}/admin-panel/edit_Product/{{$Product->id}}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Product Title</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="title" id="example-text-input">
+                                                        <input class="form-control" type="text" value="{{$Product->name}}" name="title" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="price" value="" id="example-text-input">
+                                                        <input class="form-control" type="text" name="price" value="{{$Product->price}}" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
                                                     <div class="col-sm-5">
                                                         <select class="form-select" aria-label="Default select example" name="category">
-                                                            <option selected="">Open This Select Category</option>
+                                                            <?php
+                                                               $Cat = \App\Models\Category::find($Product->category);
+                                                            ?>
+                                                            <option value="{{$Cat->id}}" selected="">{{$Cat->title}}</option>
                                                             <?php
                                                             $Category = \App\Models\Category::all();
                                                             ?>
@@ -135,12 +138,13 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <select class="form-select" aria-label="Default select example" name="brand">
-                                                            <option selected="">Open This Select Brand</option>
+
+                                                            <option value="{{$Product->brand}}" selected="">{{$Product->brand}}</option>
                                                             <?php
                                                             $Category = \App\Models\Brand::all();
                                                             ?>
                                                             @foreach($Category as $category)
-                                                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                                                <option value="{{$category->title}}">{{$category->title}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -149,16 +153,27 @@
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Meta</label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" rows="5" id="message" name="meta"></textarea>
+                                                        <textarea class="form-control" rows="5" id="message" name="meta">
+                                                            {{$Product->meta}}
+                                                        </textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
                                                     <div class="col-sm-10">
-                                                        <textarea id="basic-conf" name="content">Hello, World! Your Product description goes here</textarea>
+                                                        <textarea id="basic-conf" name="content">{{$Product->content}}</textarea>
                                                     </div>
                                                 </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Product Image</label>
+                                                    <div class="col-sm-10">
+                                                        <img  src="{{$Product->image}}" style="width:300px; height:150px; object-fit:cover; border-radius:10px;" alt="">
+                                                    </div>
+
+                                                </div>
+
+                                                <input type="hidden" name="image_cheat" value="{{$Product->image}}">
 
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Product Image</label>
@@ -173,7 +188,7 @@
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
                                                     <div class="col-sm-10">
-                                                        <button class="btn btn-primary" type="submit">Add Product</button>
+                                                        <button class="btn btn-primary" type="submit">Save Changes</button>
                                                     </div>
                                                 </div>
                                             </form>

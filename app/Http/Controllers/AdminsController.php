@@ -207,10 +207,10 @@ class AdminsController extends Controller
     /* Products Functions*/
     public function products(){
         activity()->log('Accessed All Products');
-        $Product = Product::all();
+        $Products = Product::all();
         $page_title = 'list';
         $page_name = 'Products';
-        return view('admin.products',compact('page_title','Product','page_name'));
+        return view('admin.products',compact('page_title','Products','page_name'));
     }
 
     public function addProduct(){
@@ -278,9 +278,9 @@ class AdminsController extends Controller
             'slung' => Str::slug($request->title),
             'content'=>$request->content,
             'meta'=>$request->meta,
-            'stock'=>$new_stock,
             'price'=>$request->price,
             'category'=>$request->category,
+            'brand'=>$request->brand,
             'image'=>$SaveFilePath,
         );
         DB::table('products')->where('id',$id)->update($updateDetails);

@@ -140,7 +140,7 @@
                                                             $Category = \App\Models\Brand::all();
                                                             ?>
                                                             @foreach($Category as $category)
-                                                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                                                <option value="{{$category->title}}">{{$category->title}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
