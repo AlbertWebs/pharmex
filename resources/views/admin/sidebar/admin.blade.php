@@ -11,7 +11,7 @@
                 <a class="nav-link" href="{{route('add-category')}}">Add Categories</a>
             </li><!--end nav-item-->
             <li class="nav-item">
-                <a href="{{route('all-category')}}" class="nav-link ">All Categories</a>
+                <a href="{{route('add-category')}}" class="nav-link ">All Categories</a>
             </li><!--end nav-item-->
 
         </ul><!--end nav-->

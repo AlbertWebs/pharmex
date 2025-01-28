@@ -245,12 +245,13 @@
     <!-- Service Section S T A R T -->
     <section class="service-section section-padding fix">
         <div class="service-container-wrapper style1">
-            <div class="shape"><img src="{{asset('theme/assets/images/shape/serviceShape1_1.png')}}" alt="shape"></div>
+            {{-- <div class="shape"><img src="{{asset('theme/assets/images/shape/serviceShape1_1.png')}}" alt="shape"></div> --}}
+            <div class="shape"><img src="{{asset('theme/assets/images/shape/aboutShape1_1.png')}}" alt="shape"></div>
             <div class="container">
                 <div class="section-title mxw-612">
-                    <h6 class="subtitle wow fadeInUp" data-wow-delay=".3s">Our Research</h6>
+                    <h6 class="subtitle wow fadeInUp" data-wow-delay=".3s">Why Choose Us</h6>
                     <h2 class="title wow fadeInUp" data-wow-delay=".6s">Trusted and Reliable <span class="color-text">
-                            Laboratory Studies </span></h2>
+                            Pharmaceutical Exchange Plartform </span></h2>
                 </div>
                 <div class="service-wrapper style1">
                     <div class="slider-area serviceSliderOne">
@@ -268,13 +269,13 @@
                                                         fill="#00A6ED" />
                                                 </svg>
                                             </div>
-                                            <h3><a href="service-details.html">Food Science Research</a></h3>
-                                            <p class="text">Liber iriure vix cu, fugit dicat no qui, posse detraxit has
-                                                cu.
-                                                Ex sint impedit vim.</p>
+                                            <h3><a href="#">Vetted Vendors</a></h3>
+                                            <p class="text">
+                                                GPT something here for the vetted vendors
+                                            </p>
                                         </div>
                                         <div class="arrow-btn">
-                                            <a href="service-details.html">
+                                            <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24"
                                                     viewBox="0 0 52 24" fill="none">
                                                     <path
@@ -296,13 +297,13 @@
                                                         fill="#1B3A57" />
                                                 </svg>
                                             </div>
-                                            <h3><a href="service-details.html">Biotechnology Services</a></h3>
-                                            <p class="text">Liber iriure vix cu, fugit dicat no qui, posse detraxit has
-                                                cu.
-                                                Ex sint impedit vim.</p>
+                                            <h3><a href="#">Unlimited Offers</a></h3>
+                                            <p class="text">
+                                                I am running out of things to write
+                                            </p>
                                         </div>
                                         <div class="arrow-btn">
-                                            <a href="service-details.html">
+                                            <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24"
                                                     viewBox="0 0 52 24" fill="none">
                                                     <path
@@ -324,13 +325,13 @@
                                                         fill="#00A6ED" />
                                                 </svg>
                                             </div>
-                                            <h3><a href="service-details.html">Instrumentation Services</a></h3>
-                                            <p class="text">Liber iriure vix cu, fugit dicat no qui, posse detraxit has
-                                                cu.
-                                                Ex sint impedit vim.</p>
+                                            <h3><a href="#">Free Delivery Services</a></h3>
+                                            <p class="text">
+                                                I am running out of things to write I am running out of things to write
+                                            </p>
                                         </div>
                                         <div class="arrow-btn">
-                                            <a href="service-details.html">
+                                            <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24"
                                                     viewBox="0 0 52 24" fill="none">
                                                     <path
@@ -370,59 +371,6 @@
             </div>
         </div>
     </section>
-
-    <!-- About Section S T A R T -->
-    <section class="about-section fix">
-        <div class="about-container-wrapper section-padding  style1">
-            <div class="shape"><img src="{{asset('theme/assets/images/shape/aboutShape1_1.png')}}" alt="shape"></div>
-            <div class="container">
-                <div class="about-wrapper style1">
-                    <div class="row gy-5 d-flex align-items-center">
-                        <div class="col-xl-5 col-md-6">
-                            <div class="section-title mxw-612">
-                                <h6 class="subtitle wow fadeInUp" data-wow-delay=".3s">About</h6>
-                                <h2 class="title wow fadeInUp" data-wow-delay=".6s">A hub for discovery <span
-                                        class="color-text"> and exploration </span>
-                                </h2>
-                                <p class="text wow fadeInUp" data-wow-delay=".8s">Proin efficitur, mauris vel
-                                    condimentum pulvinar, velit orci consectetur
-                                    ligula.</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="about-content">
-                                <p class="desc wow fadeInUp" data-wow-delay=".2s">Vel condimentum pulvinar, velit orci
-                                    consectetur ligula, eget egestas
-                                    magna mi ut arcu. Phasellus nec odio orci. Nunc id massa ante. Suspendisse sit amet.
-                                </p>
-                                <a href="{{url('/')}}">Read More <svg xmlns="http://www.w3.org/2000/svg" width="7"
-                                        height="7" viewBox="0 0 7 7" fill="none">
-                                        <circle cx="3.5" cy="3.5" r="3.5" fill="#2DCE98" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6 d-flex justify-content-end">
-                            <div class="about-thumb-wrapper">
-                                <div class="about-thumb img-custom-anim-left wow fadeInUp" data-wow-delay=".3s">
-                                    <img src="{{asset('theme/assets/images/about/aboutThumb1_1.jpg')}}" alt="thumb">
-                                </div>
-                                <a class="link-btn style1" href="{{url('/')}}">
-                                    <img src="{{asset('theme/assets/images/icon/arrowIcon1_1.svg')}}" alt="icon">
-                                </a>
-                                <div class="profile-box wow fadeInUp" data-wow-delay=".3s">
-                                    <img src="{{asset('theme/assets/images/about/aboutProfileThumb1_1.png')}}" alt="thumb">
-                                    <h6>Clinical Lab</h6>
-                                    <h4>20.1 Million</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <!-- Brand Slider Section S T A R T -->
     <div class="brand-slider-section fix"><br><br>
@@ -491,15 +439,19 @@
                             <div class="video-subtitle wow fadeInUp" data-wow-delay=".3s">
                                 WATCH VIDEO
                             </div>
-                            <h2 class="video-title mxw-937 wow fadeInUp" data-wow-delay=".6s">Clinical and Biomedical
-                                Case Investigations</h2>
+                            <h2 class="video-title mxw-937 wow fadeInUp" data-wow-delay=".6s">Pharma and Biomedical
+                                Case Studies</h2>
                         </div>
-                        <div class="video-box ripple-animation">
-                            <a href="https://www.youtube.com/watch?v=f2Gzr8sAGB8" class="play-btn popup-video"><i
-                                    class="fa-sharp fa-solid fa-play"></i>
-                            </a>
-
-                        </div>
+                        <?php
+                          $Settings = DB::table('_site_settings')->get();
+                        ?>
+                        @foreach ($Settings as $sett)
+                            <div class="video-box ripple-animation">
+                                <a href="https://www.youtube.com/watch?v={{$sett->embede}}" class="play-btn popup-video"><i
+                                        class="fa-sharp fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -509,6 +461,24 @@
     <!-- Footer Section two Start -->
     <footer class="footer-section-one" data-bg-src="{{asset('theme/assets/images/bg/footer-one-bg.png')}}">
         <div class="container">
+            <div class="footer-contact-info">
+                <div class="row g-4 d-flex align-items-center">
+                    <div class="col-xl-6">
+                        <div class="info-wrapper">
+                            <div class="info"><a href="mailto:pharmex@mail.com">pharmex@mail.com</a></div>
+                            <div class="info"><a href="tel:254723014032">(254) 723-014 032</a></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <ul class="social-links">
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Linkedin</a></li>
+                            <li><a href="#">Youtube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="copyright text-center">
                 <p>Copyright © 2025 All Rights Reserved</p>
             </div>

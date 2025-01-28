@@ -26,7 +26,7 @@
         <!-- leftbar-tab-menu -->
         <div class="left-sidebar">
             <!-- LOGO -->
-            <div class="Product">
+            <div class="brand">
                 <a href="index.html" class="logo">
                     <span>
                         <img src="{{asset('admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">

@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Datetime;
 use Hash;
+use DB;
 use Session;
 use BinaryCats\Sku\HasSku;
 use Redirect;
 use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Logo;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -35,7 +38,7 @@ class AdminsController extends Controller
         $Orders = Order::all();
         $page_title = 'list';
         $page_name = 'Orders';
-        return view('admin.orders',compact('page_title','User','page_name'));
+        return view('admin.orders',compact('page_title','Orders','page_name'));
     }
 
     /* Categories Module */
@@ -48,12 +51,12 @@ class AdminsController extends Controller
     }
 
     public function addCategory(){
+        $Category = Category::all();
         activity()->log('Accessed Add Category Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Category';
-        return view('admin.addCategory',compact('page_title','page_name'));
+        return view('admin.addCategory',compact('page_title','page_name','Category'));
     }
-
 
     public function add_Category(Request $request){
         activity()->log('Evoked add Category Operation');
@@ -70,9 +73,8 @@ class AdminsController extends Controller
 
         $Category = new Category;
         $Category->title = $request->title;
-        $Category->meta = $request->meta;
         $Category->slung = Str::slug($request->title);
-        $Category->content = $request->ckeditor;
+        $Category->content = $request->content;
         $Category->image = $SaveFilePath;
         $Category->save();
         Session::flash('message', "Category Has Been Added");
@@ -82,9 +84,10 @@ class AdminsController extends Controller
     public function editCategories($id){
         activity()->log('Access Edit Category ID number '.$id.' ');
         $Category = Category::find($id);
+        $Categories = Category::all();
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editCategory',compact('page_title','Category','page_name'));
+        return view('admin.editCategory',compact('page_title','Category','Categories','page_name'));
     }
 
     public function edit_Category(Request $request, $id){
@@ -102,8 +105,8 @@ class AdminsController extends Controller
         $updateDetails = array(
             'title'=>$request->title,
             'slung' => Str::slug($request->title),
-            'meta'=>$request->meta,
-            'content'=>$request->ckeditor,
+
+            'content'=>$request->content,
             'image'=>$SaveFilePath
 
         );
@@ -130,10 +133,11 @@ class AdminsController extends Controller
     }
 
     public function addBrand(){
+        $Brand = Brand::all();
         activity()->log('Accessed Add Brand Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Brand';
-        return view('admin.addBrand',compact('page_title','page_name'));
+        return view('admin.addBrand',compact('page_title','page_name','Brand'));
     }
 
 
@@ -152,7 +156,6 @@ class AdminsController extends Controller
 
         $Brand = new Brand;
         $Brand->title = $request->title;
-        $Brand->meta = $request->meta;
         $Brand->slung = Str::slug($request->title);
         $Brand->content = $request->ckeditor;
         $Brand->image = $SaveFilePath;
@@ -164,9 +167,10 @@ class AdminsController extends Controller
     public function editbrands($id){
         activity()->log('Access Edit Brand ID number '.$id.' ');
         $Brand = Brand::find($id);
+        $Brands = Brand::all();
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editBrand',compact('page_title','Brand','page_name'));
+        return view('admin.editBrand',compact('page_title','Brand','Brands','page_name'));
     }
 
     public function edit_Brand(Request $request, $id){
@@ -184,7 +188,6 @@ class AdminsController extends Controller
         $updateDetails = array(
             'title'=>$request->title,
             'slung' => Str::slug($request->title),
-            'meta'=>$request->meta,
             'content'=>$request->ckeditor,
             'image'=>$SaveFilePath
 
@@ -384,6 +387,101 @@ class AdminsController extends Controller
         $User = User::find($id);
         activity()->log('Deleted User '.$User->name.' ');
         DB::table('users')->where('id',$id)->delete();
+        return Redirect::back();
+    }
+
+    /* logos Module */
+    public function video(){
+        $Settings = DB::table('_site_settings')->get();
+        activity()->log('Accessed All logos');
+        $page_title = 'list';
+        $page_name = 'video';
+        return view('admin.video',compact('page_title','page_name','Settings'));
+    }
+
+    public function logos(){
+        activity()->log('Accessed All logos');
+        $Logo = Logo::all();
+        $page_title = 'list';
+        $page_name = 'logos';
+        return view('admin.logos',compact('page_title','Logo','page_name'));
+    }
+
+    public function addLogo(){
+        activity()->log('Accessed Add Logo Page');
+        $page_title = 'formfiletext';
+        $page_name = 'Add Logo';
+        return view('admin.addLogo',compact('page_title','page_name'));
+    }
+
+
+    public function add_Logo(Request $request){
+        activity()->log('Evoked add Logo Operation');
+        $path = 'uploads/clients';
+
+        if(isset($request->image)){
+            $dir = 'uploads/logos';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $Logo = new Logo;
+        $Logo->title = $request->title;
+        $Logo->slung = Str::slug($request->title);
+        $Logo->image = $SaveFilePath;
+        $Logo->save();
+        Session::flash('message', "Logo Has Been Added");
+        return Redirect::back();
+    }
+
+    public function editlogos($id){
+        activity()->log('Access Edit Logo ID number '.$id.' ');
+        $Logo = Logo::find($id);
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Home Page Slider';
+        return view('admin.editLogo',compact('page_title','Logo','page_name'));
+    }
+
+    public function edit_Logo(Request $request, $id){
+        activity()->log('Evoked Edit Logo For Logo ID number '.$id.' ');
+
+        if(isset($request->image)){
+            $dir = 'uploads/logos';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $updateDetails = array(
+            'title'=>$request->title,
+            'slung' => Str::slug($request->title),
+            'image'=>$SaveFilePath
+        );
+        DB::table('logos')->where('id',$id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function deleteLogo($id){
+        activity()->log('Deleted Logo ID number '.$id.' ');
+        DB::table('logos')->where('id',$id)->delete();
+        return Redirect::back();
+    }
+
+    public function update_embeded(Request $request){
+        activity()->log('Evoked Edit Logo For Video ');
+
+        $updateDetails = array(
+            'embede'=>$request->embede,
+
+        );
+        DB::table('_site_settings')->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
         return Redirect::back();
     }
 

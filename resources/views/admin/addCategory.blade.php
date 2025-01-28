@@ -106,25 +106,38 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div class="mb-3 row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category Title</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                            <form method="POST" action="{{route('add-category-post')}}" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category Title</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="title" id="example-text-input">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
-                                                <div class="col-sm-10">
-                                                    <textarea id="basic-conf">Hello, World! Your Category description goes here</textarea>
+                                                <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea name="content" id="basic-conf">Hello, World! Your Category description goes here</textarea>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="mb-3 row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
-                                                <div class="col-sm-10">
-                                                    <button class="btn btn-primary" type="submit">Add Category</button>
+                                                <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Category Image</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="text-muted">Upload your Product image here, Please click "Upload Image" Button.</p>
+                                                        <div class="preview-box d-block justify-content-center rounded shadow overflow-hidden bg-light p-1"></div>
+                                                        <input type="file" id="input-file" name="image" accept="image/*" onchange="{handleChange()}" hidden="">
+                                                        <label class="btn-upload btn btn-primary mt-4" for="input-file">Upload Image</label>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
+                                                    <div class="col-sm-10">
+                                                        <button class="btn btn-primary" type="submit">Add Category</button>
+                                                    </div>
+                                                </div>
+                                            </form>
 
                                         </div>
 
@@ -140,10 +153,20 @@
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <ul class="list-group list-group-flush">
-                                                                    <li class="list-group-item"><i class="la la-angle-double-right text-info me-2"></i>Category 1</li>
-                                                                    <li class="list-group-item"><i class="la la-angle-double-right text-info me-2"></i>Category 2</li>
-                                                                    <li class="list-group-item"><i class="la la-angle-double-right text-info me-2"></i>Category 3</li>
-                                                                    <li class="list-group-item"><i class="la la-angle-double-right text-info me-2"></i>Category 4</li>
+                                                                    @foreach ($Category as $category)
+                                                                    <li class="list-group-item">
+                                                                        <i class="la la-angle-double-right text-info me-2"></i>
+                                                                        {{$category->title}} &nbsp; &nbsp;
+                                                                        <img src="{{$category->image}}" alt="" height="40">
+                                                                        &nbsp; &nbsp;
+
+                                                                        <a href="{{url('/')}}/admin-panel/editCategories/{{$category->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                                        &nbsp; &nbsp;
+                                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteCategory/{{$category->id}}">
+                                                                            <i class="las la-trash-alt text-secondary font-16"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    @endforeach
                                                                 </ul>
                                                             </div><!--end col-->
                                                         </div><!--end row-->
@@ -230,6 +253,7 @@
         <script src="{{asset('admin/assets/plugins/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
 
+        <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
 

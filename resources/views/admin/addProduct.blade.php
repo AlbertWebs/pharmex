@@ -26,7 +26,7 @@
         <!-- leftbar-tab-menu -->
         <div class="left-sidebar">
             <!-- LOGO -->
-            <div class="Product">
+            <div class="brand">
                 <a href="index.html" class="logo">
                     <span>
                         <img src="{{asset('admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
@@ -163,7 +163,7 @@
                                                 <div class="col-sm-10">
                                                     <p class="text-muted">Upload your Product image here, Please click "Upload Image" Button.</p>
                                                     <div class="preview-box d-block justify-content-center rounded shadow overflow-hidden bg-light p-1"></div>
-                                                    <input type="file" id="input-file" name="input-file" accept="image/*" onchange="{handleChange()}" hidden="">
+                                                    <input type="file" id="input-file" name="image" accept="image/*" onchange="{handleChange()}" hidden="">
                                                     <label class="btn-upload btn btn-primary mt-4" for="input-file">Upload Image</label>
                                                 </div>
                                             </div>

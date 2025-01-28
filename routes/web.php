@@ -35,7 +35,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         // Categories
         Route::get('categories', [AdminsController::class, 'categories'])->name('all-category');
         Route::get('addCategory', [AdminsController::class, 'addCategory'])->name('add-category');
-        Route::post('add_Category', [AdminsController::class, 'add_Category']);
+        Route::post('add_Category', [AdminsController::class, 'add_Category'])->name('add-category-post');
         Route::get('editCategories/{id}', [AdminsController::class, 'editCategories']);
         Route::post('edit_Category/{id}', [AdminsController::class, 'edit_Category']);
         Route::get('deleteCategory/{id}', [AdminsController::class, 'deleteCategory']);
@@ -43,8 +43,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         // brands
         Route::get('brands', [AdminsController::class, 'brands'])->name('all-brand');
         Route::get('addbrand', [AdminsController::class, 'addbrand'])->name('add-brand');
-        Route::post('add_brand', [AdminsController::class, 'add_brand']);
-        Route::get('editbrands/{id}', [AdminsController::class, 'editbrands']);
+        Route::post('add_brand', [AdminsController::class, 'add_brand'])->name('add-brand-post');
+        Route::get('editBrands/{id}', [AdminsController::class, 'editbrands']);
         Route::post('edit_brand/{id}', [AdminsController::class, 'edit_brand']);
         Route::get('deletebrand/{id}', [AdminsController::class, 'deletebrand']);
 
@@ -56,9 +56,20 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_Product/{id}', [AdminsController::class, 'edit_Product']);
         Route::get('deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
 
+        //logos
+        Route::get('logos', [AdminsController::class, 'logos'])->name('logos');
+        Route::get('addLogo', [AdminsController::class, 'addLogo'])->name('add-new-logo');
+        Route::post('add_Logo', [AdminsController::class, 'add_Logo'])->name('add-client-post');
+        Route::get('editLogos/{id}', [AdminsController::class, 'editLogos']);
+        Route::post('edit_Logo/{id}', [AdminsController::class, 'edit_Logo']);
+        Route::get('deleteLogo/{id}', [AdminsController::class, 'deleteLogo']);
+
          //Orders
          Route::get('orders', [AdminsController::class, 'orders'])->name('orders');
          Route::get('vendors', [AdminsController::class, 'vendors'])->name('vendors');
+         Route::get('video', [AdminsController::class, 'video'])->name('video');
+         Route::post('update-embeded-video', [AdminsController::class, 'update_embeded'])->name('update-embeded-video');
+
 
          Route::get('orders', [AdminsController::class, 'orders'])->name('orders');
 

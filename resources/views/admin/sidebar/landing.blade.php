@@ -7,14 +7,14 @@
 </li><!--end nav-item-->
 
 <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{route('logos')}}">
         <i class="ti ti-chart-bubble menu-icon"></i>
         <span>Brands Logos</span>
     </a>
 </li><!--end nav-item-->
 
 <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{route('video')}}">
         <i class="ti ti-video menu-icon"></i>
         <span>Landing Page Video</span>
     </a>

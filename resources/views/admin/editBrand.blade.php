@@ -90,7 +90,7 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Add Brands</h4>
+                                <h4 class="page-title">Edit Brands</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -106,23 +106,31 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <form method="POST" action="{{route('add-brand-post')}}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{url('/')}}/admin-panel/edit_brand/{{$Brand->id}}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Brand Title</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="title" id="example-text-input">
+                                                        <input class="form-control" value="{{$Brand->title}}" type="text" name="title" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
                                                     <div class="col-sm-10">
-                                                        <textarea name="content" id="basic-conf">Hello, World! Your Brand description goes here</textarea>
+                                                        <textarea name="content" id="basic-conf">{{$Brand->content}}</textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Brand Image</label>
+                                                    <div class="col-sm-10">
+                                                        <img  src="{{$Brand->image}}" style="width:300px; height:150px; object-fit:cover; border-radius:10px;" alt="">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Update Image</label>
                                                     <div class="col-sm-10">
                                                         <p class="text-muted">Upload your Product image here, Please click "Upload Image" Button.</p>
                                                         <div class="preview-box d-block justify-content-center rounded shadow overflow-hidden bg-light p-1"></div>
@@ -130,11 +138,12 @@
                                                         <label class="btn-upload btn btn-primary mt-4" for="input-file">Upload Image</label>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" name="image_cheat" value="{{$Brand->image}}">
 
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
                                                     <div class="col-sm-10">
-                                                        <button class="btn btn-primary" type="submit">Add Brand</button>
+                                                        <button class="btn btn-primary" type="submit">Save Changes</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -153,7 +162,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <ul class="list-group list-group-flush">
-                                                                    @foreach ($Brand as $Brand)
+                                                                    @foreach ($Brands as $Brand)
                                                                     <li class="list-group-item">
                                                                         <i class="la la-angle-double-right text-info me-2"></i>
                                                                         {{$Brand->title}} &nbsp; &nbsp;
@@ -179,7 +188,6 @@
                             </div><!--end card-->
                         </div><!--end col-->
                     </div><!--end row-->
-
 
 
 
@@ -253,6 +261,7 @@
 
         <script src="{{asset('admin/assets/plugins/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
+
         <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>

@@ -90,7 +90,7 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Add Brands</h4>
+                                <h4 class="page-title">Edit Categories</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -106,23 +106,31 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <form method="POST" action="{{route('add-brand-post')}}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{url('/')}}/admin-panel/edit_Category/{{$Category->id}}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Brand Title</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category Title</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="title" id="example-text-input">
+                                                        <input class="form-control" value="{{$Category->title}}" type="text" name="title" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
                                                     <div class="col-sm-10">
-                                                        <textarea name="content" id="basic-conf">Hello, World! Your Brand description goes here</textarea>
+                                                        <textarea name="content" id="basic-conf">{{$Category->content}}</textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Brand Image</label>
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Category Image</label>
+                                                    <div class="col-sm-10">
+                                                        <img  src="{{$Category->image}}" style="width:300px; height:150px; object-fit:cover; border-radius:10px;" alt="">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Update Image</label>
                                                     <div class="col-sm-10">
                                                         <p class="text-muted">Upload your Product image here, Please click "Upload Image" Button.</p>
                                                         <div class="preview-box d-block justify-content-center rounded shadow overflow-hidden bg-light p-1"></div>
@@ -130,11 +138,12 @@
                                                         <label class="btn-upload btn btn-primary mt-4" for="input-file">Upload Image</label>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" name="image_cheat" value="{{$Category->image}}">
 
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
                                                     <div class="col-sm-10">
-                                                        <button class="btn btn-primary" type="submit">Add Brand</button>
+                                                        <button class="btn btn-primary" type="submit">Save Changes</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -146,23 +155,23 @@
                                             {{--  --}}
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h4 class="card-title">All Brands</h4>
-                                                        <p class="text-muted mb-0">Shows <code> List of all Brands </code> </p>
+                                                        <h4 class="card-title">All Categories</h4>
+                                                        <p class="text-muted mb-0">Shows <code> List of all categories </code> </p>
                                                     </div><!--end card-header-->
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <ul class="list-group list-group-flush">
-                                                                    @foreach ($Brand as $Brand)
+                                                                    @foreach ($Categories as $category)
                                                                     <li class="list-group-item">
                                                                         <i class="la la-angle-double-right text-info me-2"></i>
-                                                                        {{$Brand->title}} &nbsp; &nbsp;
-                                                                        <img src="{{$Brand->image}}" alt="" height="40">
+                                                                        {{$category->title}} &nbsp; &nbsp;
+                                                                        <img src="{{$category->image}}" alt="" height="40">
                                                                         &nbsp; &nbsp;
 
-                                                                        <a href="{{url('/')}}/admin-panel/editBrands/{{$Brand->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                                        <a href="{{url('/')}}/admin-panel/editCategories/{{$category->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
                                                                         &nbsp; &nbsp;
-                                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteBrand/{{$Brand->id}}">
+                                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteCategory/{{$category->id}}">
                                                                             <i class="las la-trash-alt text-secondary font-16"></i>
                                                                         </a>
                                                                     </li>
@@ -179,7 +188,6 @@
                             </div><!--end card-->
                         </div><!--end col-->
                     </div><!--end row-->
-
 
 
 
@@ -253,6 +261,7 @@
 
         <script src="{{asset('admin/assets/plugins/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
+
         <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
