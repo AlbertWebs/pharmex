@@ -144,7 +144,7 @@
                                                 <a href="{{url('/')}}">Home</a>
                                             </li>
                                             <li>
-                                                <a href="{{url('/')}}">Merch</a>
+                                                <a href="{{url('/')}}/stock-exchange">Merch</a>
                                             </li>
 
                                             <li>
@@ -228,7 +228,7 @@
                             Pharmeceutical exchange plartform Pharmex
                         </p>
                         <div class="fancy-box-wrapper style1 wow fadeInUp" data-wow-delay=".8s">
-                            <a class="theme-btn style1" href="{{url('/')}}">View More</a>
+                            <a class="theme-btn style1" href="{{url('/')}}/stock-exchange">View More</a>
                             <div class="item">
                                 <h6>Drugs Exchange</h6>
                                 <div class="counter">

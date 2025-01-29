@@ -4,9 +4,23 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\ShopController;
+
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('stock-exchange')->group(function () {
+    Route::get('/', [ShopController::class, 'index'])->name('home');
+    Route::get('/shop-by-category/{category-slung}', [ShopController::class, 'index'])->name('category');
+    Route::get('/get-single-product/{slung}', [ShopController::class, 'product'])->name('product');
+
+    //Shopping cart
+    Route::post('/add-to-cart', [ShopController::class, 'add'])->name('add-to-cart');
+    Route::get('/shopping-cart', [ShopController::class, 'cart'])->name('shopping-cart');
+    Route::get('/shopping-cart/checkout', [ShopController::class, 'checkout'])->name('checkout');
+
 });
 
 // Location information
