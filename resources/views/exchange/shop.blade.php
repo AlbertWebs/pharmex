@@ -41,27 +41,27 @@
                                 <div class="ltn__shop-details-img-gallery">
                                     <div class="ltn__shop-details-large-img">
                                         <div class="single-large-img">
-                                            <a href="{{$product->image}}" data-rel="lightcase:myCollection">
+                                            <a class="single-large-imgs" href="{{$product->image}}" data-rel="lightcase:myCollection">
                                                 <img src="{{$product->image}}" alt="Image">
                                             </a>
                                         </div>
                                         <div class="single-large-img">
-                                            <a href="{{$product->image}}" data-rel="lightcase:myCollection">
+                                            <a class="single-large-imgs" href="{{$product->image}}" data-rel="lightcase:myCollection">
                                                 <img src="{{$product->image}}" alt="Image">
                                             </a>
                                         </div>
                                         <div class="single-large-img">
-                                            <a href="{{$product->image}}" data-rel="lightcase:myCollection">
+                                            <a class="single-large-imgs" href="{{$product->image}}" data-rel="lightcase:myCollection">
                                                 <img src="{{$product->image}}" alt="Image">
                                             </a>
                                         </div>
                                         <div class="single-large-img">
-                                            <a href="{{$product->image}}" data-rel="lightcase:myCollection">
+                                            <a class="single-large-imgs" href="{{$product->image}}" data-rel="lightcase:myCollection">
                                                 <img src="{{$product->image}}" alt="Image">
                                             </a>
                                         </div>
                                         <div class="single-large-img">
-                                            <a href="{{$product->image}}" data-rel="lightcase:myCollection">
+                                            <a class="single-large-imgs" href="{{$product->image}}" data-rel="lightcase:myCollection">
                                                 <img src="{{$product->image}}" alt="Image">
                                             </a>
                                         </div>
@@ -110,7 +110,7 @@
                                                 <strong>Categories:</strong>
                                                 <span>
                                                     <?php
-                                                       $Cate = \App\Models\Category::find($product->id);
+                                                       $Cate = \App\Models\Category::find($product->category);
                                                     ?>
                                                     <a href="{{route('category', $Cate->slung)}}">{{$Cate->title}}</a>
                                                     <a href="#">{{$product->brand}}</a>
@@ -120,34 +120,33 @@
                                         </ul>
                                     </div>
                                     <div class="ltn__product-details-menu-2">
+                                        <form method="POST" action="{{route('add-to-cart')}}">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{$product->id}}">
                                         <ul>
                                             <li>
                                                 <div class="cart-plus-minus">
-                                                    <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                                    <input type="text" value="01" name="qtybutton" class="cart-plus-minus-box">
                                                 </div>
                                             </li>
                                             <li>
-                                                <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                <button type="submit" class="theme-btn-1 btn btn-effect-1" title="Add to Cart">
                                                     <i class="fas fa-shopping-cart"></i>
                                                     <span>ADD TO CART</span>
-                                                </a>
+                                                </button>
                                             </li>
                                         </ul>
+                                        </form>
                                     </div>
                                     <div class="ltn__product-details-menu-3">
                                         <ul>
                                             <li>
-                                                <a href="#" class="" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                                <a href="#" class="" title="Wishlist">
                                                     <i class="far fa-heart"></i>
-                                                    <span>Add to Wishlist</span>
+                                                    <span>{{$product->qty}} Available in Stock</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#" class="" title="Compare" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                    <span>Compare</span>
-                                                </a>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <hr>

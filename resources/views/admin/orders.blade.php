@@ -14,6 +14,9 @@
                 <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
 
 
+                  <!-- Sweet Alert -->
+        <link href="{{asset('admin/assets/plugins/sweet-alert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('admin/assets/plugins/animate/animate.min.css')}}" rel="stylesheet" type="text/css">
 
          <!-- App css -->
          <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -107,233 +110,60 @@
                                             <thead>
                                             <tr>
                                                 <th>Product Name</th>
-                                                <th>Category</th>
-                                                <th>Pics</th>
+
+
                                                 <th>Price</th>
+                                                <th>Total</th>
+                                                <th>QTY</th>
                                                 <th>Status</th>
-                                                <th>Brand</th>
                                                 <th>Action</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach ($Orders as $orders)
+                                            <?php
+                                               $OrderProducts = DB::table('orders_product')->where('orders_id',$orders->id)->get();
+                                            ?>
+                                            @foreach ($OrderProducts as $products)
+                                            <?php
+                                                $Product = \App\Models\Product::find($products->product_id);
+                                            ?>
                                             <tr>
                                                 <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
+                                                    <img src="{{$Product->image}}" alt="" height="40">
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Apple Watch</a>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->name}}</a>
                                                         <br>
-                                                        <span class="text-muted font-13 fw-semibold">Size-05 (Model 2021)</span>
+                                                        <span class="text-muted font-13 fw-semibold">{{$Product->meta}}</span>
                                                     </p>
                                                 </td>
-                                                <td>Category 1</td>
-                                                <td>32</td>
-                                                <td>$39</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                   PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Morden Chair</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">Size-Mediam (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 2</td>
-                                                <td>10</td>
-                                                <td>$99</td>
-                                                <td><span class="badge badge-soft-pink">Sold</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Reebok Shoes</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">size-08 (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 3</td>
-                                                <td>24</td>
-                                                <td>$49</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Cosco Vollyboll</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">size-04 (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 1</td>
-                                                <td>8</td>
-                                                <td>$49</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Royal Purse</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">Pure Lether 100%</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 4</td>
-                                                <td>52</td>
-                                                <td>$89</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">New Morden Chair</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">size-05 (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 2</td>
-                                                <td>6</td>
-                                                <td>$20</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Important Chair</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">size-05 (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 2</td>
-                                                <td>32</td>
-                                                <td>$39</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
+                                                <td>{{$Product->price}}</td>
+                                                <td><span class="">{{($products->qty)*($Product->price)}}</span></td>
                                                 <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Nivya Footboll</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">Size-05 (Model 2021)</span>
-                                                    </p>
+                                                    {{$products->qty}}
                                                 </td>
-                                                <td>Category 1</td>
-                                                <td>32</td>
-                                                <td>$39</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
                                                 <td>
-                                                    PAR
+                                                    @if($orders->status == "pending")
+                                                     <span class="badge badge-soft-pink">Stock</span>
+                                                    @elseif($orders->status == "pending")
+                                                     <span class="badge badge-soft-purple">Stock</span>
+                                                    @endif
                                                 </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
+                                                <td>
+                                                    <button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('ajaxRequest')">Process Order</button>
                                                 </td>
+
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Green Morden Chair</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">Size-Mediam (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 2</td>
-                                                <td>10</td>
-                                                <td>$99</td>
-                                                <td><span class="badge badge-soft-pink">Sold</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="{{asset('admin/assets/images/products/08.jpg')}}" alt="" height="40">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Bata Shoes</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">size-08 (Model 2021)</span>
-                                                    </p>
-                                                </td>
-                                                <td>Category 3</td>
-                                                <td>24</td>
-                                                <td>$49</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    PAR
-                                                </td>
-                                                 <td>
-                                                    <a href="#" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                                </td>
-                                            </tr>
+                                            @endforeach
+
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <button class="btn btn-outline-light btn-sm px-4 ">+ Add New</button>
-                                        </div><!--end col-->
+
                                         <div class="col-auto">
                                             <nav aria-label="...">
                                                 <ul class="pagination pagination-sm mb-0">
@@ -428,6 +258,8 @@
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
 
         <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/sweet-alert2/sweetalert2.min.js')}}"></script>
+        <script src="{{asset('admin/assets/pages/sweet-alert.init.js')}}"></script>
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>

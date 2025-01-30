@@ -124,14 +124,8 @@
                                         <ul>
                                             <li><a href="#" class="dropdown-toggle"><span class="active-currency">USD</span></a>
                                                 <ul>
-                                                    <li><a href="login.html">USD - US Dollar</a></li>
-                                                    <li><a href="wishlist.html">CAD - Canada Dollar</a></li>
-                                                    <li><a href="register.html">EUR - Euro</a></li>
-                                                    <li><a href="account.html">GBP - British Pound</a></li>
-                                                    <li><a href="wishlist.html">INR - Indian Rupee</a></li>
-                                                    <li><a href="wishlist.html">BDT - Bangladesh Taka</a></li>
-                                                    <li><a href="wishlist.html">JPY - Japan Yen</a></li>
-                                                    <li><a href="wishlist.html">AUD - Australian Dollar</a></li>
+                                                    <li><a href="#">USD - US Dollar</a></li>
+
                                                 </ul>
                                             </li>
                                         </ul>
@@ -163,24 +157,29 @@
                                             <li>
                                                 <a href="#"><i class="icon-user"></i></a>
                                                 <ul>
-                                                    <li><a href="login.html">Sign in</a></li>
-                                                    <li><a href="register.html">Register</a></li>
-                                                    <li><a href="account.html">My Account</a></li>
-                                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                                    <li><a href="{{url('/')}}">Register</a></li>
+                                                    <li><a href="{{url('/')}}/login">My Account</a></li>
+                                                    @if(Auth::User())
+                                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();   document.getElementById('logout-form').submit();">Logout</a></li>
+                                                    @endif
                                                 </ul>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+
                                 <li>
                                     <!-- mini-cart 2 -->
                                     <div class="mini-cart-icon mini-cart-icon-2">
                                         <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
                                             <span class="mini-cart-icon">
                                                 <i class="icon-shopping-cart"></i>
-                                                <sup>2</sup>
+                                                <sup>{{Cart::count()}}</sup>
                                             </span>
-                                            <h6><span>Your Cart</span> <span class="ltn__secondary-color">$89.25</span></h6>
+                                            <h6><span>Your Cart</span> <span class="ltn__secondary-color">kes {{Cart::Total()}}</span></h6>
                                         </a>
                                     </div>
                                 </li>
@@ -275,56 +274,37 @@
                 <button class="ltn__utilize-close">×</button>
             </div>
             <div class="mini-cart-product-area ltn__scrollbar">
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{asset('theme-shop/img/product/1.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Antiseptic Spray</a></h6>
-                        <span class="mini-cart-quantity">1 x $65.00</span>
-                    </div>
-                </div>
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{asset('theme-shop/img/product/2.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Digital Stethoscope</a></h6>
-                        <span class="mini-cart-quantity">1 x $85.00</span>
-                    </div>
-                </div>
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{asset('theme-shop/img/product/3.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Cosmetic Containers</a></h6>
-                        <span class="mini-cart-quantity">1 x $92.00</span>
-                    </div>
-                </div>
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{asset('theme-shop/img/product/4.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Thermometer Gun</a></h6>
-                        <span class="mini-cart-quantity">1 x $68.00</span>
-                    </div>
-                </div>
+                <?php $CartItem = Cart::Content(); ?>
+                @if($CartItem->isEmpty())
+
+                @else
+                    @foreach (($CartItem) as $item)
+                        <?php
+                            $Product = \App\Models\Product::find($item->id);
+                        ?>
+                        <div class="mini-cart-item clearfix">
+                            <div class="mini-cart-img">
+                                <a href="{{route('product',$Product->slung)}}"><img src="{{$Product->image}}" alt="{{$Product->name}}"></a>
+                                <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
+                            </div>
+                            <div class="mini-cart-info">
+                                <h6><a href="#">{{$Product->image}}</a></h6>
+                                <span class="mini-cart-quantity">{{$item->qty}} x kes {{$Product->price}}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
             </div>
             <div class="mini-cart-footer">
                 <div class="mini-cart-sub-total">
-                    <h5>Subtotal: <span>$310.00</span></h5>
+                    <h5>Subtotal: <span>Kes {{Cart::Total()}}</span></h5>
                 </div>
                 <div class="btn-wrapper">
-                    <a href="cart.html" class="theme-btn-1 btn btn-effect-1">View Cart</a>
-                    <a href="cart.html" class="theme-btn-2 btn btn-effect-2">Checkout</a>
+                    <a href="{{route('shopping-cart')}}" class="theme-btn-1 btn btn-effect-1">View Cart</a>
+                    <a href="{{route('checkout')}}" class="theme-btn-2 btn btn-effect-2">Checkout</a>
                 </div>
-                <p>Free Shipping on All Orders Over $100!</p>
+                <p>Free Shipping on All Orders Over kes 1000 000!</p>
             </div>
 
         </div>
@@ -741,6 +721,49 @@
     <script src="{{asset('theme-shop/js/plugins.js')}}"></script>
     <!-- Main JS -->
     <script src="{{asset('theme-shop/js/main.js')}}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(".loading-gif").hide();
+            $('#stkDoIt').submit(function(e) {
+                e.preventDefault();
+                $(".loading-gif").show();
+                $('#Success').html('Please wait.........');
+                setTimeout(function() {
+                    $('#Success').html('Check your phone....');
+                }, 4000);
+                // Serialize the form data
+                var formData = $(this).serialize();
+                // Send an AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: '{!! route('make-stk-request') !!}',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        // Handle the response message
+                        // $('#cf-response-message').text(response.message);
+                        console.log(response);
+                        $('.loading-gif').hide();
+                        $('#Success').hide();
+                        setTimeout(function() {
+                            $('#Success').show();
+                            $('#Success').html('Redirecting you...');
+                        }, 1000);
+                        // Refresh
+                        setTimeout(function() {
+                            window.location = "{{url('dashboard/thankYou')}}"
+                        }, 5000);
+                        // Success
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors if needed
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

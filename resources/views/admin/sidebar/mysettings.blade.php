@@ -7,9 +7,9 @@
     </a>
 </li><!--end nav-item-->
 <li class="nav-item">
-    <a class="nav-link" href="{{route('logout')}}">
+    <a class="nav-link" href="{{route('mysettings')}}">
         <i class="ti ti-ti ti-settings ti-spin menu-icon"></i>
-        <span>System Settingss</span>
+        <span>My Settingss</span>
     </a>
 </li><!--end nav-item-->
 <li class="nav-item">

@@ -46,6 +46,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function orders(){
+        return $this->hasMany(orders::class);
+    }
+
+
     /**
      * Interact with the user's first name.
      *

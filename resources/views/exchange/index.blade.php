@@ -50,7 +50,7 @@
                                         <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
-                                                    <a href="{{route('product', $item->slung)}}"><img src="{{$item->image}}" alt="#"></a>
+                                                    <a class="product-images" href="{{route('product', $item->slung)}}"><img src="{{$item->image}}" alt="#"></a>
                                                     <div class="product-badge">
                                                         <ul>
                                                             <li class="sale-badge">New</li>
@@ -60,8 +60,8 @@
                                                         <ul>
 
                                                             <li>
-                                                                <a href="{{route('shopping-cart', $item->id)}}" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                <a href="{{route('product', $item->slung)}}" title="Add to Cart" >
+                                                                    <i class="fas fa-search"></i>
                                                                 </a>
                                                             </li>
 
@@ -127,8 +127,8 @@
                                                         <ul>
 
                                                             <li>
-                                                                <a href="{{route('shopping-cart', $item->id)}}" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                <a href="{{route('product', $item->slung)}}" >
+                                                                    <i class="fas fa-search"></i>
                                                                 </a>
                                                             </li>
 

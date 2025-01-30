@@ -20,25 +20,17 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 
-class AdminsController extends Controller
+class MerchantController extends Controller
 {
 
 
-    /* Vednors Module */
-    public function mysettings(){
-        activity()->log('Accessed All Categories');
-        $User = User::find(Auth::User()->id);
-        $page_title = 'list';
-        $page_name = 'Categories';
-        return view('admin.mysettings',compact('page_title','User','page_name'));
-    }
     /* Vednors Module */
     public function vendors(){
         activity()->log('Accessed All Categories');
         $User = User::all();
         $page_title = 'list';
         $page_name = 'Categories';
-        return view('admin.vendors',compact('page_title','User','page_name'));
+        return view('merchant.vendors',compact('page_title','User','page_name'));
     }
 
     /* Vednors Module */
@@ -47,7 +39,7 @@ class AdminsController extends Controller
         $Orders = Order::all();
         $page_title = 'list';
         $page_name = 'Orders';
-        return view('admin.orders',compact('page_title','Orders','page_name'));
+        return view('merchant.orders',compact('page_title','Orders','page_name'));
     }
 
     /* Categories Module */
@@ -56,7 +48,7 @@ class AdminsController extends Controller
         $Category = Category::all();
         $page_title = 'list';
         $page_name = 'Categories';
-        return view('admin.categories',compact('page_title','Category','page_name'));
+        return view('merchant.categories',compact('page_title','Category','page_name'));
     }
 
     public function addCategory(){
@@ -64,7 +56,7 @@ class AdminsController extends Controller
         activity()->log('Accessed Add Category Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Category';
-        return view('admin.addCategory',compact('page_title','page_name','Category'));
+        return view('merchant.addCategory',compact('page_title','page_name','Category'));
     }
 
     public function add_Category(Request $request){
@@ -96,7 +88,7 @@ class AdminsController extends Controller
         $Categories = Category::all();
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editCategory',compact('page_title','Category','Categories','page_name'));
+        return view('merchant.editCategory',compact('page_title','Category','Categories','page_name'));
     }
 
     public function edit_Category(Request $request, $id){
@@ -138,7 +130,7 @@ class AdminsController extends Controller
         $Brand = Brand::all();
         $page_title = 'list';
         $page_name = 'brands';
-        return view('admin.brands',compact('page_title','Brand','page_name'));
+        return view('merchant.brands',compact('page_title','Brand','page_name'));
     }
 
     public function addBrand(){
@@ -146,7 +138,7 @@ class AdminsController extends Controller
         activity()->log('Accessed Add Brand Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Brand';
-        return view('admin.addBrand',compact('page_title','page_name','Brand'));
+        return view('merchant.addBrand',compact('page_title','page_name','Brand'));
     }
 
 
@@ -179,7 +171,7 @@ class AdminsController extends Controller
         $Brands = Brand::all();
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editBrand',compact('page_title','Brand','Brands','page_name'));
+        return view('merchant.editBrand',compact('page_title','Brand','Brands','page_name'));
     }
 
     public function edit_Brand(Request $request, $id){
@@ -218,7 +210,7 @@ class AdminsController extends Controller
         $Products = Product::all();
         $page_title = 'list';
         $page_name = 'Products';
-        return view('admin.products',compact('page_title','Products','page_name'));
+        return view('merchant.products',compact('page_title','Products','page_name'));
     }
 
     public function addProduct(){
@@ -227,7 +219,7 @@ class AdminsController extends Controller
         activity()->log('Accessed Add Product Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Product';
-        return view('admin.addProduct',compact('page_title','page_name','Category','Products'));
+        return view('merchant.addProduct',compact('page_title','page_name','Category','Products'));
     }
 
     public function add_Product(Request $request){
@@ -244,7 +236,6 @@ class AdminsController extends Controller
 
         $Product = new Product;
         $Product->name = $request->title;
-        $Product->qty = $request->qty;
         $Product->user_id = Auth::User()->id;
         $Product->slung = Str::slug($request->title);
         $Product->meta = $request->meta;
@@ -266,7 +257,7 @@ class AdminsController extends Controller
         activity()->log('Access Edit Product: '.$Product->title.' ');
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editProduct',compact('page_title','Products','page_name','Category','Product'));
+        return view('merchant.editProduct',compact('page_title','Products','page_name','Category','Product'));
     }
 
     public function edit_Product(Request $request, $id){
@@ -309,14 +300,14 @@ class AdminsController extends Controller
         $User = User::all();
         $page_title = 'list';
         $page_name = 'User';
-        return view('admin.users',compact('page_title','User','page_name'));
+        return view('merchant.users',compact('page_title','User','page_name'));
     }
 
     public function addUser(){
         activity()->log('Accessed Add User Page');
         $page_title = 'formfiletext';
         $page_name = 'Add User';
-        return view('admin.addUser',compact('page_title','page_name'));
+        return view('merchant.addUser',compact('page_title','page_name'));
     }
 
     public function add_User(Request $request){
@@ -358,7 +349,7 @@ class AdminsController extends Controller
         $User = User::find($id);
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editUser',compact('page_title','User','page_name'));
+        return view('merchant.editUser',compact('page_title','User','page_name'));
     }
 
     public function edit_User(Request $request, $id){
@@ -408,7 +399,7 @@ class AdminsController extends Controller
         activity()->log('Accessed All logos');
         $page_title = 'list';
         $page_name = 'video';
-        return view('admin.video',compact('page_title','page_name','Settings'));
+        return view('merchant.video',compact('page_title','page_name','Settings'));
     }
 
     public function logos(){
@@ -416,14 +407,14 @@ class AdminsController extends Controller
         $Logo = Logo::all();
         $page_title = 'list';
         $page_name = 'logos';
-        return view('admin.logos',compact('page_title','Logo','page_name'));
+        return view('merchant.logos',compact('page_title','Logo','page_name'));
     }
 
     public function addLogo(){
         activity()->log('Accessed Add Logo Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Logo';
-        return view('admin.addLogo',compact('page_title','page_name'));
+        return view('merchant.addLogo',compact('page_title','page_name'));
     }
 
 
@@ -454,7 +445,7 @@ class AdminsController extends Controller
         $Logo = Logo::find($id);
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editLogo',compact('page_title','Logo','page_name'));
+        return view('merchant.editLogo',compact('page_title','Logo','page_name'));
     }
 
     public function edit_Logo(Request $request, $id){
@@ -498,7 +489,7 @@ class AdminsController extends Controller
     }
 
     public function index(){
-        return view('admin.index');
+        return view('merchant.index');
     }
 
 
@@ -550,7 +541,7 @@ class AdminsController extends Controller
     {
         $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
-        return view('admin.currentUserInfo', compact('currentUserInfo'));
+        return view('merchant.currentUserInfo', compact('currentUserInfo'));
     }
     /* File Uploads Generic function*/
     public function genericFIleUpload($file,$dir,$realPath){

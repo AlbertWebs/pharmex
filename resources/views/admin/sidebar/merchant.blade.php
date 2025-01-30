@@ -18,12 +18,7 @@
                         </div><!--end sidebarEmail-->
                     </li><!--end nav-item-->
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('vendors')}}">
-                            <i class="ti ti-user menu-icon"></i>
-                            <span>Vendors</span>
-                        </a>
-                    </li><!--end nav-item-->
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarOrders" data-bs-toggle="collapse" role="button"

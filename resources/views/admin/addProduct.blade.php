@@ -115,9 +115,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price</label>
-                                                    <div class="col-sm-10">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price & Quantity</label>
+                                                    <div class="col-sm-5">
                                                         <input class="form-control" type="text" name="price" value="" id="example-text-input">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="number" name="qty" value="1" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\MerchantController;
+
 
 
 Route::get('/', function () {
@@ -20,7 +22,9 @@ Route::prefix('stock-exchange')->group(function () {
     Route::post('/add-to-cart', [ShopController::class, 'add'])->name('add-to-cart');
     Route::get('/shopping-cart', [ShopController::class, 'cart'])->name('shopping-cart');
     Route::get('/shopping-cart/checkout', [ShopController::class, 'checkout'])->name('checkout');
-
+    Route::get('/shopping-cart/destroy', [ShopController::class, 'destroy'])->name('destroy');
+    Route::post('/shopping-cart/select-login', [ShopController::class, 'select'])->name('select-login');
+    Route::get('/shopping-cart/destroys/{RoWId}', [ShopController::class, 'destroys'])->name('destroys');
 });
 
 // Location information
@@ -32,9 +36,10 @@ Auth::routes();
 All Normal Vendor Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:user'])->group(function () {
-
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'user-access:manager'])->group(function () {
+    Route::prefix('merchant-panel')->group(function () {
+        Route::get('/', [MerchantController::class, 'index'])->name('manager.home');
+    });
 });
 /*------------------------------------------
 --------------------------------------------
@@ -45,6 +50,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::prefix('admin-panel')->group(function () {
 
         Route::get('/', [AdminsController::class, 'index'])->name('admin.home');
+        Route::get('/mysettings', [AdminsController::class, 'mysettings'])->name('mysettings');
+
 
         // Categories
         Route::get('categories', [AdminsController::class, 'categories'])->name('all-category');
@@ -94,6 +101,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('editUser/{id}', [AdminsController::class, 'editUser']);
         Route::post('edit_User/{id}', [AdminsController::class, 'edit_User']);
         Route::get('deleteUser/{id}', [AdminsController::class, 'deleteUser']);
+
+        Route::get('/thankYou', [UserController::class, 'thankYou'])->name('thankYou');
+
+        Route::post('/make-stk-request', [App\Http\Controllers\KcbController::class, 'stkRequestMake'])->name('make-stk-request');
 
         //
     });
