@@ -203,9 +203,9 @@ function executeExample(sub){
           })
         return;
 
-        case 'ajaxRequest':
+        case 'reject':
           Swal.fire({
-            title: 'Wish to clear this order?',
+            title: 'You are about to reject this Exchange',
             input: 'text',
             inputAttributes: {
               autocapitalize: 'off'
@@ -236,6 +236,41 @@ function executeExample(sub){
               })
             }
           })
+        return;
+
+        case 'accept':
+            Swal.fire({
+              title: 'Wish to clear this order?',
+              input: 'text',
+              inputAttributes: {
+                autocapitalize: 'off'
+              },
+              showCancelButton: true,
+              confirmButtonText: 'Clear',
+              showLoaderOnConfirm: true,
+              preConfirm: (login) => {
+                return fetch(`//api.github.com/users/${login}`)
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.statusText)
+                    }
+                    return response.json()
+                  })
+                  .catch(error => {
+                    Swal.showValidationMessage(
+                      `Request failed: ${error}`
+                    )
+                  })
+              },
+              allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: `${result.value.login}'s avatar`,
+                  imageUrl: result.value.avatar_url
+                })
+              }
+            })
         return;
 
         case 'chainingModals':

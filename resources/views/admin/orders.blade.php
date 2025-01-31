@@ -127,8 +127,17 @@
                                             ?>
                                             @foreach ($OrderProducts as $products)
                                             <?php
-                                                $Product = \App\Models\Product::find($products->product_id);
+                                                if(Auth::User()->admin == "1"){
+                                                    $Products = \App\Models\Product::where('id',$products->id)->get();
+                                                }else{
+                                                    $Products = \App\Models\Product::where('user_id',Auth::User()->id)->get();
+                                                }
+
                                             ?>
+                                            @if($Products->isEmpty())
+
+                                            @else
+                                            @foreach ($Products as $Product)
                                             <tr>
                                                 <td>
                                                     <img src="{{$Product->image}}" alt="" height="40">
@@ -152,10 +161,16 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('ajaxRequest')">Process Order</button>
+                                                    <button type="button" class="btn btn-de-success btn-md" onclick="executeExample('accept')">Accept <span class="fas fa-check-square"></span></button>
+
+                                                    <button type="button" class="btn btn-de-danger btn-md" onclick="executeExample('reject')">Reject <span class="fas fa-window-close"></span></button>
                                                 </td>
 
                                             </tr>
+                                            @endforeach
+                                            @endif
+
+
                                             @endforeach
 
                                             @endforeach

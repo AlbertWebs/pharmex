@@ -48,7 +48,7 @@
                 <a class="nav-link" href="#">All Orders</a>
             </li><!--end nav-item-->
             <li class="nav-item">
-                <a class="nav-link" href="#">All Pending Orders</a>
+                <a class="nav-link" href="#">Completed Orders</a>
             </li><!--end nav-item-->
         </ul><!--end nav-->
     </div><!--end sidebarCart-->
