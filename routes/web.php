@@ -6,12 +6,16 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MerchantController;
-
+use App\Http\Controllers\ProductController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('users', [ProductController::class, 'index']);
+Route::get('users-export', [ProductController::class, 'export'])->name('users.export');
+Route::post('users-import', [ProductController::class, 'import'])->name('users.import');
 
 Route::prefix('stock-exchange')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('home');

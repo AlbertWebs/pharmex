@@ -124,15 +124,13 @@
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
                                                     <div class="col-sm-5">
                                                         <select class="form-select" aria-label="Default select example" name="category">
+
+                                                            <option value="{{$Product->category}}" selected="">{{$Product->category}}</option>
                                                             <?php
-                                                               $Cat = \App\Models\Category::find($Product->category);
-                                                            ?>
-                                                            <option value="{{$Cat->id}}" selected="">{{$Cat->title}}</option>
-                                                            <?php
-                                                            $Category = \App\Models\Category::all();
+                                                               $Category = \App\Models\Category::all();
                                                             ?>
                                                             @foreach($Category as $category)
-                                                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                                                <option value="{{$category->title}}">{{$category->title}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

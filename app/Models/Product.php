@@ -11,6 +11,16 @@ class Product extends Model
     use HasFactory;
     use HasSku;
 
-    //Order Product Table
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'brand',
+        'name',
+        'title',
+        'category'
+    ];
 
 }

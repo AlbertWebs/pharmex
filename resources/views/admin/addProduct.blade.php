@@ -129,10 +129,10 @@
                                                         <select class="form-select" aria-label="Default select example" name="category">
                                                             <option selected="">Open This Select Category</option>
                                                             <?php
-                                                            $Category = \App\Models\Category::all();
+                                                               $Category = \App\Models\Category::all();
                                                             ?>
                                                             @foreach($Category as $category)
-                                                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                                                <option value="{{$category->title}}">{{$category->title}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
