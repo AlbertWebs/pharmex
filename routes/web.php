@@ -73,6 +73,22 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_brand/{id}', [AdminsController::class, 'edit_brand']);
         Route::get('deletebrand/{id}', [AdminsController::class, 'deletebrand']);
 
+         // dosages
+         Route::get('dosages', [AdminsController::class, 'dosages'])->name('dosage');
+         Route::get('adddosage', [AdminsController::class, 'adddosage'])->name('add-dosage');
+         Route::post('add_dosage', [AdminsController::class, 'add_dosage'])->name('add-dosage-post');
+         Route::get('editdosages/{id}', [AdminsController::class, 'editdosages']);
+         Route::post('edit_dosage/{id}', [AdminsController::class, 'edit_dosage']);
+         Route::get('deletedosage/{id}', [AdminsController::class, 'deletedosage']);
+
+        // strengths
+        Route::get('strengths', [AdminsController::class, 'strengths'])->name('strength');
+        Route::get('addstrength', [AdminsController::class, 'addstrength'])->name('add-strength');
+        Route::post('add_strength', [AdminsController::class, 'add_strength'])->name('add-strength-post');
+        Route::get('editstrengths/{id}', [AdminsController::class, 'editstrengths']);
+        Route::post('edit_strength/{id}', [AdminsController::class, 'edit_strength']);
+        Route::get('deletestrength/{id}', [AdminsController::class, 'deletestrength']);
+
         //Products
         Route::get('products', [AdminsController::class, 'products'])->name('products');
         Route::get('addProduct', [AdminsController::class, 'addProduct'])->name('addProduct');
@@ -80,6 +96,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('editProduct/{id}', [AdminsController::class, 'editProduct']);
         Route::post('edit_Product/{id}', [AdminsController::class, 'edit_Product']);
         Route::get('deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
+
+        Route::get('update-image', [AdminsController::class, 'updateProductImage'])->name('updateProductImage');
+
 
         //logos
         Route::get('logos', [AdminsController::class, 'logos'])->name('logos');

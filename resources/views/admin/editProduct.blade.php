@@ -105,21 +105,80 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-10">
                                             <form method="POST" action="{{url('/')}}/admin-panel/edit_Product/{{$Product->id}}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Product Title</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="text" value="{{$Product->name}}" name="title" id="example-text-input">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Brand & Generic Name</label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="brand_name" value="{{$Product->brand_name}}" placeholder="Brand Name" id="example-text-input">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="generic_name" value="{{$Product->generic_name}}" placeholder="Generic Name" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Pharmaceutical Class</label>
+
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="price" value="{{$Product->price}}" id="example-text-input">
+                                                        <input class="form-control" type="text" name="pharmacological_class" value="{{$Product->pharmacological_class}}" placeholder="Pharmaceutical Class" id="example-text-input">
                                                     </div>
                                                 </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price & Quantity</label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="price" placeholder="price" value="{{$Product->price}}" id="example-text-input">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="number" name="qty" value="{{$Product->quantity}}" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                {{--  --}}
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Dosage & Strenth</label>
+                                                    <div class="col-sm-5">
+                                                        <select class="form-select" aria-label="Default select example" name="dosage">
+                                                            <option selected value="{{$Product->dosage}}">{{$Product->dosage}}</option>
+                                                            <?php
+                                                               $Dosage = \App\Models\Dosage::all();
+                                                            ?>
+                                                            @foreach($Dosage as $dosage)
+                                                                <option value="{{$dosage->title}}">{{$dosage->title}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-sm-5">
+                                                        <select class="form-select" aria-label="Default select example" name="strength">
+                                                            <option selected value="{{$Product->strength}}">{{$Product->strength}}</option>
+                                                            <?php
+                                                               $Strength = \App\Models\Strength::all();
+                                                            ?>
+                                                            @foreach($Strength as $strength)
+                                                                <option value="{{$strength->title}}">{{$strength->title}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Batch No & Expiry</label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="batch_no" value="{{$Product->batch_no}}" placeholder="Batch Number"  id="example-text-input">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="date" name="expiry" value="{{$Product->expiry}}" placeholder="Expiry" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Pack Size & Packs</label>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="packsize" value="{{$Product->packsize}}" placeholder="Pack Size"  id="example-text-input">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input class="form-control" type="text" name="packs" value="{{$Product->packs}}" placeholder="Pack" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                {{--  --}}
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
                                                     <div class="col-sm-5">
@@ -151,9 +210,7 @@
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Meta</label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" rows="5" id="message" name="meta">
-                                                            {{$Product->meta}}
-                                                        </textarea>
+                                                        <textarea class="form-control" rows="5" id="message" name="meta">{{$Product->meta}}</textarea>
                                                     </div>
                                                 </div>
 
@@ -193,37 +250,8 @@
                                         </div>
 
 
-                                        <div class="col-lg-6">
-                                            {{--  --}}
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">All Products</h4>
-                                                        <p class="text-muted mb-0">Shows <code> List of all Products </code> </p>
-                                                    </div><!--end card-header-->
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <ul class="list-group list-group-flush">
-                                                                    @foreach ($Products as $products)
-                                                                    <li class="list-group-item"><i class="la la-angle-double-right text-info me-2"></i>
-                                                                        {{$products->name}}
-                                                                        &nbsp; &nbsp;&nbsp; &nbsp;
-                                                                        <img src="{{$products->image}}" alt="" width="80" height="40" style="object-fit: cover">
-                                                                        &nbsp; &nbsp;
+                                        <div class="col-lg-2">
 
-                                                                        <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                                        &nbsp; &nbsp;
-                                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                                            <i class="las la-trash-alt text-secondary font-16"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </div><!--end col-->
-                                                        </div><!--end row-->
-                                                    </div><!--end card-body-->
-                                                </div><!--end card-->
-                                            {{--  --}}
                                         </div>
                                     </div>
                                 </div><!--end card-body-->

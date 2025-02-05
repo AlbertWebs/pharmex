@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <title>Pharmex - Admin & Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
 
-        <!-- App css -->
-        <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8" />
+                <title>Pharmex - Admin & Dashboard</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+                <meta content="" name="author" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+                <!-- App favicon -->
+                <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
+
+
+
+         <!-- App css -->
+         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+         <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+         <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -22,8 +26,8 @@
         <!-- leftbar-tab-menu -->
         <div class="left-sidebar">
             <!-- LOGO -->
-            <div class="brand">
-                <a href="{{url('/')}}" class="logo">
+            <div class="dosage">
+                <a href="index.html" class="logo">
                     <span>
                         <img src="{{asset('admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
                     </span>
@@ -86,7 +90,7 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Add Products</h4>
+                                <h4 class="page-title">Add Dosages</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -94,89 +98,89 @@
 
 
                     {{--  --}}
+                    <!-- end page title end breadcrumb -->
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-lg-12">
                             <div class="card">
+
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Brand Name</th>
-                                                <th>Generic Name</th>
-                                                <th>Pharmacological Class</th>
-                                                <th>Category</th>
-                                                <th>Pics</th>
-                                                <th>Price</th>
-                                                <th>Status</th>
-
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach ($Products as $products)
-                                            <tr>
-                                                <td>
-                                                    <?php
-
-                                                        echo $products->id;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <img src="{{$products->image}}" alt="" height="40" width="80" style="object-fit: cover">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand}}</a>
-                                                        <br>
-                                                        <span class="text-muted font-13 fw-semibold">{{$products->meta}}</span>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <?php
-
-                                                        echo $products->generic_name;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-
-                                                        echo $products->pharmacological_class;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-
-                                                        echo $products->category;
-                                                    ?>
-                                                </td>
-                                                <td>1</td>
-                                                <td>KES {{$products->price}}</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
-
-                                                 <td>
-                                                    <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                        <i class="las la-trash-alt text-secondary font-16"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-
-                                            </tbody>
-                                        </table>
-                                    </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a>
-                                        </div><!--end col-->
-                                        <div class="col-auto">
-                                            {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
-                                         </div> <!--end col-->
-                                    </div><!--end row-->
+                                        <div class="col-lg-6">
+                                            <form method="POST" action="{{route('add-dosage-post')}}" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Dosage Title</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="title" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea name="content" id="basic-conf">Hello, World! Your Dosage description goes here</textarea>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
+                                                    <div class="col-sm-10">
+                                                        <button class="btn btn-primary" type="submit">Add Dosage</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+
+                                        <div class="col-lg-6">
+                                            {{--  --}}
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">All Dosages</h4>
+                                                        <p class="text-muted mb-0">Shows <code> List of all Dosages </code> </p>
+                                                    </div><!--end card-header-->
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group list-group-flush">
+                                                                    @foreach ($Dosage as $dosage)
+                                                                    <li class="list-group-item">
+                                                                        <i class="la la-angle-double-right text-info me-2"></i>
+                                                                        {{$dosage->title}} &nbsp; &nbsp;
+                                                                        <img src="{{$dosage->image}}" alt="" height="40">
+                                                                        &nbsp; &nbsp;
+
+                                                                        <a href="{{url('/')}}/admin-panel/editDosages/{{$dosage->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                                        &nbsp; &nbsp;
+                                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteDosage/{{$dosage->id}}">
+                                                                            <i class="las la-trash-alt text-secondary font-16"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    @endforeach
+                                                                    <hr>
+                                                                    {{-- {!! $Dosage->withQueryString()->links('pagination::bootstrap-5') !!} --}}
+                                                                    <div class="col-auto">
+                                                                        {!! $Dosage->withQueryString()->links('pagination::bootstrap-5') !!}
+                                                                     </div> <!--end col-->
+
+                                                                </ul>
+                                                            </div><!--end col-->
+                                                        </div><!--end row-->
+                                                    </div><!--end card-body-->
+                                                </div><!--end card-->
+                                            {{--  --}}
+                                        </div>
+                                    </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
-                        </div> <!-- end col -->
-                    </div> <!-- end row -->
+                        </div><!--end col-->
+                    </div><!--end row-->
+
+
+
+
                     {{--  --}}
 
 
@@ -247,9 +251,7 @@
 
         <script src="{{asset('admin/assets/plugins/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
-
         <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
-
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
 

@@ -37,6 +37,38 @@
 </li><!--end nav-item-->
 
 <li class="nav-item">
+    <a class="nav-link" href="#sidebarDosage" data-bs-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="sidebarDosage">
+        <i class="ti ti-stack menu-icon"></i>
+        <span>Dosage</span>
+    </a>
+    <div class="collapse " id="sidebarDosage">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('add-dosage')}}">Dosage</a>
+            </li><!--end nav-item-->
+
+        </ul><!--end nav-->
+    </div><!--end sidebarCrypto-->
+</li><!--end nav-item-->
+
+<li class="nav-item">
+    <a class="nav-link" href="#sidebarStrength" data-bs-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="sidebarStrength">
+        <i class="ti ti-stack menu-icon"></i>
+        <span>Strength</span>
+    </a>
+    <div class="collapse " id="sidebarStrength">
+        <ul class="nav flex-column">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('strength')}}">Drug Strength</a>
+            </li><!--end nav-item-->
+        </ul><!--end nav-->
+    </div><!--end sidebarCrypto-->
+</li><!--end nav-item-->
+
+<li class="nav-item">
     <a class="nav-link" href="#sidebarCart" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarCart">
         <i class="ti ti-shopping-cart menu-icon"></i>

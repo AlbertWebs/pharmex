@@ -15,7 +15,7 @@ return [
          * SKU is based on a specific field of a model
          *
          */
-        'source' => 'name',
+        'source' => 'brand_name',
 
         /*
          * Destination model field name

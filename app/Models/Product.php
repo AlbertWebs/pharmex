@@ -17,9 +17,9 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'brand',
-        'name',
-        'title',
+        'brand_name',
+        'generic_name',
+        'pharmacological_class',
         'category'
     ];
 

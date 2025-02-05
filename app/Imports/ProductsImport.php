@@ -20,9 +20,9 @@ class ProductsImport implements ToModel ,WithHeadingRow
     {
         // dd($row);
         return new Product([
-            'brand'     => $row['brand_name'],
-            'name'     => $row['generic_name'],
-            'title'    => $row['pharmacological_class'],
+            'brand_name'     => $row['brand_name'],
+            'generic_name'     => $row['generic_name'],
+            'pharmacological_class'    => $row['pharmacological_class'],
             'category'    => $row['category'],
         ]);
     }

@@ -13,6 +13,8 @@ use Session;
 use BinaryCats\Sku\HasSku;
 use Redirect;
 use App\Models\Category;
+use App\Models\Dosage;
+use App\Models\Strength;
 use App\Models\Brand;
 use App\Models\Logo;
 use Illuminate\Support\Facades\Auth;
@@ -212,6 +214,95 @@ class AdminsController extends Controller
         return Redirect::back();
     }
 
+
+     /* Strength Module */
+     public function strengths(){
+        activity()->log('Accessed All dosages');
+        $Strength = Strength::paginate(12);
+        $page_title = 'list';
+        $page_name = 'dosages';
+        return view('admin.strengths',compact('page_title','Strength','page_name'));
+    }
+     /* dosages Module */
+     public function dosages(){
+        activity()->log('Accessed All dosages');
+        $Dosage = Dosage::paginate(12);
+        $page_title = 'list';
+        $page_name = 'dosages';
+        return view('admin.dosages',compact('page_title','Dosage','page_name'));
+    }
+
+    public function addDosage(){
+        $Dosage = Dosage::all();
+        activity()->log('Accessed Add Dosage Page');
+        $page_title = 'formfiletext';
+        $page_name = 'Add Dosage';
+        return view('admin.addDosage',compact('page_title','page_name','Dosage'));
+    }
+
+
+    public function add_Dosage(Request $request){
+        activity()->log('Evoked add Dosage Operation');
+        $path = 'uploads/dosages';
+
+        if(isset($request->image)){
+            $dir = 'uploads/dosages';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $Dosage = new Dosage;
+        $Dosage->title = $request->title;
+        $Dosage->slung = Str::slug($request->title);
+        $Dosage->content = $request->ckeditor;
+        $Dosage->image = $SaveFilePath;
+        $Dosage->save();
+        Session::flash('message', "Dosage Has Been Added");
+        return Redirect::back();
+    }
+
+    public function editdosages($id){
+        activity()->log('Access Edit Dosage ID number '.$id.' ');
+        $Dosage = Dosage::find($id);
+        $Dosages = Dosage::all();
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Home Page Slider';
+        return view('admin.editDosage',compact('page_title','Dosage','Dosages','page_name'));
+    }
+
+    public function edit_Dosage(Request $request, $id){
+        activity()->log('Evoked Edit Dosage For Dosage ID number '.$id.' ');
+
+        if(isset($request->image)){
+            $dir = 'uploads/dosages';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $updateDetails = array(
+            'title'=>$request->title,
+            'slung' => Str::slug($request->title),
+            'content'=>$request->ckeditor,
+            'image'=>$SaveFilePath
+
+        );
+        DB::table('dosages')->where('id',$id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function deleteDosage($id){
+        activity()->log('Deleted Dosage ID number '.$id.' ');
+        DB::table('dosages')->where('id',$id)->delete();
+        return Redirect::back();
+    }
+
     /* Products Functions*/
     public function products(){
         activity()->log('Accessed All Products');
@@ -223,7 +314,7 @@ class AdminsController extends Controller
 
     public function addProduct(){
         $Category = Category::all();
-        $Products = Product::all();
+        $Products = Product::paginate(10);
         activity()->log('Accessed Add Product Page');
         $page_title = 'formfiletext';
         $page_name = 'Add Product';
@@ -232,6 +323,7 @@ class AdminsController extends Controller
 
     public function add_Product(Request $request){
         activity()->log('Evoked add Product Operation');
+        // dd($request);
 
         if(isset($request->image)){
             $dir = 'uploads/products';
@@ -243,8 +335,19 @@ class AdminsController extends Controller
         }
 
         $Product = new Product;
-        $Product->name = $request->title;
-        $Product->qty = $request->qty;
+        $Product->brand_name = $request->brand_name;
+        $Product->generic_name = $request->generic_name;
+        $Product->pharmacological_class = $request->pharmacological_class;
+
+        $Product->dosage = $request->dosage;
+        $Product->strength = $request->strength;
+        $Product->batch_no = $request->batch_no;
+        $Product->expiry = $request->expiry;
+        $Product->packsize = $request->packsize;
+        $Product->packs = $request->packs;
+        $Product->bpperpack = $request->bpperpack;
+
+        $Product->quantity = $request->qty;
         $Product->user_id = Auth::User()->id;
         $Product->slung = Str::slug($request->title);
         $Product->meta = $request->meta;
@@ -282,7 +385,17 @@ class AdminsController extends Controller
         }
 
         $updateDetails = array(
-            'name'=>$request->title,
+            'brand_name'=>$request->brand_name,
+            'generic_name'=>$request->generic_name,
+            'pharmacological_class'=>$request->pharmacological_class,
+            'dosage'=>$request->dosage,
+            'strength'=>$request->strength,
+            'batch_no'=>$request->batch_no,
+            'expiry'=>$request->expiry,
+            'packsize'=>$request->packsize,
+            'packs'=>$request->packs,
+            'bpperpack'=>$request->bpperpack,
+            'quantity'=>$request->qty,
             'user_id'=>$request->user_id,
             'slung' => Str::slug($request->title),
             'content'=>$request->content,
@@ -499,6 +612,17 @@ class AdminsController extends Controller
 
     public function index(){
         return view('admin.index');
+    }
+
+    public function updateProductImage(){
+        $Product = Product::all();
+        foreach($Product as $product){
+            $updateDetails = array(
+                'image'=>"https://pharmex.africanpharmaceuticalreview.com/uploads/products/24e76dbd-ecf7-4831-9458-6722ef1a311d.jpg"
+            );
+
+            $Update = DB::table('products')->where('id',$product->id)->update($updateDetails);
+        }
     }
 
 
