@@ -102,12 +102,15 @@
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
-                                                <th>Product Name</th>
+                                                <th>#</th>
+                                                <th>Brand Name</th>
+                                                <th>Generic Name</th>
+                                                <th>Pharmacological Class</th>
                                                 <th>Category</th>
                                                 <th>Pics</th>
                                                 <th>Price</th>
                                                 <th>Status</th>
-                                                <th>Brand</th>
+
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -115,25 +118,41 @@
                                             @foreach ($Products as $products)
                                             <tr>
                                                 <td>
+                                                    <?php
+
+                                                        echo $products->id;
+                                                    ?>
+                                                </td>
+                                                <td>
                                                     <img src="{{$products->image}}" alt="" height="40" width="80" style="object-fit: cover">
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->name}}</a>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand}}</a>
                                                         <br>
                                                         <span class="text-muted font-13 fw-semibold">{{$products->meta}}</span>
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <?php
-                                                        $Cat = \App\Models\Category::find($products->category);
-                                                        echo $Cat->title;
+
+                                                        echo $products->name;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                        echo $products->title;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                        echo $products->category;
                                                     ?>
                                                 </td>
                                                 <td>1</td>
                                                 <td>KES {{$products->price}}</td>
                                                 <td><span class="badge badge-soft-purple">Stock</span></td>
-                                                <td>
-                                                    {{$products->brand}}
-                                                </td>
+
                                                  <td>
                                                     <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
                                                     <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
@@ -148,24 +167,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <button class="btn btn-outline-light btn-sm px-4 ">+ Add New</button>
+                                            <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a>
                                         </div><!--end col-->
                                         <div class="col-auto">
-                                            <nav aria-label="...">
-                                                <ul class="pagination pagination-sm mb-0">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                    </li>
-                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">Next</a>
-                                                    </li>
-                                                </ul><!--end pagination-->
-                                            </nav><!--end nav-->
+                                            {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
                                          </div> <!--end col-->
                                     </div><!--end row-->
                                 </div><!--end card-body-->

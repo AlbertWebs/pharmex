@@ -215,7 +215,7 @@ class AdminsController extends Controller
     /* Products Functions*/
     public function products(){
         activity()->log('Accessed All Products');
-        $Products = Product::all();
+        $Products = Product::paginate(12);
         $page_title = 'list';
         $page_name = 'Products';
         return view('admin.products',compact('page_title','Products','page_name'));
