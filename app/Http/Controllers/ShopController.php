@@ -18,8 +18,13 @@ class ShopController extends Controller
     }
 
     public function product($slung){
-        $Product = Product::where('slung',$slung)->get();
+        $ProductSlung = Product::where('slung', $slung)->first();
+        // dd($ProductSlung->brand_name);
+
+        $Product = Product::where('sku',$ProductSlung->sku)->get();
         return view('exchange.shop', compact('Product'));
+
+
     }
 
     public function cart(){

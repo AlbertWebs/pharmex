@@ -45,7 +45,7 @@
     <div class="collapse " id="sidebarDosage">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('add-dosage')}}">Dosage</a>
+                <a class="nav-link" href="{{route('dosage')}}">Dosage</a>
             </li><!--end nav-item-->
 
         </ul><!--end nav-->

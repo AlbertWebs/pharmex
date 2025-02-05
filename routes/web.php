@@ -98,6 +98,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
 
         Route::get('update-image', [AdminsController::class, 'updateProductImage'])->name('updateProductImage');
+        Route::get('update-slung', [AdminsController::class, 'updateProductSlung'])->name('updateProductSlung');
+
 
 
         //logos

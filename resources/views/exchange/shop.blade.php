@@ -21,7 +21,7 @@
                             <ul>
                                 <li><a href="{{url('/')}}/stock-exchange"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
                                 <li>Product Details</li>
-                                <li> {{$product->name}}</li>
+                                <li> {{$product->brand_name}}</li>
 
                             </ul>
                         </div>
@@ -89,17 +89,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="modal-product-info shop-details-info pl-0">
-                                    <div class="product-ratting">
-                                        <ul>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                            <li><a href="#"><i class="far fa-star"></i></a></li>
-                                            <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3>{{$product->name}}</h3>
+
+                                    <small>{{$product->pharmacological_class}}</small>
+                                    <h3>{{$product->brand_name}}</h3>
+                                    <h5>{{$product->generic_name}}</h5>
                                     <div class="product-price">
                                         <span>kes {{$product->price_raw}}</span>
                                         <del>kes {{$product->price}}</del>
@@ -109,11 +102,27 @@
                                             <li>
                                                 <strong>Categories:</strong>
                                                 <span>
-                                                    <?php
-                                                       $Cate = \App\Models\Category::find($product->category);
-                                                    ?>
-                                                    <a href="{{route('category', $Cate->slung)}}">{{$Cate->title}}</a>
+
+                                                    <a href="{{route('category', $product->category)}}">{{$product->category}}</a>
                                                     <a href="#">{{$product->brand}}</a>
+
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <strong>Dosage:</strong>
+                                                <span>
+
+                                                    <a href="#">{{$product->dosage}}</a>
+
+
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <strong>Strength:</strong>
+                                                <span>
+
+                                                    <a href="#">{{$product->strength}}</a>
+
 
                                                 </span>
                                             </li>
@@ -143,7 +152,7 @@
                                             <li>
                                                 <a href="#" class="" title="Wishlist">
                                                     <i class="far fa-heart"></i>
-                                                    <span>{{$product->qty}} Available in Stock</span>
+                                                    <span><strong>{{$product->quantity}}</strong> Available in Stock</span>
                                                 </a>
                                             </li>
 

@@ -625,6 +625,17 @@ class AdminsController extends Controller
         }
     }
 
+    public function updateProductSlung(){
+        $Product = Product::all();
+        foreach($Product as $product){
+            $updateDetails = array(
+                'slung'=>Str::slug($product->generic_name),
+            );
+
+            $Update = DB::table('products')->where('id',$product->id)->update($updateDetails);
+        }
+    }
+
 
     /* Generic Email Sender */
     public function emailSender($recepient,$recepientEmail,$Subject,$Message){
