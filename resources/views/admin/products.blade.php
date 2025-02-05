@@ -126,7 +126,7 @@
                                                 <td>
                                                     <img src="{{$products->image}}" alt="" height="40" width="80" style="object-fit: cover">
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand}}</a>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand_name}}</a>
                                                         <br>
                                                         <span class="text-muted font-13 fw-semibold">{{$products->meta}}</span>
                                                     </p>
