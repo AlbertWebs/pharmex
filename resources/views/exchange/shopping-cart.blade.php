@@ -37,7 +37,11 @@
                                             <a href="{{route('product',$Product->slung)}}"><img src="{{$Product->image}}" alt="#"></a>
                                         </td>
                                         <td class="cart-product-info">
-                                            <h4><a href="{{route('product',$Product->slung)}}">{{$Product->brand_name}}</a></h4>
+                                            <h4>
+                                                <a href="{{route('product',$Product->slung)}}">{{$Product->brand_name}}</a>
+                                            </h4>
+                                            <h5>{{$Product->generic_name}}</h5>
+                                            <small>{{$Product->pharmacological_class}}</small>
                                         </td>
                                         <td class="cart-product-price">KES {{$Product->price}}</td>
                                         <td class="cart-product-quantity">
