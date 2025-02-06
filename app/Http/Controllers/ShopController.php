@@ -71,7 +71,7 @@ class ShopController extends Controller
         $product_id = $request->product_id;
         $qtybutton = $request->qtybutton;
         $Product = Product::find($product_id);
-        $CurrentQty = $Product->qty;
+        $CurrentQty = $Product->quantity;
         if($CurrentQty < $qtybutton){
             echo "<script>alert('You Ordered More Than Its Available in Stock')</script>";
         }else{

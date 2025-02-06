@@ -53,7 +53,7 @@
                                                     <a class="product-images" href="{{route('product', $item->slung)}}"><img src="{{$item->image}}" alt="#"></a>
                                                     <div class="product-badge">
                                                         <ul>
-                                                            <li class="sale-badge">New</li>
+                                                            <li class="sale-badge"><small>{{$item->stock}}</small></li>
                                                         </ul>
                                                     </div>
                                                     <div class="product-hover-action">
@@ -69,7 +69,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-info">
-                                                    <div class="product-ratting">
+                                                    {{-- <div class="product-ratting">
                                                         <ul>
                                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
                                                             <li><a href="#"><i class="fas fa-star"></i></a></li>
@@ -77,11 +77,15 @@
                                                             <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
                                                             <li><a href="#"><i class="far fa-star"></i></a></li>
                                                         </ul>
-                                                    </div>
-                                                    <h2 class="product-title"><a href="{{route('product', $item->slung)}}">{{$item->name}}</a></h2>
+                                                    </div> --}}
+                                                    <h4 class="product-title-generic"><a href="{{route('product', $item->slung)}}">{{$item->generic_name}}</a></h4>
+                                                    <h2 class="product-title"><a href="{{route('product', $item->slung)}}">{{$item->brand_name}}</a></h2>
+                                                    <small class="product-title-small">
+                                                        {{$item->pharmacological_class}}
+                                                    </small>
                                                     <div class="product-price">
                                                         <span>{{$item->price}}</span>
-                                                        <del>kes {{$item->price}}</del>
+                                                        <del>kes {{$item->price_raw}}</del>
                                                     </div>
                                                 </div>
                                             </div>

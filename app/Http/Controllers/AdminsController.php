@@ -636,6 +636,41 @@ class AdminsController extends Controller
         }
     }
 
+    public function random(){
+        $FourDigitRandomNumber = mt_rand(100,5000);
+        return $FourDigitRandomNumber;
+    }
+
+    public function randomTwo(){
+        $ThreeDigitRandomNumber = mt_rand(1999,5999);
+        return $ThreeDigitRandomNumber;
+    }
+
+
+
+    public function updateProductQuantity(){
+        $Product = Product::all();
+        foreach($Product as $product){
+
+            $updateDetails = array(
+                'quantity'=>$this->random()
+            );
+
+            $Update = DB::table('products')->where('id',$product->id)->update($updateDetails);
+        }
+    }
+    public function updateProductPrice(){
+        $Product = Product::all();
+        foreach($Product as $product){
+
+            $updateDetails = array(
+                'price'=>($this->random())-($this->randomTwo()),
+                'price_raw'=>$this->random()
+            );
+
+            $Update = DB::table('products')->where('id',$product->id)->update($updateDetails);
+        }
+    }
 
     /* Generic Email Sender */
     public function emailSender($recepient,$recepientEmail,$Subject,$Message){

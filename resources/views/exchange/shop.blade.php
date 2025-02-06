@@ -159,17 +159,7 @@
                                         </ul>
                                     </div>
                                     <hr>
-                                    <div class="ltn__social-media">
-                                        <ul>
-                                            <li>Share:</li>
-                                            <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                            <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
 
-                                        </ul>
-                                    </div>
-                                    <hr>
                                     <div class="ltn__safe-checkout">
                                         <h5>Guaranteed Safe Checkout</h5>
                                         <img src="{{asset('theme-shop/img/icons/payment-2.png')}}" alt="Payment Image">

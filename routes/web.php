@@ -99,6 +99,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('update-image', [AdminsController::class, 'updateProductImage'])->name('updateProductImage');
         Route::get('update-slung', [AdminsController::class, 'updateProductSlung'])->name('updateProductSlung');
+        Route::get('update-price', [AdminsController::class, 'updateProductPrice'])->name('updateProductPrice');
+        Route::get('update-qty', [AdminsController::class, 'updateProductQuantity'])->name('updateProductQuantity');
 
 
 

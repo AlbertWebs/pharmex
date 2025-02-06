@@ -7111,11 +7111,11 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   visibility: visible; }
 
 .product-title {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 5px; }
 
 .product-ratting {
-  margin-bottom: 5px; }
+  margin-bottom: 1px; }
 
 .product-ratting ul {
   margin: 0;
@@ -14665,9 +14665,9 @@ input.cart-plus-minus-box {
 
 
 .product-images img{
-    width:233px;
-    height:272px;
-    object-fit:cover;
+    width:100%;
+    height:auto;
+    /* object-fit:cover; */
 }
 
 .single-large-imgs{
@@ -14676,9 +14676,20 @@ input.cart-plus-minus-box {
 }
 
 .single-large-imgs img{
-    width:370px !important;
+    /* width:370px !important;
     height:432px !important;
-    object-fit: cover;
+    object-fit: cover; */
+}
+.product-title-small{
+    font-size:10px;
+    text-transform:capitalize !important;
+    margin-bottom: 1px !important;
+
+}
+.product-title-generic{
+    font-size:11px;
+    text-decoration: underline;
+    margin-bottom: 1px !important;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
