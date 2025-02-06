@@ -40,7 +40,9 @@
                                             <h4>
                                                 <a href="{{route('product',$Product->slung)}}">{{$Product->brand_name}}</a>
                                             </h4>
+                                            <hr>
                                             <h5>{{$Product->generic_name}}</h5>
+                                            <hr>
                                             <small>{{$Product->pharmacological_class}}</small>
                                         </td>
                                         <td class="cart-product-price">KES {{$Product->price}}</td>
