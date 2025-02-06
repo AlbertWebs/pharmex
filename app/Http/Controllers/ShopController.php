@@ -75,7 +75,7 @@ class ShopController extends Controller
         if($CurrentQty < $qtybutton){
             echo "<script>alert('You Ordered More Than Its Available in Stock')</script>";
         }else{
-            Cart::add($Product->id,$Product->name, $qtybutton, $Product->price, 550);
+            Cart::add($Product->id,$Product->brand_name, $qtybutton, $Product->price, 550);
             $cartItem = Cart::content();
             return view('exchange.shopping-cart', compact('cartItem'));
         }

@@ -145,7 +145,7 @@
                                $Product = \App\Models\Product::find($item->id);
                             ?>
                             <tr>
-                                <td>{{$Product->name}} <strong>× {{$item->qty}}</strong></td>
+                                <td>{{$Product->brand_name}} <strong>× {{$item->qty}}</strong></td>
                                 <td>kes <?php echo ($Product->price)*($item->qty) ?></td>
                             </tr>
                             @endforeach
