@@ -12,6 +12,7 @@
                         @include('admin.sidebar.admin')
                         @include('admin.sidebar.merchant')
                         @include('admin.sidebar.landing')
+                        @include('admin.sidebar.reports')
                         @include('admin.sidebar.settings')
                     @endif
 

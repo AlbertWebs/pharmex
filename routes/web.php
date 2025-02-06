@@ -102,6 +102,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('update-price', [AdminsController::class, 'updateProductPrice'])->name('updateProductPrice');
         Route::get('update-qty', [AdminsController::class, 'updateProductQuantity'])->name('updateProductQuantity');
 
+        // Reports
+        Route::get('exchange-reports', [AdminsController::class, 'exchange_reports'])->name('exchange-reports');
+        Route::get('order-fulfilment-reports', [AdminsController::class, 'fulfilment'])->name('order-fulfilment-reports');
+
+
+
+
 
 
         //logos
