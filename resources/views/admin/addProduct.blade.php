@@ -227,6 +227,9 @@
                                                     </div>
                                                 </div>
 
+
+
+
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Product Image</label>
                                                     <div class="col-sm-10">

@@ -21,6 +21,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log;
+
+
+use App\Imports\ExpiredsImport;
+use App\Models\Expired;
 
 class AdminsController extends Controller
 {
@@ -321,6 +327,25 @@ class AdminsController extends Controller
         return view('admin.addProduct',compact('page_title','page_name','Category','Products'));
     }
 
+    public function add_expired_post(Request $request)
+    {
+        // dd($request);
+        try{
+            Excel::import(new ExpiredsImport, $request->file('file'));
+            return response()->json(['data'=>'Users imported successfully.',201]);
+        }catch(\Exception $ex){
+            Log::info($ex);
+            return response()->json(['data'=>'Some error has occur.',400]);
+
+        }
+    }
+
+
+    public function add_expired(Request $request)
+    {
+       return view('admin.addExpiredMedicines');
+    }
+
     public function add_Product(Request $request){
         activity()->log('Evoked add Product Operation');
         // dd($request);
@@ -359,7 +384,9 @@ class AdminsController extends Controller
         $Product->image = $SaveFilePath;
         $Product->save();
         Session::flash('message', "Product Has Been Added");
-        return Redirect::back();
+        $page_title = "";
+        $page_name = "";
+        return view('admin.addExpiredMedicines');
     }
 
     public function editProduct($id){

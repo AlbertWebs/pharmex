@@ -72,16 +72,14 @@
     <a class="nav-link" href="#sidebarCart" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarCart">
         <i class="ti ti-shopping-cart menu-icon"></i>
-        <span>Exchanges</span>
+        <span>Redistributions</span>
     </a>
     <div class="collapse " id="sidebarCart">
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="#">All Orders</a>
             </li><!--end nav-item-->
-            <li class="nav-item">
-                <a class="nav-link" href="#">Completed Orders</a>
-            </li><!--end nav-item-->
+
         </ul><!--end nav-->
     </div><!--end sidebarCart-->
 </li><!--end nav-item-->

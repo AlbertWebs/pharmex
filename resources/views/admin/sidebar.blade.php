@@ -3,17 +3,17 @@
             <div class="collapse navbar-collapse tab-content" id="sidebarCollapse">
                 <!-- Navigation -->
                 <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
-                    @if(Auth::User()->admin == "0")
-                        {{-- @include('admin.sidebar.admin') --}}
-                        @include('admin.sidebar.merchant')
-                        {{-- @include('admin.sidebar.landing') --}}
-                        @include('admin.sidebar.mysettings')
-                    @else
+                    @if(Auth::User()->type == "1")
                         @include('admin.sidebar.admin')
                         @include('admin.sidebar.merchant')
                         @include('admin.sidebar.landing')
                         @include('admin.sidebar.reports')
                         @include('admin.sidebar.settings')
+                    @else
+                        {{-- @include('admin.sidebar.admin') --}}
+                        @include('admin.sidebar.merchant')
+                        {{-- @include('admin.sidebar.landing') --}}
+                        @include('admin.sidebar.mysettings')
                     @endif
 
                 </ul>

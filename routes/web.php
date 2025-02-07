@@ -106,8 +106,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('exchange-reports', [AdminsController::class, 'exchange_reports'])->name('exchange-reports');
         Route::get('order-fulfilment-reports', [AdminsController::class, 'fulfilment'])->name('order-fulfilment-reports');
 
+        Route::get('add_expired', [AdminsController::class, 'add_expired'])->name('add_expired');
 
-
+        Route::post('add_expired', [AdminsController::class, 'add_expired_post'])->name('add_expired_post');
 
 
 
