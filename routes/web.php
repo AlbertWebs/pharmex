@@ -137,6 +137,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_User/{id}', [AdminsController::class, 'edit_User']);
         Route::get('deleteUser/{id}', [AdminsController::class, 'deleteUser']);
 
+        Route::post('changestatustask', [AdminsController::class, 'statusTask'])->name('statusTask');
+
+
+
         Route::get('/thankYou', [UserController::class, 'thankYou'])->name('thankYou');
 
         Route::post('/make-stk-request', [App\Http\Controllers\KcbController::class, 'stkRequestMake'])->name('make-stk-request');

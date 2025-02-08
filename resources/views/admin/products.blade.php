@@ -7,6 +7,7 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
@@ -109,12 +110,14 @@
                                                 <th>Category</th>
                                                 <th>Pics</th>
                                                 <th>Price</th>
-                                                <th>Status</th>
-
+                                                <th>Stock</th>
+                                                <th>Approve</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
                                             @foreach ($Products as $products)
                                             <tr>
                                                 <td>
@@ -151,8 +154,17 @@
                                                 </td>
                                                 <td>1</td>
                                                 <td>KES {{$products->price}}</td>
-                                                <td><span class="badge badge-soft-purple">Stock</span></td>
+                                                <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
+                                                <td>
 
+                                                        <span>
+                                                            <div class="form-check form-switch form-switch-success">
+                                                                <input class="form-check-input task_{{$products->id}}" id="{{$products->id}}" @if($products->status == 1) checked @endif type="checkbox">
+                                                            </div>
+                                                        </span>
+
+
+                                                </td>
                                                  <td>
                                                     <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
                                                     <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
@@ -160,6 +172,44 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                            <script>
+                                                $('.task_{{$products->id}}').change(function(){
+                                                    var id = $(this).attr('id');
+                                                    var status =  $(this).val();
+                                                    confirm('Are you sure you want to change this status?')
+                                                    if($(this).is(':checked')){
+                                                        // processing ajax request
+                                                        $.ajax({
+                                                            url: "{{ route('statusTask') }}",
+                                                            type: 'POST',
+                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                            dataType: "json",
+                                                            data: {
+                                                                id: id,
+                                                                status: status
+                                                            },
+                                                            success: function(data) {
+                                                                alert('Success')
+                                                            }
+                                                        });
+                                                    }else{
+                                                        // processing ajax request
+                                                            $.ajax({
+                                                                url: "{{ route('statusTask') }}",
+                                                                type: 'POST',
+                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                                dataType: "json",
+                                                                data: {
+                                                                    id: id,
+                                                                    status: status
+                                                                },
+                                                                success: function(data) {
+                                                                    alert('Success')
+                                                                }
+                                                            });
+                                                    }
+                                                });
+                                            </script>
                                             @endforeach
 
                                             </tbody>

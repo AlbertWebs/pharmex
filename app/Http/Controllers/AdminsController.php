@@ -340,6 +340,28 @@ class AdminsController extends Controller
         }
     }
 
+    public function statusTask(Request $request){
+        $productId = $request->id;
+        $statusRq = $request->status;
+        $ProductFetch = Product::find($productId);
+        if($ProductFetch->status=="0"){
+            $status="1";
+        }else{
+            $status="0";
+        }
+
+        $updateDetails =  array(
+            'status'=>$status
+        );
+
+
+        DB::table('products')->where('id',$productId)->update($updateDetails);
+
+        return response()->json([
+            "status" => true,
+            "data" => $status
+        ]);
+    }
 
     public function add_expired(Request $request)
     {
@@ -358,6 +380,8 @@ class AdminsController extends Controller
         }else{
             $SaveFilePath = $request->image_cheat;
         }
+
+        $priceFinal = ($request->bpperpack)*($request->packs);
 
         $Product = new Product;
         $Product->brand_name = $request->brand_name;
@@ -378,8 +402,8 @@ class AdminsController extends Controller
         $Product->meta = $request->meta;
         $Product->category = $request->category;
         $Product->stock = "In Stock";
-        $Product->price_raw = $request->price;
-        $Product->price = $request->price;
+        $Product->price_raw = $priceFinal;
+        $Product->price = $priceFinal;
         $Product->content = $request->content;
         $Product->image = $SaveFilePath;
         $Product->save();
@@ -410,6 +434,7 @@ class AdminsController extends Controller
         }else{
             $SaveFilePath = $request->image_cheat;
         }
+        $priceFinal = ($request->bpperpack)*($request->packs);
 
         $updateDetails = array(
             'brand_name'=>$request->brand_name,
@@ -427,7 +452,7 @@ class AdminsController extends Controller
             'slung' => Str::slug($request->title),
             'content'=>$request->content,
             'meta'=>$request->meta,
-            'price'=>$request->price,
+            'price'=>$priceFinal,
             'category'=>$request->category,
             'brand'=>$request->brand,
             'image'=>$SaveFilePath,
