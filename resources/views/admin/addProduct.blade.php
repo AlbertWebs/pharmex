@@ -19,6 +19,7 @@
          <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
          <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
          <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+         <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
          <style>
             .ui-autocomplete{
                 background-color:#ffffff;
@@ -361,7 +362,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+
 
          {{--  --}}
          <script type="text/javascript">
