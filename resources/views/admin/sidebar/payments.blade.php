@@ -12,8 +12,8 @@
     </a>
 </li><!--end nav-item-->
 <li class="nav-item">
-    <a class="nav-link" href="#sidebarAuthentication" data-bs-toggle="collapse" role="button"
-        aria-expanded="false" aria-controls="sidebarAuthentication">
+    <a class="nav-link" href="#sidebarAuthenticationPayouts" data-bs-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="sidebarAuthenticationPayouts">
         <i class="ti ti-cash menu-icon"></i>
         <span>Payouts</span>
     </a>

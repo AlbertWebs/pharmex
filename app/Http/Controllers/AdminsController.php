@@ -666,6 +666,14 @@ class AdminsController extends Controller
         return view('admin.index');
     }
 
+    public function company_details($id){
+        $User = User::find($id);
+        $Productz = Product::where('UserID',$id)->paginate(12);
+        return view('admin.company_details', compact('User','Productz'));
+    }
+
+
+
     public function updateProductImage(){
         $Product = Product::all();
         foreach($Product as $product){

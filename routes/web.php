@@ -137,6 +137,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_User/{id}', [AdminsController::class, 'edit_User']);
         Route::get('deleteUser/{id}', [AdminsController::class, 'deleteUser']);
 
+        Route::get('company-details/{is}', [AdminsController::class, 'company_details'])->name('company-details');
+
+
+
         Route::post('changestatustask', [AdminsController::class, 'statusTask'])->name('statusTask');
 
 

@@ -99,115 +99,27 @@
 
                     {{--  --}}
                     <div class="row">
+                        @foreach ($User as $user)
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Charles Rutto</h5>
-                                    <span class="text-muted me-3 fw-semibold"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">It is a long established fact that a reader will be distracted when looking at its layout.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
+                                    <h5 class="font-16 fw-bold">{{$user->name}}</h5>
+                                    <span class="text-muted me-3 fw-semibold"><i class="las la-suitecase me-1 text-secondary"></i>{{$user->company}}</span>
+                                    <span class="text-muted me-3 fw-semibold"><i class="las la-map-marker me-1 text-secondary"></i>{{$user->location}}</span><br>
+                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>{{$user->mobile}}</span><br>
+                                    {{-- <p class="text-muted mt-1">It is a long established fact that a reader will be distracted when looking at its layout.</p> --}}
+                                    <a href="{{route('company-details', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</a>
                                     <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Wendy Keen</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">There are many variations of passages of Lorem Ipsum available, but the majority have .</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Marvin Turner</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Charles Rutto</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">Bonorum et Malorum" by Cicero are also reproduced in their exact original form.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
+                        @endforeach
+
+
                     </div><!--end row-->
 
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Joseph Cate</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Robert Kipp</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">Latin words, consectetur, from a Lorem Ipsum passage, and going through.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Nancy Perdue</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">Joseph Cate</h5>
-                                    <span class="text-muted fw-semibold me-3"><i class="las la-map-marker me-1 text-secondary"></i>Nairobi, Kenya</span>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>+254 723 014 032</span>
-                                    <p class="text-muted mt-1">Contrary to popular belief, consectetur, from a Lorem Ipsum is not simply random text.</p>
-                                    <button type="button" class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</button>
-                                    <button type="button" class="btn btn-sm btn-de-primary">Message Vendor</button>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!--end col-->
-                    </div><!--end row-->
-                    {{--  --}}
+
 
 
                 </div><!-- container -->

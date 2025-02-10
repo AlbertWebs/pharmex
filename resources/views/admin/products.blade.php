@@ -131,7 +131,11 @@
                                                     <p class="d-inline-block align-middle mb-0">
                                                         <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand_name}}</a>
                                                         <br>
-                                                        <span class="text-muted font-13 fw-semibold">{{$products->meta}}</span>
+                                                        <span class="text-muted font-13 fw-semibold">
+                                                            <div class="col">
+                                                                Posted By: <a href="{{route('company-details',$products->UserID)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($products->UserID)->company}} </a>
+                                                            </div>
+                                                        </span>
                                                     </p>
                                                 </td>
                                                 <td>
