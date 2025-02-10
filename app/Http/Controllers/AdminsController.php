@@ -761,6 +761,22 @@ class AdminsController extends Controller
         }
     }
 
+    public function autocomplete(Request $request)
+
+    {
+
+        $data = Product::select("brand_name")
+
+                ->where("brand_name","LIKE","%{$request->query}%")
+
+                ->get();
+
+
+
+        return response()->json($data);
+
+    }
+
     /* Generic Email Sender */
     public function emailSender($recepient,$recepientEmail,$Subject,$Message){
         $Sender = "Pharmex Africa";

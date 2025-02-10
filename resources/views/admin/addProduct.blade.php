@@ -19,6 +19,13 @@
          <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
          <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
          <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+         <style>
+            .ui-autocomplete{
+                background-color:#ffffff;
+                z-index:10000000000;
+                list-style-type: none;
+            }
+        </style>
 
     </head>
 
@@ -111,19 +118,20 @@
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Brand & Generic Name</label>
                                                     <div class="col-sm-5">
-                                                        <input class="form-control" type="text" name="brand_name" placeholder="Brand Name" id="example-text-input">
+                                                        <input class="form-control brand_name" type="text" name="brand_name" placeholder="Brand Name" id="brand_name">
                                                     </div>
                                                     <div class="col-sm-5">
-                                                        <input class="form-control" type="text" name="generic_name" placeholder="Generic Name" id="example-text-input">
+                                                        <input class="form-control" type="text" name="generic_name" placeholder="Generic Name" id="generic_name">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Pharmaceutical Class</label>
 
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="pharmacological_class" placeholder="Pharmaceutical Class" id="example-text-input">
+                                                        <input class="form-control" type="text" name="pharmacological_class" placeholder="Pharmaceutical Class" id="pharmacological_class">
                                                     </div>
                                                 </div>
+
                                                 <input class="form-control" type="hidden" name="qty" value="1" id="example-text-input">
                                                 {{-- <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price & Quantity</label>
@@ -348,6 +356,108 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+
+         {{--  --}}
+         <script type="text/javascript">
+
+                $(function () {
+                        $('#brand_name').autocomplete({
+
+                            source:function(request,response){
+
+                                $.getJSON('{{ route('autocomplete') }}?term='+request.term,function(data){
+                                        var array = $.map(data,function(row){
+                                            return {
+                                                value:row.id,
+                                                label:row.brand_name,
+                                                name:row.brand_name
+                                            }
+                                        })
+
+                                        response($.ui.autocomplete.filter(array,request.term));
+                                })
+                            },
+                            minLength:1,
+                            delay:500,
+                            select:function(event,ui){
+                                $('#name').val(ui.item.brand_name)
+                            }
+                        });
+
+                        $('#generic_name').autocomplete({
+
+                            source:function(request,response){
+
+                                $.getJSON('{{ route('autocompletes') }}?term='+request.term,function(data){
+                                        var array = $.map(data,function(row){
+                                            return {
+                                                value:row.id,
+                                                label:row.generic_name,
+                                                name:row.generic_name
+                                            }
+                                        })
+
+                                        response($.ui.autocomplete.filter(array,request.term));
+                                })
+                            },
+                            minLength:1,
+                            delay:500,
+                            select:function(event,ui){
+                                $('#name').val(ui.item.brand_name)
+                            }
+                        });
+
+                        $('#pharmacological_class').autocomplete({
+
+                            source:function(request,response){
+
+                                $.getJSON('{{ route('autocompletez') }}?term='+request.term,function(data){
+                                        var array = $.map(data,function(row){
+                                            return {
+                                                value:row.id,
+                                                label:row.pharmacological_class,
+                                                name:row.pharmacological_class
+                                            }
+                                        })
+
+                                        response($.ui.autocomplete.filter(array,request.term));
+                                })
+                            },
+                            minLength:1,
+                            delay:500,
+                            select:function(event,ui){
+                                $('#name').val(ui.item.brand_name)
+                            }
+                        });
+
+
+
+                })
+
+        </script>
+        <!-- Live Search Scripts -->
+    {{-- <script type="text/javascript">
+
+        $('.brand_name').on('keyup',function(){
+            // Add preloader
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{ route('autocomplete') }}',
+                data:{'search':$value},
+                success:function(data){
+                    $('.tbody').html(data);
+                }
+            });
+        })
+    </script> --}}
+        {{--  --}}
 
     </body>
     <!--end body-->

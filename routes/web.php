@@ -7,11 +7,18 @@ use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SearchController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('autocomplete', [SearchController::class, 'autocomplete'])->name('autocomplete');
+Route::get('autocompletes', [SearchController::class, 'autocompletes'])->name('autocompletes');
+Route::get('autocompletez', [SearchController::class, 'autocompletez'])->name('autocompletez');
+
+
+
 
 Route::get('users', [ProductController::class, 'index']);
 Route::get('users-export', [ProductController::class, 'export'])->name('users.export');
