@@ -40,6 +40,16 @@ class AdminsController extends Controller
         $page_name = 'Categories';
         return view('admin.mysettings',compact('page_title','User','page_name'));
     }
+
+    /* Vednors Module */
+    public function listed_products(){
+        activity()->log('Accessed All Categories');
+        $Products = Product::where('status','0')->paginate(20);
+        $page_title = 'list';
+        $page_name = 'Categories';
+        return view('admin.listed_products',compact('page_title','Products','page_name'));
+    }
+
     /* Vednors Module */
     public function vendors(){
         activity()->log('Accessed All Categories');
@@ -48,6 +58,7 @@ class AdminsController extends Controller
         $page_name = 'Categories';
         return view('admin.vendors',compact('page_title','User','page_name'));
     }
+
 
     /* Vednors Module */
     public function orders(){

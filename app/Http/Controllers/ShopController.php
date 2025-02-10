@@ -42,6 +42,18 @@ class ShopController extends Controller
 
     }
 
+    public function checkout_admin(){
+        $cartItem = Cart::content();
+        if(Auth::User()){
+            return view('admin.checkout_admin', compact('cartItem'));
+        }else{
+            return view('exchange.checkout-login', compact('cartItem'));
+        }
+
+    }
+
+
+
     public function select(Request $request){
         $request->validate([
             'email' => 'required',
@@ -68,6 +80,7 @@ class ShopController extends Controller
 
     public function add(Request $request){
         // dd(Cart::content());
+        // dd($request->all());
         $product_id = $request->product_id;
         $qtybutton = $request->qtybutton;
         $Product = Product::find($product_id);
@@ -78,6 +91,23 @@ class ShopController extends Controller
             Cart::add($Product->id,$Product->brand_name, $qtybutton, $Product->price, 550);
             $cartItem = Cart::content();
             return view('exchange.shopping-cart', compact('cartItem'));
+        }
+
+    }
+
+    public function addAdmin(Request $request){
+        // dd(Cart::content());
+        // dd($request->all());
+        $product_id = $request->product_id;
+        $qtybutton = $request->qtybutton;
+        $Product = Product::find($product_id);
+        $CurrentQty = $Product->quantity;
+        if($CurrentQty < $qtybutton){
+            echo "<script>alert('You Ordered More Than Its Available in Stock')</script>";
+        }else{
+            Cart::add($Product->id,$Product->brand_name, $qtybutton, $Product->price, 550);
+            $cartItem = Cart::content();
+            return view('admin.shopping-cart', compact('cartItem'));
         }
 
     }

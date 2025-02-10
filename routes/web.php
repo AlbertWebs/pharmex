@@ -24,8 +24,12 @@ Route::prefix('stock-exchange')->group(function () {
 
     //Shopping cart
     Route::post('/add-to-cart', [ShopController::class, 'add'])->name('add-to-cart');
+    Route::post('/add-to-cart-admin', [ShopController::class, 'addAdmin'])->name('add-to-cart-admin');
+
     Route::get('/shopping-cart', [ShopController::class, 'cart'])->name('shopping-cart');
     Route::get('/shopping-cart/checkout', [ShopController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout-admin', [ShopController::class, 'checkout_admin'])->name('checkout-admin');
+
     Route::get('/shopping-cart/destroy', [ShopController::class, 'destroy'])->name('destroy');
     Route::post('/shopping-cart/select-login', [ShopController::class, 'select'])->name('select-login');
     Route::get('/shopping-cart/destroys/{RoWId}', [ShopController::class, 'destroys'])->name('destroys');
@@ -128,6 +132,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 
          Route::get('orders', [AdminsController::class, 'orders'])->name('orders');
+         Route::get('listed-products', [AdminsController::class, 'listed_products'])->name('listed-products');
+
+
 
         //Users
         Route::get('users', [AdminsController::class, 'users']);

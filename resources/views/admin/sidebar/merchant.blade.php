@@ -35,3 +35,18 @@
                         </div><!--end sidebarEmail-->
                     </li><!--end nav-item-->
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarOrdersListedProducts" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarOrdersListedProducts">
+                            <i class="ti ti-folder menu-icon"></i>
+                            <span>Listed Products</span>
+                        </a>
+                        <div class="collapse " id="sidebarOrdersListedProducts">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('listed-products')}}">All Products</a>
+                                </li><!--end nav-item-->
+                            </ul><!--end nav-->
+                        </div><!--end sidebarEmail-->
+                    </li><!--end nav-item-->
+
