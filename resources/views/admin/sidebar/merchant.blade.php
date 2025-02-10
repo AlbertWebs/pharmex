@@ -29,7 +29,7 @@
                         <div class="collapse " id="sidebarOrders">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('orders')}}">All Orders</a>
+                                    <a onclick="alert('Work in Progress')" class="nav-link" href="{{route('orders')}}">All Orders</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end sidebarEmail-->
