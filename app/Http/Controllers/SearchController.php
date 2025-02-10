@@ -48,19 +48,19 @@ class SearchController extends Controller
 
      public function autocomplete(Request $request)
      {
-         $data = Product::select("brand_name")->where("brand_name","LIKE","%{$request->get('search')}%")->limit('5')->get();
+         $data = Product::select("brand_name")->distinct()->where("brand_name","LIKE","%{$request->get('search')}%")->limit('5')->get();
          return response()->json($data);
      }
 
      public function autocompletes(Request $request)
      {
-         $data = Product::select("generic_name")->where("generic_name","LIKE","%{$request->get('search')}%")->limit('5')->get();
+         $data = Product::select("generic_name")->distinct()->where("generic_name","LIKE","%{$request->get('search')}%")->limit('5')->get();
          return response()->json($data);
      }
 
      public function autocompletez(Request $request)
      {
-         $data = Product::select("pharmacological_class")->where("pharmacological_class","LIKE","%{$request->get('search')}%")->limit('5')->get();
+         $data = Product::select("pharmacological_class")->distinct()->where("pharmacological_class","LIKE","%{$request->get('search')}%")->limit('5')->get();
          return response()->json($data);
      }
 
