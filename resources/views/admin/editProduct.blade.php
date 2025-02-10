@@ -126,12 +126,10 @@
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price & Quantity</label>
-                                                    <div class="col-sm-5">
-                                                        <input class="form-control" type="text" name="price" placeholder="price" value="{{$Product->price}}" id="example-text-input">
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" readonly type="text" name="price" placeholder="price" value="{{$Product->price}}" id="example-text-input">
                                                     </div>
-                                                    <div class="col-sm-5">
-                                                        <input class="form-control" type="number" name="qty" value="{{$Product->quantity}}" id="example-text-input">
-                                                    </div>
+
                                                 </div>
                                                 {{--  --}}
                                                 <div class="mb-3 row">
@@ -190,7 +188,7 @@
                                                 {{--  --}}
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-10">
                                                         <select class="form-select" aria-label="Default select example" name="category">
 
                                                             <option value="{{$Product->category}}" selected="">{{$Product->category}}</option>
@@ -202,33 +200,17 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="col-sm-5">
-                                                        <select class="form-select" aria-label="Default select example" name="brand">
 
-                                                            <option value="{{$Product->brand}}" selected="">{{$Product->brand}}</option>
-                                                            <?php
-                                                            $Category = \App\Models\Brand::all();
-                                                            ?>
-                                                            @foreach($Category as $category)
-                                                                <option value="{{$category->title}}">{{$category->title}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Meta</label>
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Remarks</label>
                                                     <div class="col-sm-10">
                                                         <textarea class="form-control" rows="5" id="message" name="meta">{{$Product->meta}}</textarea>
                                                     </div>
                                                 </div>
 
-                                                <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea id="basic-conf" name="content">{{$Product->content}}</textarea>
-                                                    </div>
-                                                </div>
+
                                                 <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Product Image</label>
                                                     <div class="col-sm-10">

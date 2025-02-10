@@ -124,15 +124,16 @@
                                                         <input class="form-control" type="text" name="pharmacological_class" placeholder="Pharmaceutical Class" id="example-text-input">
                                                     </div>
                                                 </div>
-                                                <div class="mb-3 row">
+                                                <input class="form-control" type="hidden" name="qty" value="1" id="example-text-input">
+                                                {{-- <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price & Quantity</label>
                                                     <div class="col-sm-5">
                                                         <input class="form-control" type="text" name="price" placeholder="price" id="example-text-input">
                                                     </div>
                                                     <div class="col-sm-5">
-                                                        <input class="form-control" type="number" name="qty" value="1" id="example-text-input">
+                                                        <input class="form-control" type="hidden" name="qty" value="1" id="example-text-input">
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Dosage & Strenth</label>
                                                     <div class="col-sm-5">
@@ -189,7 +190,7 @@
 
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-10">
                                                         <select class="form-select" aria-label="Default select example" name="category">
                                                             <option selected="">Open This Select Category</option>
                                                             <?php
@@ -200,7 +201,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="col-sm-5">
+                                                    {{-- <div class="col-sm-5">
                                                         <select class="form-select" aria-label="Default select example" name="brand">
                                                             <option selected="">Open This Select Brand</option>
                                                             <?php
@@ -210,22 +211,33 @@
                                                                 <option value="{{$category->title}}">{{$category->title}}</option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
 
                                                 <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Meta</label>
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Remarks</label>
                                                     <div class="col-sm-10">
                                                         <textarea class="form-control" rows="5" id="message" name="meta"></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Description</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end"></label>
+
+                                                    <div class="col-sm-10">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input name="expired" type="checkbox" class="custom-control-input" id="horizontalCheckbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                            <label class="custom-control-label" for="horizontalCheckbox">Do you have any Expired Medicine?</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {{-- <div class="mb-3 row">
+                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Remarks</label>
                                                     <div class="col-sm-10">
                                                         <textarea id="basic-conf" name="content">Hello, World! Your Product description goes here</textarea>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
 

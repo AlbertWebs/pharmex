@@ -4,7 +4,7 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
 
-                    @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
+                    @if(Auth::User()->admin == "1")
 
                         @include('admin.sidebar.admin')
                         @include('admin.sidebar.merchant')

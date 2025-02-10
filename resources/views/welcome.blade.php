@@ -153,6 +153,20 @@
                                             <li>
                                                 <a href="{{url('/')}}/login">Merchant Login &nbsp; <span class="fa fa-user"></span></a>
                                             </li>
+
+                                            @if(Auth::User())
+                                            <li>
+                                                <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();   document.getElementById('logout-form').submit();">Logout &nbsp; <span class="fa fa-power-off"></span></a>
+                                            </li>
+                                            @endif
+
+
+
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
                                         </ul>
                                     </nav>
                                 </div>

@@ -94,6 +94,21 @@
                     <!-- end page title end breadcrumb -->
 
 
+                    @if($Products->isEmpty())
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <h6>
+                                    No Products Posted
+                                    <br>
+                                    <div class="col">
+                                        <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a>
+                                    </div><!--end col-->
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    @else
                     {{--  --}}
                     <div class="row">
                         <div class="col-12">
@@ -111,7 +126,9 @@
                                                 <th>Pics</th>
                                                 <th>Price</th>
                                                 <th>Stock</th>
+                                                @if(Auth::User()->admin == '1')
                                                 <th>Approve</th>
+                                                @endif
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -159,6 +176,7 @@
                                                 <td>1</td>
                                                 <td>KES {{$products->price}}</td>
                                                 <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
+                                                @if(Auth::User()->admin == '1')
                                                 <td>
 
                                                         <span>
@@ -169,6 +187,7 @@
 
 
                                                 </td>
+                                                @endif
                                                  <td>
                                                     <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
                                                     <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
@@ -232,6 +251,7 @@
                         </div> <!-- end col -->
                     </div> <!-- end row -->
                     {{--  --}}
+                    @endif
 
 
                 </div><!-- container -->

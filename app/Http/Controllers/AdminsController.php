@@ -44,7 +44,7 @@ class AdminsController extends Controller
     /* Vednors Module */
     public function listed_products(){
         activity()->log('Accessed All Categories');
-        $Products = Product::where('status','0')->paginate(20);
+        $Products = Product::where('status','1')->paginate(20);
         $page_title = 'list';
         $page_name = 'Categories';
         return view('admin.listed_products',compact('page_title','Products','page_name'));
@@ -323,7 +323,13 @@ class AdminsController extends Controller
     /* Products Functions*/
     public function products(){
         activity()->log('Accessed All Products');
-        $Products = Product::paginate(12);
+        if(Auth::User()->type == '1'){
+            $Products = Product::paginate(12);
+        }else{
+            $Products = Product::where('UserID', Auth::User()->id)->paginate(12);
+        }
+
+
         $page_title = 'list';
         $page_name = 'Products';
         return view('admin.products',compact('page_title','Products','page_name'));
@@ -392,6 +398,9 @@ class AdminsController extends Controller
             $SaveFilePath = $request->image_cheat;
         }
 
+
+
+
         $priceFinal = ($request->bpperpack)*($request->packs);
 
         $Product = new Product;
@@ -408,20 +417,29 @@ class AdminsController extends Controller
         $Product->bpperpack = $request->bpperpack;
 
         $Product->quantity = $request->qty;
-        $Product->user_id = Auth::User()->id;
+        $Product->UserID = Auth::User()->id;
         $Product->slung = Str::slug($request->title);
         $Product->meta = $request->meta;
         $Product->category = $request->category;
         $Product->stock = "In Stock";
         $Product->price_raw = $priceFinal;
         $Product->price = $priceFinal;
-        $Product->content = $request->content;
         $Product->image = $SaveFilePath;
         $Product->save();
         Session::flash('message', "Product Has Been Added");
         $page_title = "";
         $page_name = "";
-        return view('admin.addExpiredMedicines');
+        if (isset($request->expired)) {
+            return view('admin.addExpiredMedicines');
+        }else{
+            if(Auth::User()->type == '1'){
+                $Products = Product::paginate(12);
+            }else{
+                $Products = Product::where('UserID', Auth::User()->id)->paginate(12);
+            }
+            return view('admin.products', compact('Products'));
+        }
+
     }
 
     public function editProduct($id){
