@@ -324,7 +324,7 @@ class AdminsController extends Controller
     /* Products Functions*/
     public function products(){
         activity()->log('Accessed All Products');
-        if(Auth::User()->type == '1'){
+        if(Auth::User()->type == "1" || Auth::User()->type == "admin"){
             $Products = Product::paginate(12);
         }else{
             $Products = Product::where('UserID', Auth::User()->id)->paginate(12);
@@ -435,7 +435,7 @@ class AdminsController extends Controller
         $Product->packsize = $request->packsize;
         $Product->packs = $request->packs;
         $Product->bpperpack = $request->bpperpack;
-
+        $Product->distribution = $request->distribution;
         $Product->quantity = $request->qty;
         $Product->UserID = Auth::User()->id;
         $Product->slung = Str::slug($request->title);
@@ -452,7 +452,7 @@ class AdminsController extends Controller
         if (isset($request->expired)) {
             return view('admin.addExpiredMedicines');
         }else{
-            if(Auth::User()->type == '1'){
+            if(Auth::User()->type == "1" || Auth::User()->type == "admin"){
                 $Products = Product::paginate(12);
             }else{
                 $Products = Product::where('UserID', Auth::User()->id)->paginate(12);
@@ -495,6 +495,8 @@ class AdminsController extends Controller
             'expiry'=>$request->expiry,
             'packsize'=>$request->packsize,
             'packs'=>$request->packs,
+
+            'distribution'=>$request->distribution,
             'bpperpack'=>$request->bpperpack,
             'quantity'=>$request->qty,
             'user_id'=>$request->user_id,
@@ -503,7 +505,6 @@ class AdminsController extends Controller
             'meta'=>$request->meta,
             'price'=>$priceFinal,
             'category'=>$request->category,
-            'brand'=>$request->brand,
             'image'=>$SaveFilePath,
         );
         DB::table('products')->where('id',$id)->update($updateDetails);

@@ -198,8 +198,8 @@
                                                 </div>
 
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
-                                                    <div class="col-sm-10">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Distribution</label>
+                                                    <div class="col-sm-5">
                                                         <select class="form-select" aria-label="Default select example" name="category">
                                                             <option selected="">Open This Select Category</option>
                                                             <?php
@@ -210,17 +210,12 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    {{-- <div class="col-sm-5">
-                                                        <select class="form-select" aria-label="Default select example" name="brand">
-                                                            <option selected="">Open This Select Brand</option>
-                                                            <?php
-                                                            $Category = \App\Models\Brand::all();
-                                                            ?>
-                                                            @foreach($Category as $category)
-                                                                <option value="{{$category->title}}">{{$category->title}}</option>
-                                                            @endforeach
+                                                    <div class="col-sm-5">
+                                                        <select class="form-select" aria-label="Default select example" name="distribution">
+                                                            <option value="Discounted" selected="">Discounted</option>
+                                                            <option value="Donation">Donation</option>
                                                         </select>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3 row">

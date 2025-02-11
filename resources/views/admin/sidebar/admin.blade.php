@@ -3,7 +3,7 @@
     <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarAnalytics">
         <i class="ti ti-stack menu-icon"></i>
-        <span>Product Categories</span>
+        <span>Categories</span>
     </a>
     <div class="collapse " id="sidebarAnalytics">
         <ul class="nav flex-column">
@@ -17,23 +17,7 @@
         </ul><!--end nav-->
     </div><!--end sidebarAnalytics-->
 </li><!--end nav-item-->
-<li class="nav-item">
-    <a class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
-        aria-expanded="false" aria-controls="sidebarCrypto">
-        <i class="ti ti-stack menu-icon"></i>
-        <span>Brands</span>
-    </a>
-    <div class="collapse " id="sidebarCrypto">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('add-brand')}}">Add Brand</a>
-            </li><!--end nav-item-->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('add-brand')}}">All Brands</a>
-            </li><!--end nav-item-->
-        </ul><!--end nav-->
-    </div><!--end sidebarCrypto-->
-</li><!--end nav-item-->
+
 
 <li class="nav-item">
     <a class="nav-link" href="#sidebarAnalyticss" data-bs-toggle="collapse" role="button"

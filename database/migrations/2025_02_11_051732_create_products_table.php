@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('generic_name')->nullable();
             $table->string('pharmacological_class')->nullable();
             $table->string('category')->nullable();
+            $table->string('distribution')->nullable();
             $table->text('dosage')->nullable();
             $table->string('strength')->nullable();
             $table->string('batch_no')->nullable();

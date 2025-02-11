@@ -188,7 +188,7 @@
                                                 {{--  --}}
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">Category & Brand</label>
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-5">
                                                         <select class="form-select" aria-label="Default select example" name="category">
 
                                                             <option value="{{$Product->category}}" selected="">{{$Product->category}}</option>
@@ -198,6 +198,13 @@
                                                             @foreach($Category as $category)
                                                                 <option value="{{$category->title}}">{{$category->title}}</option>
                                                             @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <select class="form-select" aria-label="Default select example" name="distribution">
+                                                            <option value="{{$Product->distribution}}" selected="">{{$Product->distribution}}</option>
+                                                            <option value="Discounted">Discounted</option>
+                                                            <option value="Donation">Donation</option>
                                                         </select>
                                                     </div>
 
