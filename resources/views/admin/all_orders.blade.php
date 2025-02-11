@@ -125,12 +125,14 @@
 
                                                          @else
                                                              @foreach ($Products as $Product)
-                                                                <img src="{{$Product->image}}" alt="" height="60">
+                                                                <img src="{{$Product->image}}" alt="" height="85">
                                                                 <p class="d-inline-block align-middle mb-0">
                                                                     <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->brand_name}}</a>
                                                                     <br>
                                                                     <span class="text-muted font-13 fw-semibold">{{$Product->generic_name}}({{$products->qty}})</span>
-                                                                    <br>Tax:  {{$products->tax}}
+                                                                    <br>Tax:  {{$products->tax}}<br>
+                                                                    <?php  $User = \App\Models\User::find($Product->UserID) ?>
+                                                                    Listed By <a href="{{route('company-details',$User->id)}}"><?php echo $User->company ?></a>
                                                                 </p>
                                                             @endforeach
                                                         @endif
