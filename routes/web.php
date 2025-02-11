@@ -155,6 +155,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('company-details/{is}', [AdminsController::class, 'company_details'])->name('company-details');
 
+        Route::get('order-process-accept/{id}', [AdminsController::class, 'order_process_accept'])->name('order-process-accept');
+        Route::get('order-process-reject/{id}', [AdminsController::class, 'order_process_reject'])->name('order-process-reject');
+
+        Route::post('accept-order', [AdminsController::class, 'accept_order'])->name('accept-order');
+
+
 
 
         Route::post('changestatustask', [AdminsController::class, 'statusTask'])->name('statusTask');

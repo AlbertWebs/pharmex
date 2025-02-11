@@ -842,6 +842,26 @@ class AdminsController extends Controller
         return view('admin.all_orders', compact('Orders'));
     }
 
+    public function order_process_accept($id){
+        $Orders = Order::where('id',$id)->get();
+        return view('admin.process', compact('Orders'));
+    }
+
+    public function accept_order(Request $request){
+        $Order =$request->order_id;
+        $updateDetails = array(
+            'status'=>$request->remark,
+        );
+        DB::table('orders')->where('id',$Order)->update($updateDetails);
+        $OrderDetails = order::find($Order);
+        $User = User::find($OrderDetails->user_id);
+        $MessageToSend = "Your Order has been process with status: $request->remark";
+        $subject = "Order Update";
+        SendEmail::notification($User->name,$User->email,$MessageToSend,$subject);
+        return Redirect::back();
+    }
+
+
 
     /* Generic Email Sender */
     public function emailSender($recepient,$recepientEmail,$Subject,$Message){

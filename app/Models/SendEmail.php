@@ -34,6 +34,21 @@ class SendEmail extends Model
         });
     }
 
+    public static function notification($sendTo,$SendToID,$MessageToSend,$Subject){
+        $data = array(
+            'content'=>$MessageToSend,
+            'subject'=>$Subject,
+        );
+        $Sender = "Pharmex By Pharverse";
+        $SenderId = "mailer@africanpharmaceuticalreview.com";
+        Mail::send('mailTheme', $data, function($message) use ($SendToID,$sendTo,$Subject,$Sender,$SenderId){
+            $message->from($SenderId , $Sender);
+            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->subject($Subject);
+        });
+    }
+
+
+
     public static function MailSupplier($SupplierEmail,$SupplierName,$InvoiceNumber){
         $message = 'Hello '.$SupplierName.' You have a new Order, We have created a summary of the order below:';
         $subject = 'Supplier Your Invoice Has Been Created';

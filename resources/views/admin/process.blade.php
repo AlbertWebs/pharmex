@@ -145,9 +145,15 @@
                                                     {{$orders->status}}
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('order-process-accept', $orders->id)}}" class="btn btn-de-success btn-md">Accept <span class="fas fa-check-square"></span></a>
+                                                    <form action="{{route('accept-order')}}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="order_id" value="{{$orders->id}}">
+                                                        <input type="text" class="form-control" name="remark" placeholder="Completed or Fullfiled"><br>
 
-                                                    <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a>
+                                                        <button type="submit" class="btn btn-de-success btn-md">Accept <span class="fas fa-check-square"></span></button>
+                                                    </form>
+
+                                                    {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -163,10 +169,10 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col">
-                                                <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add Product</a>
+                                                <a href="{{route('all-orders')}}" class="btn btn-outline-light btn-sm px-4 ">+ All Orders</a>
                                             </div><!--end col-->
                                             <div class="col-auto">
-                                                {!! $Orders->withQueryString()->links('pagination::bootstrap-5') !!}
+                                                {{-- {!! $Orders->withQueryString()->links('pagination::bootstrap-5') !!} --}}
                                             </div> <!--end col-->
                                         </div><!--end row-->
                                     </div>
