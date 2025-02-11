@@ -101,7 +101,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="ribbon1 rib1-primary">
-                                        <span class="text-white text-center rib1-primary">{{$products->packs}} Packs Available</span>
+                                        <span class="text-white text-center rib1-primary">{{$products->distribution}}</span>
                                     </div><!--end ribbon-->
                                     <img src="{{$products->image}}" alt="" class="d-block mx-auto my-4" height="150">
                                     <div class="d-flex justify-content-between align-items-center my-4">
@@ -109,10 +109,11 @@
                                             <p class="text-muted mb-2">{{$products->brand_name}}</p>
                                             {{-- <small  href="#" class="header-title" style="max-width:200px;">{{$products->generic_name}}</small> --}}
                                         </div>
-                                        <div>
-                                            <h4 class="text-dark mt-0 mb-2">kes {{$products->price}}</h4>
 
+                                        <div>
+                                            <h4 class="text-dark mt-0 mb-2">@if($products->distribution == "discounted")kes {{$products->price}}@else  <small class="text-muted font-14"><del>kes {{$products->price}} @endif</del></small></h4>
                                         </div>
+
 
                                     </div>
                                     <center><small  href="#">{{$products->generic_name}}</small></center>
