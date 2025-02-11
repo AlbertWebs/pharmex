@@ -61,7 +61,7 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:admin'])->group(function () {
+// Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::prefix('admin-panel')->group(function () {
 
         Route::get('/', [AdminsController::class, 'index'])->name('admin.home');
@@ -180,5 +180,5 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         //
     });
 
-});
+// });
 
