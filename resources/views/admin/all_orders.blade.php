@@ -145,9 +145,9 @@
                                                     {{$orders->status}}
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('order-process-accept', $orders->id)}}" class="btn btn-de-success btn-md">Accept <span class="fas fa-check-square"></span></a>
+                                                    <a href="{{route('order-process-accept', $orders->id)}}" class="btn btn-de-success btn-md">Process Order <span class="fas fa-check-square"></span></a>
 
-                                                    <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a>
+                                                    {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
                                                 </td>
                                             </tr>
                                             @endforeach

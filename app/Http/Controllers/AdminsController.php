@@ -850,12 +850,12 @@ class AdminsController extends Controller
     public function accept_order(Request $request){
         $Order =$request->order_id;
         $updateDetails = array(
-            'status'=>$request->remark,
+            'status'=>$request->status,
         );
         DB::table('orders')->where('id',$Order)->update($updateDetails);
         $OrderDetails = order::find($Order);
         $User = User::find($OrderDetails->user_id);
-        $MessageToSend = "Your Order has been process with status: $request->remark";
+        $MessageToSend = "Your Order has been process with status: $request->status<br> Remark: $request->remark";
         $subject = "Order Update";
         SendEmail::notification($User->name,$User->email,$MessageToSend,$subject);
         return Redirect::back();

@@ -148,7 +148,17 @@
                                                     <form action="{{route('accept-order')}}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="order_id" value="{{$orders->id}}">
-                                                        <input type="text" class="form-control" name="remark" placeholder="Completed or Fullfiled"><br>
+                                                        {{-- <input type="text" class="form-control" name="remark" placeholder="Completed or Fullfiled"> --}}
+                                                        <select class="form-select" aria-label="Default select example" name="status">
+                                                            <option value="Completed" selected="">Completed</option>
+                                                            <option value="Fullfiled">Fullfiled</option>
+                                                            <option value="Reject">Reject</option>
+                                                        </select>
+                                                        <br>
+                                                        <textarea class="form-control" name="remark" placeholder="Create a Remark Regarding this Order" required></textarea>
+
+
+                                                        <br>
 
                                                         <button type="submit" class="btn btn-de-success btn-md">Accept <span class="fas fa-check-square"></span></button>
                                                     </form>
