@@ -107,6 +107,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('editProduct/{id}', [AdminsController::class, 'editProduct']);
         Route::post('edit_Product/{id}', [AdminsController::class, 'edit_Product']);
         Route::get('deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
+        Route::get('all-products', [AdminsController::class, 'products_all'])->name('all-products');
+
 
         Route::get('update-image', [AdminsController::class, 'updateProductImage'])->name('updateProductImage');
         Route::get('update-slung', [AdminsController::class, 'updateProductSlung'])->name('updateProductSlung');

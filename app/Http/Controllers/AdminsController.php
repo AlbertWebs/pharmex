@@ -336,6 +336,17 @@ class AdminsController extends Controller
         return view('admin.products',compact('page_title','Products','page_name'));
     }
 
+    /* Products Functions Admin*/
+    public function products_all(){
+        activity()->log('Accessed All Products');
+        $Products = Product::paginate(12);
+
+        $page_title = 'list';
+        $page_name = 'Products';
+        return view('admin.products_all',compact('page_title','Products','page_name'));
+    }
+
+
     public function addProduct(){
         $Category = Category::all();
         $Products = Product::paginate(10);
@@ -373,12 +384,15 @@ class AdminsController extends Controller
         $updateDetails =  array(
             'status'=>$status
         );
-        $UserDetails = User::find($ProductFetch->UserID);
 
 
         DB::table('products')->where('id',$productId)->update($updateDetails);
-        $message = "Dear $UserDetails->name, Your listing has been approved for listing";
-        SendEmail::notifications($UserDetails->name,$UserDetails->email,$message);
+        if($status == '1'){
+            $UserDetails = User::find($ProductFetch->UserID);
+            $message = "Dear $UserDetails->name, Your listing has been approved for listing";
+            SendEmail::notifications($UserDetails->name,$UserDetails->email,$message);
+
+        }
 
         return response()->json([
             "status" => true,

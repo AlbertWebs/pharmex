@@ -17,7 +17,6 @@
         </ul><!--end nav-->
     </div><!--end sidebarAnalytics-->
 </li><!--end nav-item-->
-
 <li class="nav-item">
     <a class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarCrypto">
@@ -37,36 +36,25 @@
 </li><!--end nav-item-->
 
 <li class="nav-item">
-    <a class="nav-link" href="#sidebarDosage" data-bs-toggle="collapse" role="button"
-        aria-expanded="false" aria-controls="sidebarDosage">
+    <a class="nav-link" href="#sidebarAnalyticss" data-bs-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="sidebarAnalyticss">
         <i class="ti ti-stack menu-icon"></i>
-        <span>Dosage</span>
+        <span>Properties</span>
     </a>
-    <div class="collapse " id="sidebarDosage">
+    <div class="collapse " id="sidebarAnalyticss">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('dosage')}}">Dosage</a>
+                <a class="nav-link" href="{{route('strength')}}">Strength</a>
+            </li><!--end nav-item-->
+            <li class="nav-item">
+                <a href="{{route('dosage')}}" class="nav-link ">Dosage</a>
             </li><!--end nav-item-->
 
         </ul><!--end nav-->
-    </div><!--end sidebarCrypto-->
+    </div><!--end sidebarAnalytics-->
 </li><!--end nav-item-->
 
-<li class="nav-item">
-    <a class="nav-link" href="#sidebarStrength" data-bs-toggle="collapse" role="button"
-        aria-expanded="false" aria-controls="sidebarStrength">
-        <i class="ti ti-stack menu-icon"></i>
-        <span>Strength</span>
-    </a>
-    <div class="collapse " id="sidebarStrength">
-        <ul class="nav flex-column">
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('strength')}}">Drug Strength</a>
-            </li><!--end nav-item-->
-        </ul><!--end nav-->
-    </div><!--end sidebarCrypto-->
-</li><!--end nav-item-->
 
 <li class="nav-item">
     <a class="nav-link" href="#sidebarCart" data-bs-toggle="collapse" role="button"
@@ -89,5 +77,11 @@
     <a class="nav-link" href="{{route('vendors')}}">
         <i class="ti ti-user menu-icon"></i>
         <span>Vendors</span>
+    </a>
+</li><!--end nav-item-->
+<li class="nav-item">
+    <a class="nav-link" href="{{route('all-products')}}">
+        <i class="ti ti-check menu-icon"></i>
+        <span>Approvals</span>
     </a>
 </li><!--end nav-item-->
