@@ -28,14 +28,6 @@ class orders extends Model
         foreach($cartItems as $cartItem)
 
             $order->orderFields()->attach($cartItem->id,['qty'=>$cartItem->qty, 'tax' =>Cart::tax(), 'total'=>Cart::total()]);
-
-            //Insert Notification
-            // $Notifications = new Notifications;
-            // $Notifications->type = 'Order';
-            // $Notifications->content = 'You have a new Order';
-            // $Notifications->save();
-
-            // Notify Supplier
        }
 
     //    SMS::sendMessage();

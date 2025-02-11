@@ -85,194 +85,353 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Pharmex</a>
                                         </li><!--end nav-item-->
-                                        <li class="breadcrumb-item"><a href="#">Dashboard</a>
+                                        <li class="breadcrumb-item"><a href="#">Ecommerce</a>
                                         </li><!--end nav-item-->
-                                        <li class="breadcrumb-item active">Analytics</li>
+                                        <li class="breadcrumb-item active">Dashboard</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Analytics</h4>
+                                <h4 class="page-title">Dashboard</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
                     <!-- end page title end breadcrumb -->
-
                     <div class="row">
-                        <div class="col-md-12 col-lg-3 order-lg-1 order-md-2 order-sm-2">
-                            <div class="card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="pt-3">
-                                        <h3 class="text-dark text-center font-24 fw-bold line-height-lg">Pharmex
-                                        <br>Data Safety CronJobs</h3>
-                                        <div class="text-center text-muted font-16 fw-bold pt-3 pb-1">Your Data is Safe We Make Daily Backups</div>
 
-                                        <div class="text-center py-3 mb-3">
-                                            <a href="#" class="btn btn-primary">Backup Now!</a>
-                                        </div>
-                                        <img src="{{asset('admin/assets/images/small/business.png')}}" alt="" class="img-fluid px-3 mb-2">
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col align-self-center">
+                                            <div class="media">
+                                                <img src="{{asset('admin/assets/images/logos/money-beg.png')}}" alt="" class="align-self-center" height="40">
+                                                <div class="media-body align-self-center ms-3">
+                                                    <?php
+                                                       $Orders = \App\Models\orders::where('status', 'Completed')->sum('total');
+
+                                                    ?>
+                                                    <h6 class="m-0 font-24 fw-bold">kes {{number_format(\App\Models\orders::sum('total'), 2)}}</h6>
+                                                    <p class="text-muted mb-0">Total Revenue</p>
+                                                </div><!--end media body-->
+                                            </div><!--end media-->
+                                        </div><!--end col-->
+                                        <div class="col-auto align-self-center">
+                                            <div class="">
+                                                <div id="Revenu_Status_bar" class="apex-charts mb-n4"></div>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold">kes {{number_format(\App\Models\orders::where('created_at', today())->sum('total'), 2)}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Today's Revenue</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold">kes {{number_format(\App\Models\orders::where('created_at', today())->sum('total'), 2)}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Today's New Order</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold">82.8%</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Conversion Rate</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold">kes {{number_format(\App\Models\orders::where('created_at', today())->average('total'), 2)}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Avg. Value</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-->
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!-- end col-->
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h4 class="card-title">Revenu Status</h4>
+                                        </div><!--end col-->
+                                        <div class="col-auto">
+                                            <div class="dropdown">
+                                                <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                   This Month<i class="las la-angle-down ms-1"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="#">Today</a>
+                                                    <a class="dropdown-item" href="#">Last Week</a>
+                                                    <a class="dropdown-item" href="#">Last Month</a>
+                                                    <a class="dropdown-item" href="#">This Year</a>
+                                                </div>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div>  <!--end row-->
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="">
+                                        <div id="Revenu_Status" class="apex-charts"></div>
                                     </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
-                        </div> <!--end col-->
-                        <div class="col-lg-9 order-lg-2 order-md-1 order-sm-1">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="row d-flex">
-                                                <div class="col-3">
-                                                    <i class="ti ti-users font-36 align-self-center text-dark"></i>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <div id="dash_spark_1" class="mb-3"></div>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <h3 class="text-dark my-0 font-22 fw-bold">24000</h3>
-                                                    <p class="text-muted mb-0 fw-semibold">Sessions</p>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </div><!--end card-body-->
-                                    </div><!--end card-->
-                                </div> <!--end col-->
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="row d-flex">
-                                                <div class="col-3">
-                                                    <i class="ti ti-clock font-36 align-self-center text-dark"></i>
-                                                </div><!--end col-->
-                                                <div class="col-auto ms-auto align-self-center">
-                                                    <span class="badge badge-soft-success px-2 py-1 font-11">Active</span>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <div id="dash_spark_2" class="mb-3"></div>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <h3 class="text-dark my-0 font-22 fw-bold">00:18</h3>
-                                                    <p class="text-muted mb-0 fw-semibold">Avg.Sessions</p>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </div><!--end card-body-->
-                                    </div><!--end card-->
-                                </div> <!--end col-->
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="row d-flex">
-                                                <div class="col-3">
-                                                    <i class="ti ti-activity font-36 align-self-center text-dark"></i>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <div id="dash_spark_3" class="mb-3"></div>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <h3 class="text-dark my-0 font-22 fw-bold">$2400</h3>
-                                                    <p class="text-muted mb-0 fw-semibold">Bounce Rate</p>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </div><!--end card-body-->
-                                    </div><!--end card-->
-                                </div> <!--end col-->
-
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="row d-flex">
-                                                <div class="col-3">
-                                                    <i class="ti ti-confetti font-36 align-self-center text-dark"></i>
-                                                </div><!--end col-->
-                                                <div class="col-auto ms-auto align-self-center">
-                                                    <span class="badge badge-soft-danger px-2 py-1 font-11">-2%</span>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <div id="dash_spark_4" class="mb-3"></div>
-                                                </div><!--end col-->
-                                                <div class="col-12 ms-auto align-self-center">
-                                                    <h3 class="text-dark my-0 font-22 fw-bold">85000</h3>
-                                                    <p class="text-muted mb-0 fw-semibold">Goal Completions</p>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </div><!--end card-body-->
-                                    </div><!--end card-->
-                                </div> <!--end col-->
-                            </div><!--end row-->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <h4 class="card-title">Audience Overview</h4>
-                                                </div><!--end col-->
-                                                <div class="col-auto">
-                                                    <div class="dropdown">
-                                                        <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                           This Year<i class="las la-angle-down ms-1"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Today</a>
-                                                            <a class="dropdown-item" href="#">Last Week</a>
-                                                            <a class="dropdown-item" href="#">Last Month</a>
-                                                            <a class="dropdown-item" href="#">This Year</a>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                            </div>  <!--end row-->
-                                        </div><!--end card-header-->
-                                        <div class="card-body">
-                                            <div class="">
-                                                <div id="ana_dash_1" class="apex-charts"></div>
-                                            </div>
-                                        </div><!--end card-body-->
-                                    </div><!--end card-->
-                                </div>
-                            </div>
-                        </div><!--end col-->
+                        </div><!-- end col-->
                     </div><!--end row-->
 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h4 class="card-title">Orders Reports</h4>
+                                        </div><!--end col-->
+                                    </div>  <!--end row-->
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <?php $Orders = \App\Models\orders::limit(5)->get(); ?>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>OrderID</th>
+                                                <th>Order Details</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach ($Orders as $orders)
+                                            <tr>
+                                                <td>{{$orders->id}}</td>
+                                                <td>
+                                                    <?php $OrderProducts = DB::table("orders_product")->where("orders_id",$orders->id)->get(); ?>
+                                                    @foreach ($OrderProducts as $products)
+                                                        <?php
+                                                            $Products = \App\Models\Product::where("id", $products->product_id)->get();
+                                                        ?>
+                                                         @if($Products->isEmpty())
+
+                                                         @else
+                                                             @foreach ($Products as $Product)
+                                                                <p class="d-inline-block align-middle mb-0">
+                                                                    <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->brand_name}}</a>
+                                                                </p>
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{$orders->total}}
+                                                </td>
+                                                <td>
+                                                    {{$orders->status}}
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('order-process-accept', $orders->id)}}" class="btn btn-de-success btn-sm">Process <span class="fas fa-check-square"></span></a>
+
+                                                    {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div><!--end /div-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div> <!--end col-->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h4 class="card-title">Most Populer Products</h4>
+                                        </div><!--end col-->
+                                    </div>  <!--end row-->
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <?php $Products = DB::table('products')->inRandomOrder()->limit('5')->get(); ?>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+
+                                                <th>Pharmacological Class</th>
+                                                <th>Category</th>
+
+                                                <th>Price</th>
+
+                                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
+                                                <th>Approve</th>
+                                                @endif
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+                                            @foreach ($Products as $products)
+                                            <tr>
+                                                <td>
+                                                    <?php
+
+                                                        echo $products->id;
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <?php
+
+                                                        echo $products->pharmacological_class;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                        echo $products->category;
+                                                    ?>
+                                                </td>
+                                                <td>{{$products->price}}</td>
+
+                                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
+                                                <td>
+
+                                                        <span>
+                                                            <div class="form-check form-switch form-switch-success">
+                                                                <input class="form-check-input task_{{$products->id}}" id="{{$products->id}}" @if($products->status == 1) checked @endif type="checkbox">
+                                                            </div>
+                                                        </span>
+
+
+                                                </td>
+                                                @endif
+                                                 <td>
+                                                    <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
+                                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <script>
+                                                $('.task_{{$products->id}}').change(function(){
+                                                    var id = $(this).attr('id');
+                                                    var status =  $(this).val();
+                                                    confirm('Are you sure you want to change this status?')
+                                                    if($(this).is(':checked')){
+                                                        // processing ajax request
+                                                        $.ajax({
+                                                            url: "{{ route('statusTask') }}",
+                                                            type: 'POST',
+                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                            dataType: "json",
+                                                            data: {
+                                                                id: id,
+                                                                status: status
+                                                            },
+                                                            success: function(data) {
+                                                                alert('Success')
+                                                            }
+                                                        });
+                                                    }else{
+                                                        // processing ajax request
+                                                            $.ajax({
+                                                                url: "{{ route('statusTask') }}",
+                                                                type: 'POST',
+                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                                dataType: "json",
+                                                                data: {
+                                                                    id: id,
+                                                                    status: status
+                                                                },
+                                                                success: function(data) {
+                                                                    alert('Success')
+                                                                }
+                                                            });
+                                                    }
+                                                });
+                                            </script>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div><!--end /div-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div> <!--end col-->
+                    </div><!--end row-->
 
                 </div><!-- container -->
 
-                <!--Start Rightbar-->
-                <!--Start Rightbar/offcanvas-->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
-                    <div class="offcanvas-header border-bottom">
-                      <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
-                      <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <h6>Account Settings</h6>
-                        <div class="p-2 text-start mt-3">
-                            <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" id="settings-switch1">
-                                <label class="form-check-label" for="settings-switch1">Auto updates</label>
-                            </div><!--end form-switch-->
-                            <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
-                                <label class="form-check-label" for="settings-switch2">Location Permission</label>
-                            </div><!--end form-switch-->
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="settings-switch3">
-                                <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
-                            </div><!--end form-switch-->
-                        </div><!--end /div-->
-                        <h6>General Settings</h6>
-                        <div class="p-2 text-start mt-3">
-                            <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" id="settings-switch4">
-                                <label class="form-check-label" for="settings-switch4">Show me Online</label>
-                            </div><!--end form-switch-->
-                            <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
-                                <label class="form-check-label" for="settings-switch5">Status visible to all</label>
-                            </div><!--end form-switch-->
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="settings-switch6">
-                                <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
-                            </div><!--end form-switch-->
-                        </div><!--end /div-->
-                    </div><!--end offcanvas-body-->
-                </div>
-                <!--end Rightbar/offcanvas-->
+                 <!--Start Rightbar-->
+                 <!--Start Rightbar/offcanvas-->
+                 <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+                     <div class="offcanvas-header border-bottom">
+                       <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                       <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                     </div>
+                     <div class="offcanvas-body">
+                         <h6>Account Settings</h6>
+                         <div class="p-2 text-start mt-3">
+                             <div class="form-check form-switch mb-2">
+                                 <input class="form-check-input" type="checkbox" id="settings-switch1">
+                                 <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                             </div><!--end form-switch-->
+                             <div class="form-check form-switch mb-2">
+                                 <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                                 <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                             </div><!--end form-switch-->
+                             <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" id="settings-switch3">
+                                 <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                             </div><!--end form-switch-->
+                         </div><!--end /div-->
+                         <h6>General Settings</h6>
+                         <div class="p-2 text-start mt-3">
+                             <div class="form-check form-switch mb-2">
+                                 <input class="form-check-input" type="checkbox" id="settings-switch4">
+                                 <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                             </div><!--end form-switch-->
+                             <div class="form-check form-switch mb-2">
+                                 <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                                 <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                             </div><!--end form-switch-->
+                             <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" id="settings-switch6">
+                                 <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                             </div><!--end form-switch-->
+                         </div><!--end /div-->
+                     </div><!--end offcanvas-body-->
+                 </div>
+                 <!--end Rightbar/offcanvas-->
                  <!--end Rightbar-->
 
                 <!--Start Footer-->
@@ -280,7 +439,7 @@
                 <footer class="footer text-center text-sm-start">
                     &copy; <script>
                         document.write(new Date().getFullYear())
-                    </script> Pharmex <span class="text-muted d-none d-sm-inline-block float-end">MVP Crafted with <i
+                    </script> Pharmex <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
                             class="mdi mdi-heart text-danger"></i> by Drenla Hub</span>
                 </footer>
                 <!-- end Footer -->
@@ -298,6 +457,8 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
+
+
 
     </body>
     <!--end body-->

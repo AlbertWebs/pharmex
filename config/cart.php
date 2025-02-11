@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'tax' => 21,
+    'tax' => 16,
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'destroy_on_logout' => false,
+    'destroy_on_logout' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -68,11 +68,11 @@ return [
 
     'format' => [
 
-        'decimals' => 2,
+        'decimals' => null,
 
-        'decimal_point' => '.',
+        'decimal_point' => null,
 
-        'thousand_separator' => ',',
+        'thousand_separator' => null,
 
     ],
 

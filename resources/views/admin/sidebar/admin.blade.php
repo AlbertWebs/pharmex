@@ -1,5 +1,12 @@
 <li class="menu-label mt-0 text-primary font-12 fw-semibold">A<span>dmin</span><br><span class="font-10 text-secondary fw-normal">Admin Module</span></li>
 <li class="nav-item">
+    <a class="nav-link" href="{{url('/')}}/admin-panel" >
+        <i class="ti ti-home menu-icon"></i>
+        <span>Dashboard</span>
+    </a>
+</li><!--end nav-item-->
+
+<li class="nav-item">
     <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarAnalytics">
         <i class="ti ti-stack menu-icon"></i>
