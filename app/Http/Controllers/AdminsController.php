@@ -837,6 +837,10 @@ class AdminsController extends Controller
         return view('admin.thankYou');
     }
 
+    public function all_orders(){
+        $Orders = Order::paginate(12);
+        return view('admin.all_orders', compact('Orders'));
+    }
 
 
     /* Generic Email Sender */

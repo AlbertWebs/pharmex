@@ -49,7 +49,7 @@
     <div class="collapse " id="sidebarCart">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#">All Orders</a>
+                <a class="nav-link" href="{{route('all-orders')}}">All Orders</a>
             </li><!--end nav-item-->
 
         </ul><!--end nav-->

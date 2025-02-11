@@ -5,7 +5,6 @@
                 <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
 
                     @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
-
                         @include('admin.sidebar.admin')
                         @include('admin.sidebar.merchant')
                         @include('admin.sidebar.landing')

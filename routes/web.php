@@ -161,6 +161,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('place-order', [AdminsController::class, 'place_order'])->name('place-order');
 
+        Route::get('all-orders-listings', [AdminsController::class, 'all_orders'])->name('all-orders');
+
 
 
 
