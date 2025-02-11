@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Product;
+use App\Models\Sample;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 // use Maatwebsite\Excel\Concerns\WithValidation;
@@ -19,7 +19,7 @@ class ProductsImport implements ToModel ,WithHeadingRow
     public function model(array $row)
     {
         // dd($row);
-        return new Product([
+        return new Sample([
             'brand_name'     => $row['brand_name'],
             'generic_name'     => $row['generic_name'],
             'pharmacological_class'    => $row['pharmacological_class'],

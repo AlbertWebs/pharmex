@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('type')->default(0); // Users: 0=>User, 1=>Admin, 2=>Manager
+        Schema::create('dosages', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('dosages');
     }
 };

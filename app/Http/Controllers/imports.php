@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Product;
+use App\Models\Sample;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
@@ -17,7 +17,7 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
-        return new Product([
+        return new Sample([
             'GENERIC_NAME'     => $row['name'],
             'PHARMACOLOGICAL_CLASS'    => $row['title'],
             'CATEGORY'    => $row['category'],

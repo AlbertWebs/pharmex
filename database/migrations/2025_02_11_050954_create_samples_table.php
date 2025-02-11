@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('samples', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('title')->nullable();
+            $table->string('brand_name')->nullable();
+            $table->string('generic_name')->nullable();
+            $table->string('pharmacological_class')->nullable();
             $table->string('category')->nullable();
             $table->text('dosage')->nullable();
             $table->string('strength')->nullable();
@@ -31,10 +32,11 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->string('stock')->nullable()->default('In Stock');
             $table->text('meta')->nullable();
-            $table->integer('UserID')->nullable()->default(4);
+            $table->integer('UserID')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->string('slung')->nullable();
             $table->text('content')->nullable();
+            $table->integer('user_id')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
@@ -45,6 +47,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('samples');
     }
 };

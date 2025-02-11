@@ -357,6 +357,8 @@ class AdminsController extends Controller
         }
     }
 
+    
+
     public function statusTask(Request $request){
         $productId = $request->id;
         $statusRq = $request->status;
@@ -774,6 +776,10 @@ class AdminsController extends Controller
 
 
         return response()->json($data);
+
+    }
+
+    public function addtoSample(){
 
     }
 
