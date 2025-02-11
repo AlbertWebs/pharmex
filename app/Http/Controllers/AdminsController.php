@@ -14,6 +14,7 @@ use BinaryCats\Sku\HasSku;
 use Redirect;
 use App\Models\Category;
 use App\Models\Dosage;
+use App\Models\SendEmail;
 use App\Models\Strength;
 use App\Models\Brand;
 use App\Models\Logo;
@@ -357,7 +358,7 @@ class AdminsController extends Controller
         }
     }
 
-    
+
 
     public function statusTask(Request $request){
         $productId = $request->id;
@@ -372,9 +373,12 @@ class AdminsController extends Controller
         $updateDetails =  array(
             'status'=>$status
         );
+        $UserDetails = User::find($ProductFetch->UserID);
 
 
         DB::table('products')->where('id',$productId)->update($updateDetails);
+        $message = "Dear $UserDetails->name, Your listing has been approved for listing";
+        SendEmail::notifications($UserDetails->name,$UserDetails->email,$message);
 
         return response()->json([
             "status" => true,
