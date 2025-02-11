@@ -300,7 +300,7 @@
                                                   </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-block btn-primary">Place Your Order</button>
+                                            <a href="{{route('place-order')}}" class="btn btn-block btn-primary">Place Your Order</a>
                                         </div><!--end card-body-->
                                     </div><!--end card-->
                                 </div><!--end col-->

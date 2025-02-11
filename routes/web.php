@@ -25,7 +25,7 @@ Route::get('users-export', [ProductController::class, 'export'])->name('users.ex
 Route::post('users-import', [ProductController::class, 'import'])->name('users.import');
 
 Route::prefix('stock-exchange')->group(function () {
-    Route::get('/', [ShopController::class, 'index'])->name('home');
+    Route::get('/', [AdminsController::class, 'index'])->name('home');
     Route::get('/shop-by-category/{category-slung}', [ShopController::class, 'index'])->name('category');
     Route::get('/get-single-product/{slung}', [ShopController::class, 'product'])->name('product');
 
@@ -158,6 +158,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 
         Route::post('changestatustask', [AdminsController::class, 'statusTask'])->name('statusTask');
+
+        Route::get('place-order', [AdminsController::class, 'place_order'])->name('place-order');
+
+
 
 
 

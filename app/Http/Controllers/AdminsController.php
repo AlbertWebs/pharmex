@@ -24,6 +24,8 @@ use App\Models\Product;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
+use App\Models\orders;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 use App\Imports\ExpiredsImport;
@@ -436,7 +438,7 @@ class AdminsController extends Controller
         $Product->packs = $request->packs;
         $Product->bpperpack = $request->bpperpack;
         $Product->distribution = $request->distribution;
-        $Product->quantity = $request->qty;
+        $Product->quantity = $request->packs;
         $Product->UserID = Auth::User()->id;
         $Product->slung = Str::slug($request->title);
         $Product->meta = $request->meta;
@@ -495,10 +497,9 @@ class AdminsController extends Controller
             'expiry'=>$request->expiry,
             'packsize'=>$request->packsize,
             'packs'=>$request->packs,
-
             'distribution'=>$request->distribution,
             'bpperpack'=>$request->bpperpack,
-            'quantity'=>$request->qty,
+            'quantity'=>$request->packs,
             'user_id'=>$request->user_id,
             'slung' => Str::slug($request->title),
             'content'=>$request->content,
@@ -798,9 +799,45 @@ class AdminsController extends Controller
 
     }
 
-    public function addtoSample(){
-
+    public function place_order(){
+        $latest = orders::orderBy('created_at','DESC')->first();
+        if($latest == null){
+            $OrderId = 1;
+        }else{
+            $OrderID = $latest->id;
+            $OrderId = $OrderID+1;
+        }
+        $InvoiceNumber = "pharmex-".$OrderId;
+        // /** Send To Supplier **/ //
+        $Cart = Cart::content();
+        foreach($Cart as $cart){
+            $ProductID = $cart->id;
+            $Product = Product::find($ProductID);
+            $SupplierID = $Product->UserID;
+            $Supplier = User::find($SupplierID);
+            $SupplierEmail = $Supplier->email;
+            $SupplierName = $Supplier->name;
+            $SupplierMobile = $Supplier->mobile;
+            $SendEmail = SendEmail::MailSupplier($SupplierEmail,$SupplierName,$InvoiceNumber);
+            if($SendEmail){
+                Log::info("Email Has been Sent:".$SupplierEmail);
+            }
+        }
+        // /** Send To User **/ //
+        $email = Auth::User()->email;
+        $name = Auth::User()->name;
+        $phone = Auth::User()->mobile;
+        SendEmail::mailUser($email,$name,$InvoiceNumber);
+        $SMSMessage = "Dear $name, Your order #$InvoiceNumber has been received for processing, We will contact you about delivery";
+        $SMSSupplier= "Dear $SupplierName, You have a new order!! Order number #$InvoiceNumber, Kindly login and fulfill at your earlierst convinience";
+        // Create Order
+        orders::createOrder();
+        // Destroy Cart
+        \Cart::destroy();
+        return view('admin.thankYou');
     }
+
+
 
     /* Generic Email Sender */
     public function emailSender($recepient,$recepientEmail,$Subject,$Message){
