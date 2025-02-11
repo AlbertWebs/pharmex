@@ -126,7 +126,7 @@
                                                 <th>Pics</th>
                                                 <th>Price</th>
                                                 <th>Stock</th>
-                                                @if(Auth::User()->admin == '1')
+                                                @if(Auth::User()->type == '1' || Auth::User()->type == 'admin')
                                                 <th>Approve</th>
                                                 @endif
                                                 <th>Action</th>
@@ -176,7 +176,7 @@
                                                 <td>1</td>
                                                 <td>KES {{$products->price}}</td>
                                                 <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
-                                                @if(Auth::User()->admin == '1')
+                                                @if(Auth::User()->type == '1' || Auth::User()->type == 'admin')
                                                 <td>
 
                                                         <span>
