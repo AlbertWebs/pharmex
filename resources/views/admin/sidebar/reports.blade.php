@@ -4,7 +4,7 @@
 <li class="nav-item">
     <a class="nav-link" href="{{route('exchange-reports')}}">
         <i class="ti ti-book menu-icon"></i>
-        <span>Exchange Reports</span>
+        <span>Logistics Reports</span>
     </a>
 </li><!--end nav-item-->
 

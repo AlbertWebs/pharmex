@@ -20,6 +20,20 @@
          <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
          <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
+         <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/5d9b3223db28311764d7a9e8/1ilbnp44e';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+            })();
+        </script>
+    <!--End of Tawk.to Script-->
+
     </head>
 
     <body id="body" class="dark-sidebar">
@@ -43,8 +57,8 @@
                     <span class="online-icon position-absolute end-0"><i class="mdi mdi-record text-success"></i></span>
                 </div>
                 <div class="media-body ms-2 user-detail align-self-center">
-                    <h5 class="font-14 m-0 fw-bold">Dr. Bevin Likuyani </h5>
-                    <p class="opacity-50 mb-0">bevin@pharmex.com</p>
+                    <h5 class="font-14 m-0 fw-bold"> {{Auth::User()->name}}</h5>
+                    <p class="opacity-50 mb-0">{{Auth::User()->email}}</p>
                 </div>
             </div>
             <div class="border-end">

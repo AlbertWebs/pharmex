@@ -168,7 +168,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Pack Size & Packs</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Pack Size & Number of Packs</label>
                                                     <div class="col-sm-5">
                                                         <input class="form-control" type="text" name="packsize" value="{{$Product->packsize}}" placeholder="Pack Size"  id="example-text-input">
                                                     </div>
@@ -177,7 +177,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Price Per Pack</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Cost Per Pack</label>
                                                     <div class="col-sm-10">
                                                         <input class="form-control" type="text" name="bpperpack" value="{{$Product->bpperpack}}" placeholder="Price Per Pack"  id="example-text-input">
                                                     </div>
@@ -218,17 +218,17 @@
                                                 </div>
 
 
-                                                <div class="mb-3 row">
+                                                {{-- <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Product Image</label>
                                                     <div class="col-sm-10">
                                                         <img  src="{{$Product->image}}" style="width:300px; height:150px; object-fit:cover; border-radius:10px;" alt="">
                                                     </div>
 
-                                                </div>
+                                                </div> --}}
 
                                                 <input type="hidden" name="image_cheat" value="{{$Product->image}}">
 
-                                                <div class="mb-3 row">
+                                                {{-- <div class="mb-3 row">
                                                     <label for="example-email-input" class="col-sm-2 col-form-label text-end">Product Image</label>
                                                     <div class="col-sm-10">
                                                         <p class="text-muted">Upload your Product image here, Please click "Upload Image" Button.</p>
@@ -236,7 +236,7 @@
                                                         <input type="file" id="input-file" name="image" accept="image/*" onchange="{handleChange()}" hidden="">
                                                         <label class="btn-upload btn btn-primary mt-4" for="input-file">Upload Image</label>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>

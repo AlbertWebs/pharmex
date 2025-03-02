@@ -112,10 +112,14 @@
                     {{--  --}}
                     <div class="row">
                         <div class="col-12">
+
+                            <input type="search" id="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                            <br>
+
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" id="table">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -326,6 +330,20 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
+        <script>
+            var $rows = $('#table tbody tr');
+            $('#search').keyup(function() {
+
+                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                    reg = RegExp(val, 'i'),
+                    text;
+
+                $rows.show().filter(function() {
+                    text = $(this).text().replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
+        </script>
 
     </body>
     <!--end body-->
