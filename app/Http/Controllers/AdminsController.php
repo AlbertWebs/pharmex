@@ -837,6 +837,36 @@ class AdminsController extends Controller
         return view('admin.thankYou');
     }
 
+    public function thanks(){
+        return view('admin.thankYou');
+    }
+
+    public function rfq_request(Request $request){
+        if(isset($request->rfq_file)){
+            $dir = 'uploads/rfq';
+            $file = $request->file('rfq_file');
+            $realPath = $request->file('rfq_file')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+        $title = $request->title;
+        $content = $request->content;
+        $email = $request->email;
+        $RFQ = new \App\Models\Rfq;
+        $RFQ->title = $title;
+        $RFQ->content = $content;
+        $RFQ->email = $email;
+        $RFQ->rfq = $SaveFilePath;
+        $RFQ->save();
+        SendEmail::mailRfq($content,$email,$SaveFilePath);
+
+        return Redirect::Back();
+    }
+
+    public function request_rfq(){
+        return view('admin.rfq');
+    }
     public function all_orders(){
         $Orders = Order::paginate(12);
         return view('admin.all_orders', compact('Orders'));

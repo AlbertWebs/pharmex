@@ -76,3 +76,9 @@
         <span>Approvals</span>
     </a>
 </li><!--end nav-item-->
+<li class="nav-item">
+    <a class="nav-link" href="{{route('request-rfq')}}">
+        <i class="ti ti-check menu-icon"></i>
+        <span>Request RFQ</span>
+    </a>
+</li><!--end nav-item-->

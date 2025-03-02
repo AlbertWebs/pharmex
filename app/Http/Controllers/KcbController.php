@@ -122,6 +122,11 @@ class KcbController extends Controller
     }
 
     public function stkRequestMake(Request $request){
+        orders::createOrder();
+        return view('admin.thankYou');
+    }
+
+    public function stkRequestMakes(Request $request){
          // Create Order
          orders::createOrder();
          $phoneNumber = $request->phoneNumber;
@@ -179,7 +184,6 @@ class KcbController extends Controller
         $table = 'lnmo_api_response';
         $user_id = Auth::User()->id;
 
-
          // Insert MerchantRequestID
         $curl_content=json_decode($curl_response);
         $MerchantRequestID = $MerchantRequestID;
@@ -198,8 +202,7 @@ class KcbController extends Controller
         $STKMpesaTransaction->save();
         // Destroy Cart
         \Cart::destroy();
-
-         return $this->checklast($MerchantRequestID,$table,$curl_response,$user_id);
+        return $this->checklast($MerchantRequestID,$table,$curl_response,$user_id);
     }
 
 

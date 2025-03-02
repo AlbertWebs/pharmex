@@ -171,9 +171,12 @@ All Admin Routes List
 
 
 
+        Route::get('/request-rfq', [AdminsController::class, 'request_rfq'])->name('request-rfq');
+        Route::post('/rfq_request', [AdminsController::class, 'rfq_request'])->name('rfq_request');
 
 
-        Route::get('/thankYou', [UserController::class, 'thankYou'])->name('thankYou');
+
+        Route::get('/thankYou', [AdminsController::class, 'thanks'])->name('thankYou');
 
         Route::post('/make-stk-request', [App\Http\Controllers\KcbController::class, 'stkRequestMake'])->name('make-stk-request');
 
