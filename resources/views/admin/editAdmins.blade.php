@@ -90,7 +90,7 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Add Products</h4>
+                                <h4 class="page-title">Add Admins</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -105,51 +105,105 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-10">
-                                            <form method="POST" action="{{route('add_expired_post')}}" enctype="multipart/form-data">
+                                        <div class="col-lg-6">
+                                            <form method="POST" action="{{route('edit-admin-post',$User->id)}}" enctype="multipart/form-data">
                                                 @csrf
-
-
-
-
-
                                                 <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Expired Medicines</label>
-                                                    <div class="col-sm-5">
-                                                        {{-- <input type="file" id="input-file" name="expired"  hidden=""> --}}
-                                                        <div class="d-grid">
-                                                            <input type="file" id="input-file" name="file" >
-                                                            <label class="btn-upload btn btn-primary" for="input-file">Upload Excel File</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-5">
-                                                        <span class="fa fa-file-excel fa-2x"></span> <a download href="{{url('/')}}/uploads/templates/expired.xlsx">Download Templete</a>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Admin Name</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="name" value="{{$User->name}}" id="example-text-input">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                <hr>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Admin Email</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="email" value="{{$User->email}}" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Company</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="company" value="{{$User->company}}" id="example-text-input">
+                                                    </div>
                                                 </div>
 
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Position</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="position" value="{{$User->position}}" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Mobile</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="mobile" value="{{$User->mobile}}" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Location</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="location" value="{{$User->location}}" id="example-text-input">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">License</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="license" value="{{$User->license}}" id="example-text-input">
+                                                    </div>
+                                                </div>
 
+                                                <input type="hidden" name="type" value="1">
+                                                <input type="hidden" name="admin" value="1">
 
                                                 <div class="mb-3 row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
                                                     <div class="col-sm-10">
-                                                        <button class="btn btn-primary" type="submit">Upload Expired Medicine File</button>
+                                                        <button class="btn btn-primary" type="submit">Save</button>
                                                     </div>
                                                 </div>
                                             </form>
+
                                         </div>
 
 
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-6">
+                                            {{--  --}}
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">All Admins</h4>
+                                                        <p class="text-muted mb-0">Shows <code> List of all Admins </code> </p>
+                                                    </div><!--end card-header-->
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <ul class="list-group list-group-flush">
+                                                                    @foreach ($Admin as $Admin)
+                                                                    <li class="list-group-item">
+                                                                        <i class="la la-angle-double-right text-info me-2"></i>
+                                                                        {{$Admin->name}} &nbsp; &nbsp;
 
+                                                                        &nbsp; &nbsp;
+
+                                                                        <a href="{{url('/')}}/admin-panel/editAdmins/{{$Admin->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                                        &nbsp; &nbsp;
+                                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteAdmin/{{$Admin->id}}">
+                                                                            <i class="las la-trash-alt text-secondary font-16"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div><!--end col-->
+                                                        </div><!--end row-->
+                                                    </div><!--end card-body-->
+                                                </div><!--end card-->
+                                            {{--  --}}
                                         </div>
                                     </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
                     </div><!--end row-->
+
 
 
 
@@ -223,9 +277,7 @@
 
         <script src="{{asset('admin/assets/plugins/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
-
         <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
-
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
 

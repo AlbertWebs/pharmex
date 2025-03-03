@@ -34,6 +34,21 @@ use App\Models\Expired;
 class AdminsController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
 
     /* Vednors Module */
     public function mysettings(){
@@ -404,7 +419,8 @@ class AdminsController extends Controller
 
     public function add_expired(Request $request)
     {
-       return view('admin.addExpiredMedicines');
+        $Products = \App\Models\Expired::all();
+       return view('admin.addExpiredMedicines', compact('Products'));
     }
 
     public function add_Product(Request $request){
@@ -451,6 +467,11 @@ class AdminsController extends Controller
         Session::flash('message', "Product Has Been Added");
         $page_title = "";
         $page_name = "";
+        $username = Auth::User()->name;
+        $Subject = "Listing otification";
+        $MessageToSend = "Hello Admin, User Called $username has Listed $request->brand_name and requesting Approval";
+        // Email
+        SendEmail::mailAdmin($Subject,$MessageToSend);
         if (isset($request->expired)) {
             return view('admin.addExpiredMedicines');
         }else{
@@ -518,6 +539,14 @@ class AdminsController extends Controller
         DB::table('products')->where('id',$id)->delete();
         return Redirect::back();
     }
+
+    public function deleteExpiredProduct ($id){
+        activity()->log('Deleted Expired Product ID number '.$id.' ');
+        DB::table('expireds')->where('id',$id)->delete();
+        return Redirect::back();
+    }
+
+
 
     /* User Module */
     public function users(){
@@ -841,6 +870,13 @@ class AdminsController extends Controller
         return view('admin.thankYou');
     }
 
+    public function expired_products(){
+        $Products = \App\Models\Expired::paginate(12);
+        return view('admin.expired_products', compact('Products'));
+    }
+
+
+
     public function rfq_request(Request $request){
         if(isset($request->rfq_file)){
             $dir = 'uploads/rfq';
@@ -871,6 +907,65 @@ class AdminsController extends Controller
         $Orders = Order::paginate(12);
         return view('admin.all_orders', compact('Orders'));
     }
+
+    public function pending_orders(){
+        $Orders = Order::where('status','pending')->paginate(12);
+        return view('admin.all_orders', compact('Orders'));
+    }
+
+    public function completed_orders(){
+        $Orders = Order::where('status','completed')->paginate(12);
+        return view('admin.all_orders', compact('Orders'));
+    }
+
+    public function add_admin(){
+        $Admin = User::where('admin','1')->where('type','1')->get();
+        return view('admin.add_admin', compact('Admin'));
+    }
+
+
+    public function add_admin_post(Request $request){
+        $User = new User;
+        $User->name = $request->name;
+        $User->email = $request->email;
+        $User->company = $request->company;
+        $User->position = $request->position;
+        $User->mobile = $request->mobile;
+        $User->location = $request->location;
+        $User->license = $request->license;
+        $User->type = $request->type;
+        $User->admin = $request->admin;
+        $User->password = Hash::make($request->password);
+        $User->save();
+        return Redirect::back();
+    }
+
+    public function deleteAdmin($id){
+        activity()->log('Deleted User ID number '.$id.' ');
+        DB::table('users')->where('id',$id)->delete();
+        return Redirect::back();
+    }
+
+    public function editAdmins($id){
+        $Admin = User::where('admin','1')->where('type','1')->get();
+        $User = User::find($id);
+        return view('admin.editAdmins', compact('User','Admin'));
+    }
+
+    public function edit_admin_post(Request $request,$id){
+        $updateDetails = array(
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'company'=>$request->company,
+            'position'=>$request->position,
+            'license'=>$request->license,
+            'type'=>$request->type,
+            'admin'=>$request->admin,
+        );
+        DB::table('users')->where('id',$id)->update($updateDetails);
+        return Redirect::back();
+    }
+
 
     public function order_process_accept($id){
         $Orders = Order::where('id',$id)->get();

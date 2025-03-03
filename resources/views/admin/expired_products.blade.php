@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8"/>
+        <title>Pharmex - Admin & Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
 
-        <meta charset="utf-8" />
-                <title>Pharmex - Admin & Dashboard</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-                <meta content="" name="author" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-                <!-- App favicon -->
-                <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
-
-
-
-         <!-- App css -->
-         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-         <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-         <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -27,7 +24,7 @@
         <div class="left-sidebar">
             <!-- LOGO -->
             <div class="brand">
-                <a href="index.html" class="logo">
+                <a href="{{url('/')}}" class="logo">
                     <span>
                         <img src="{{asset('admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
                     </span>
@@ -97,63 +94,115 @@
                     <!-- end page title end breadcrumb -->
 
 
-                    {{--  --}}
-                    <!-- end page title end breadcrumb -->
+                    @if($Products->isEmpty())
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="card">
+                                <h6>
+                                    No Products Posted
+                                    <br>
+                                    <div class="col">
+                                        {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
+                                    </div><!--end col-->
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    {{--  --}}
+                    <div class="row">
+                        <div class="col-12">
 
+                            <input type="search" id="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                            <br>
+
+                            <div class="card">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <form method="POST" action="{{route('add_expired_post')}}" enctype="multipart/form-data">
-                                                @csrf
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="table">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Brand Name</th>
+                                                <th>Generic Name</th>
+                                                <th>Pharmacological Class</th>
+                                                <th>Category</th>
+                                                <th>Pics</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+                                            @foreach ($Products as $products)
+                                            <tr>
+                                                <td>
+                                                    <?php
 
+                                                        echo $products->id;
+                                                    ?>
+                                                </td>
+                                                <td>
 
+                                                    <p class="d-inline-block align-middle mb-0">
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand_name}}</a>
+                                                        <br>
+                                                        <span class="text-muted font-13 fw-semibold">
+                                                            <div class="col">
+                                                                Posted By: <a href="{{route('company-details',$products->user_id)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($products->user_id)->name}} </a>
+                                                            </div>
+                                                        </span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <?php
 
+                                                        echo $products->generic_name;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
 
-                                                <div class="mb-3 row">
-                                                    <label for="example-email-input" class="col-sm-2 col-form-label text-end">Expired Medicines</label>
-                                                    <div class="col-sm-5">
-                                                        {{-- <input type="file" id="input-file" name="expired"  hidden=""> --}}
-                                                        <div class="d-grid">
-                                                            <input type="file" id="input-file" name="file" >
-                                                            <label class="btn-upload btn btn-primary" for="input-file">Upload Excel File</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-5">
-                                                        <span class="fa fa-file-excel fa-2x"></span> <a download href="{{url('/')}}/uploads/templates/expired.xlsx">Download Templete</a>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                <hr>
-                                                </div>
+                                                        echo $products->pharmacological_class;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
 
+                                                        echo $products->category;
+                                                    ?>
+                                                </td>
+                                                <td>1</td>
+                                                <td>KES {{$products->price}}</td>
 
+                                                 <td>
 
-                                                <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">&nbsp;</label>
-                                                    <div class="col-sm-10">
-                                                        <button class="btn btn-primary" type="submit">Upload Expired Medicine File</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteExpiredProduct/{{$products->id}}">
+                                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
 
+                                            @endforeach
 
-                                        <div class="col-lg-2">
-
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
+                                        </div><!--end col-->
+                                        <div class="col-auto">
+                                            {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
+                                         </div> <!--end col-->
+                                    </div><!--end row-->
                                 </div><!--end card-body-->
                             </div><!--end card-->
-                        </div><!--end col-->
-                    </div><!--end row-->
-
-
-
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
                     {{--  --}}
+                    @endif
 
 
                 </div><!-- container -->
@@ -228,6 +277,20 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
+        <script>
+            var $rows = $('#table tbody tr');
+            $('#search').keyup(function() {
+
+                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                    reg = RegExp(val, 'i'),
+                    text;
+
+                $rows.show().filter(function() {
+                    text = $(this).text().replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
+        </script>
 
     </body>
     <!--end body-->

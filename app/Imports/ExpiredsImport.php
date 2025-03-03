@@ -6,6 +6,7 @@ use App\Models\Expired;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 // use Maatwebsite\Excel\Concerns\WithValidation;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -31,6 +32,7 @@ class ExpiredsImport implements ToModel ,WithHeadingRow
             'packsize'     => $row['packsize'],
             'packs'     => $row['packs'],
             'total_quantity'    => $row['total_quantity'],
+            'user_id' => Auth::User()->id,
             'bp_per_pack'    => $row['bp_per_pack'],
             'total_cost'    => $row['total_cost'],
         ]);

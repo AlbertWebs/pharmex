@@ -163,7 +163,7 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col">
-                                                <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add Product</a>
+                                                {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add Product</a> --}}
                                             </div><!--end col-->
                                             <div class="col-auto">
                                                 {!! $Orders->withQueryString()->links('pagination::bootstrap-5') !!}

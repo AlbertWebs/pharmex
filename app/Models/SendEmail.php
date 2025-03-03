@@ -19,6 +19,22 @@ class SendEmail extends Model
         });
     }
 
+    // mailAdmin($Subject,$MessageToSend);
+
+    public static function mmailAdmin($Subject,$MessageToSend){
+        $data = array(
+            'content'=>$MessageToSend,
+            'subject'=>$Subject,
+        );
+        $email = "info@designekta.com";
+        $Sender = "Pharmex";
+        $SenderEmail = "mail@pharverse.com";
+        Mail::send('mailTheme', $data, function($message) use ($email,$Subject,$Sender,$SenderEmail){
+            $message->from($SenderEmail , $Sender);
+            $message->to($email, $Sender)->cc('albertmuhatia@gmail.com')->subject($Subject);
+        });
+    }
+
     public static function mailRfq($content,$email,$SaveFilePath){
         $MessageToSend = "$content Download the file at $SaveFilePath";
         $Subject = "RFQ";

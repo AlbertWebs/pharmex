@@ -56,7 +56,13 @@
     <div class="collapse " id="sidebarCart">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('all-orders')}}">All Orders</a>
+                <a class="nav-link" href="{{route('all-orders')}}">All Distributions</a>
+            </li><!--end nav-item-->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('pending-orders')}}">Pending Distributions</a>
+            </li><!--end nav-item-->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('completed-orders')}}">Completed Distributions</a>
             </li><!--end nav-item-->
 
         </ul><!--end nav-->
@@ -81,4 +87,28 @@
         <i class="ti ti-check menu-icon"></i>
         <span>Request RFQ</span>
     </a>
+</li><!--end nav-item-->
+<li class="nav-item">
+    <a class="nav-link" href="{{route('expired-products')}}">
+        <i class="ti ti-clock menu-icon"></i>
+        <span>Expired Products</span>
+    </a>
+</li><!--end nav-item-->
+
+<li class="nav-item">
+    <a class="nav-link" href="#admins" data-bs-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="admins">
+        <i class="ti ti-user menu-icon"></i>
+        <span>Admins</span>
+    </a>
+    <div class="collapse " id="admins">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('add-admin')}}">Add Admin</a>
+            </li><!--end nav-item-->
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{route('all-admin')}}">All Admins</a>
+            </li><!--end nav-item--> --}}
+        </ul><!--end nav-->
+    </div><!--end sidebarCart-->
 </li><!--end nav-item-->

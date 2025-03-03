@@ -11,6 +11,7 @@ class Expired extends Model
         'generic_name',
         'pharmacological_class',
         'category',
+        'user_id',
         'dosage_form',
         'strength',
         'batch_no',

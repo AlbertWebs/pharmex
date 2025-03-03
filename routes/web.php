@@ -107,6 +107,8 @@ All Admin Routes List
         Route::get('editProduct/{id}', [AdminsController::class, 'editProduct']);
         Route::post('edit_Product/{id}', [AdminsController::class, 'edit_Product']);
         Route::get('deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
+        Route::get('deleteExpiredProduct/{id}', [AdminsController::class, 'deleteExpiredProduct']);
+
         Route::get('all-products', [AdminsController::class, 'products_all'])->name('all-products');
 
 
@@ -168,11 +170,27 @@ All Admin Routes List
         Route::get('place-order', [AdminsController::class, 'place_order'])->name('place-order');
 
         Route::get('all-orders-listings', [AdminsController::class, 'all_orders'])->name('all-orders');
+        Route::get('pending-orders', [AdminsController::class, 'pending_orders'])->name('pending-orders');
+        Route::get('completed-orders', [AdminsController::class, 'completed_orders'])->name('completed-orders');
+
+        Route::get('add-admin', [AdminsController::class, 'add_admin'])->name('add-admin');
+        Route::post('add-admin', [AdminsController::class, 'add_admin_post'])->name('add-admin-post');
+        Route::get('all-admin', [AdminsController::class, 'all_admin'])->name('all-admin');
+
+        Route::get('deleteAdmin/{id}', [AdminsController::class, 'deleteAdmin'])->name('all-delete-Admin');
+        Route::get('editAdmins/{id}', [AdminsController::class, 'editAdmins'])->name('editAdmins');
+
+        Route::post('edit-admin/{id}', [AdminsController::class, 'edit_admin_post'])->name('edit-admin-post');
+
 
 
 
         Route::get('/request-rfq', [AdminsController::class, 'request_rfq'])->name('request-rfq');
         Route::post('/rfq_request', [AdminsController::class, 'rfq_request'])->name('rfq_request');
+
+        Route::get('/expired-products', [AdminsController::class, 'expired_products'])->name('expired-products');
+
+
 
 
 
