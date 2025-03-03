@@ -471,7 +471,7 @@ class AdminsController extends Controller
         $Subject = "Listing otification";
         $MessageToSend = "Hello Admin, User Called $username has Listed $request->brand_name and requesting Approval";
         // Email
-        SendEmail::mailAdmin($Subject,$MessageToSend);
+        // SendEmail::mailAdmin($Subject,$MessageToSend);
         if (isset($request->expired)) {
             return view('admin.addExpiredMedicines');
         }else{
