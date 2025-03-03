@@ -852,6 +852,20 @@ class AdminsController extends Controller
                 Log::info("Email Has been Sent:".$SupplierEmail);
             }
         }
+        //
+        orders::createOrder();
+        $Latest = DB::table('orders')->latest('id')->first();
+        $OrderProducts = DB::table('orders_product')->where('orders_id',$Latest->id)->get();
+        foreach($OrderProducts as $orderProducts){
+            $Product = \App\Models\Product::find($orderProducts->product_id);
+            $sales = $Product->sales;
+            $newSales = $sales+$orderProducts->qty;
+            $updateSales = array (
+                'sales'=>$newSales
+            );
+            DB::table('products')->where('id',$orderProducts->product_id)->update($updateSales);
+        }
+        return view('admin.thankYou');
         // /** Send To User **/ //
         $email = Auth::User()->email;
         $name = Auth::User()->name;
@@ -860,7 +874,7 @@ class AdminsController extends Controller
         $SMSMessage = "Dear $name, Your order #$InvoiceNumber has been received for processing, We will contact you about delivery";
         $SMSSupplier= "Dear $SupplierName, You have a new order!! Order number #$InvoiceNumber, Kindly login and fulfill at your earlierst convinience";
         // Create Order
-        orders::createOrder();
+        // orders::createOrder();
         // Destroy Cart
         \Cart::destroy();
         return view('admin.thankYou');

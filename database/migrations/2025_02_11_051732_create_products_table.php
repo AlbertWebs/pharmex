@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('brand_name')->nullable();
+            $table->string('sales')->default('0');
             $table->string('generic_name')->nullable();
             $table->string('pharmacological_class')->nullable();
             $table->string('category')->nullable();

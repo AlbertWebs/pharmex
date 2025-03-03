@@ -293,20 +293,19 @@
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <?php $Products = DB::table('products')->inRandomOrder()->limit('5')->get(); ?>
+                                        <?php $Products = DB::table('products')->orderBy('sales','DESC')->limit('10')->get(); ?>
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
 
                                                 <th>Pharmacological Class</th>
+                                                <th>Sales</th>
                                                 <th>Category</th>
 
                                                 <th>Price</th>
 
-                                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
-                                                <th>Approve</th>
-                                                @endif
+
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -314,47 +313,157 @@
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
                                             @foreach ($Products as $products)
+                                            @if($products->sales == 0)
+
+                                            @else
+                                                <tr>
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->id;
+                                                        ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->pharmacological_class;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->sales;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->category;
+                                                        ?>
+                                                    </td>
+                                                    <td>{{$products->price}}</td>
+
+
+                                                    <td>
+                                                        <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
+                                                            <i class="las la-trash-alt text-secondary font-16"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            <script>
+                                                $('.task_{{$products->id}}').change(function(){
+                                                    var id = $(this).attr('id');
+                                                    var status =  $(this).val();
+                                                    confirm('Are you sure you want to change this status?')
+                                                    if($(this).is(':checked')){
+                                                        // processing ajax request
+                                                        $.ajax({
+                                                            url: "{{ route('statusTask') }}",
+                                                            type: 'POST',
+                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                            dataType: "json",
+                                                            data: {
+                                                                id: id,
+                                                                status: status
+                                                            },
+                                                            success: function(data) {
+                                                                alert('Success')
+                                                            }
+                                                        });
+                                                    }else{
+                                                        // processing ajax request
+                                                            $.ajax({
+                                                                url: "{{ route('statusTask') }}",
+                                                                type: 'POST',
+                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                                dataType: "json",
+                                                                data: {
+                                                                    id: id,
+                                                                    status: status
+                                                                },
+                                                                success: function(data) {
+                                                                    alert('Success')
+                                                                }
+                                                            });
+                                                    }
+                                                });
+                                            </script>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div><!--end /div-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h4 class="card-title">Slow Moving Products</h4>
+                                        </div><!--end col-->
+                                    </div>  <!--end row-->
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <?php $Products = DB::table('products')->orderBy('sales','ASC')->limit('10')->get(); ?>
+                                        <table class="table table-bordered">
+                                            <thead>
                                             <tr>
-                                                <td>
-                                                    <?php
+                                                <th>#</th>
 
-                                                        echo $products->id;
-                                                    ?>
-                                                </td>
+                                                <th>Pharmacological Class</th>
+                                                <th>Sales</th>
+                                                <th>Category</th>
 
-                                                <td>
-                                                    <?php
-
-                                                        echo $products->pharmacological_class;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-
-                                                        echo $products->category;
-                                                    ?>
-                                                </td>
-                                                <td>{{$products->price}}</td>
-
-                                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
-                                                <td>
-
-                                                        <span>
-                                                            <div class="form-check form-switch form-switch-success">
-                                                                <input class="form-check-input task_{{$products->id}}" id="{{$products->id}}" @if($products->status == 1) checked @endif type="checkbox">
-                                                            </div>
-                                                        </span>
+                                                <th>Price</th>
 
 
-                                                </td>
-                                                @endif
-                                                 <td>
-                                                    <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                        <i class="las la-trash-alt text-secondary font-16"></i>
-                                                    </a>
-                                                </td>
+                                                <th>Action</th>
                                             </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+                                            @foreach ($Products as $products)
+                                                <tr>
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->id;
+                                                        ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->pharmacological_class;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->sales;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+
+                                                            echo $products->category;
+                                                        ?>
+                                                    </td>
+                                                    <td>{{$products->price}}</td>
+
+
+                                                    <td>
+                                                        <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
+                                                            <i class="las la-trash-alt text-secondary font-16"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                             <script>
                                                 $('.task_{{$products->id}}').change(function(){
                                                     var id = $(this).attr('id');

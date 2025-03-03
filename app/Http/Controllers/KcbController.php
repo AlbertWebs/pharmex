@@ -123,6 +123,17 @@ class KcbController extends Controller
 
     public function stkRequestMake(Request $request){
         orders::createOrder();
+        $Latest = DB::table('orders')->latest('id')->first();
+        $OrderProducts = DB::table('orders_product')->where('orders_id',$Latest->id)->get();
+        foreach($OrderProducts as $orderProducts){
+            $Product = \App\Models\Product::find($orderProducts->product_id);
+            $sales = $Product->sales;
+            $newSales = $sales+$orderProducts->qty;
+            $updateSales = array (
+                'sales'=>$newSales
+            );
+            DB::table('products')->where('id',$orderProducts->product_id)->update($updateSales);
+        }
         return view('admin.thankYou');
     }
 
