@@ -43,8 +43,8 @@
                     <span class="online-icon position-absolute end-0"><i class="mdi mdi-record text-success"></i></span>
                 </div>
                 <div class="media-body ms-2 user-detail align-self-center">
-                    <h5 class="font-14 m-0 fw-bold">Dr. Bevin Likuyani </h5>
-                    <p class="opacity-50 mb-0">bevin@pharmex.com</p>
+                    <h5 class="font-14 m-0 fw-bold"> {{Auth::User()->name}}</h5>
+                   <p class="opacity-50 mb-0">{{Auth::User()->email}}</p>
                 </div>
             </div>
             <div class="border-end">

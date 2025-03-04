@@ -228,8 +228,8 @@
                             <div class="row">
                                 <div class="col-xl-8">
                                     <div class="intro-content wow fadeInUp" data-wow-delay=".3s">
-                                        <h1>High Quality Drugs <br> <span class="thin-text"> Discounted </span> <span
-                                                class="bold-text"> Exchange </span> </h1>
+                                        <h1>High Quality Drugs <br> <span
+                                                class="bold-text"> ReDistribution </span> </h1>
                                     </div>
                                 </div>
                             </div>
@@ -242,9 +242,9 @@
                             Pharmeceutical exchange plartform Pharmex
                         </p>
                         <div class="fancy-box-wrapper style1 wow fadeInUp" data-wow-delay=".8s">
-                            <a class="theme-btn style1" href="{{url('/')}}/stock-exchange">View More</a>
+                            <a class="theme-btn style1" href="{{url('/')}}/admin-panel">View More</a>
                             <div class="item">
-                                <h6>Drugs Exchange</h6>
+                                <h6>Drugs ReDistribution</h6>
                                 <div class="counter">
                                     <span class="counter-number">400</span> <span class="plus">+</span>
                                 </div>
@@ -265,7 +265,7 @@
                 <div class="section-title mxw-612">
                     <h6 class="subtitle wow fadeInUp" data-wow-delay=".3s">Why Choose Us</h6>
                     <h2 class="title wow fadeInUp" data-wow-delay=".6s">Trusted and Reliable <span class="color-text">
-                            Pharmaceutical Exchange Plartform </span></h2>
+                            Pharmaceutical ReDistribution Plartform </span></h2>
                 </div>
                 <div class="service-wrapper style1">
                     <div class="slider-area serviceSliderOne">
