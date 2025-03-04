@@ -62,7 +62,7 @@ class AdminsController extends Controller
     /* Vednors Module */
     public function listed_products(){
         activity()->log('Accessed All Categories');
-        $Products = Product::where('status','1')->paginate(20);
+        $Products = Product::where('status','1')->paginate(50);
         $page_title = 'list';
         $page_name = 'Categories';
         return view('admin.listed_products',compact('page_title','Products','page_name'));
@@ -363,6 +363,43 @@ class AdminsController extends Controller
         return view('admin.products_all',compact('page_title','Products','page_name'));
     }
 
+    public function donated_products(){
+        activity()->log('Accessed All Products');
+        $Products = Product::where('distribution','Donation')->paginate(20);
+
+        $page_title = 'list';
+        $page_name = 'Products';
+        return view('admin.donated_products',compact('page_title','Products','page_name'));
+    }
+
+    public function discounted_products(){
+        activity()->log('Accessed All Products');
+        $Products = Product::where('distribution','Discounted')->paginate(20);
+
+        $page_title = 'list';
+        $page_name = 'Products';
+        return view('admin.discounted_products',compact('page_title','Products','page_name'));
+    }
+
+
+    public function exchange_reports_pending(){
+        activity()->log('Accessed All Categories');
+        $Orders = Order::where('status','pending')->paginate(12);
+        $page_title = 'list';
+        $page_name = 'Orders';
+        return view('admin.exchange_reports_pending',compact('page_title','Orders','page_name'));
+    }
+
+    public function exchange_reports_completed(){
+        activity()->log('Accessed All Categories');
+        $Orders = Order::where('status','Completed')->paginate(12);
+        $page_title = 'list';
+        $page_name = 'Orders';
+        return view('admin.exchange_reports_completed',compact('page_title','Orders','page_name'));
+    }
+
+
+
 
     public function addProduct(){
         $Category = Category::all();
@@ -468,10 +505,10 @@ class AdminsController extends Controller
         $page_title = "";
         $page_name = "";
         $username = Auth::User()->name;
-        $Subject = "Listing otification";
-        $MessageToSend = "Hello Admin, User Called $username has Listed $request->brand_name and requesting Approval";
+        $Subject = "Listing Notification";
+        $MessageToSend = "Hello Admin, User Called $username has Listed $request->brand_name and requesting Physical Inspection, Quality Checks & Approval";
         // Email
-        // SendEmail::mailAdmin($Subject,$MessageToSend);
+        SendEmail::mailAdmin($Subject,$MessageToSend);
         if (isset($request->expired)) {
             return view('admin.addExpiredMedicines');
         }else{
@@ -484,6 +521,37 @@ class AdminsController extends Controller
         }
 
     }
+
+    public function request_package(Request $request){
+        // \Cart::destroy();
+        $product_id = $request->product_id;
+        $qtybutton = $request->quantity;
+        $Product = Product::find($product_id);
+        $CurrentQty = $Product->packs;
+        $PricePerPacks = $Product->bpperpack;
+        $Price = ($qtybutton*$PricePerPacks);
+        if($CurrentQty < $qtybutton){
+            echo "<script>alert('You Ordered More Than Its Available in Stock')</script>";
+            Session::flash('message', "You Ordered More Than Its Available in Stock");
+            return Redirect::back();
+        }else{
+            Cart::add($Product->id,$Product->brand_name, $qtybutton, $Price, 550);
+            $this->place_order($qtybutton);
+            return view('admin.thankYou');
+        }
+
+    }
+
+    public function explore_product($id){
+        $Category = Category::all();
+        $Product = Product::find($id);
+        $Products = Product::all();
+        activity()->log('Access Edit Product: '.$Product->title.' ');
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Home Page Slider';
+        return view('admin.explore_product',compact('page_title','Products','page_name','Category','Product'));
+    }
+
 
     public function editProduct($id){
         $Category = Category::all();
@@ -828,7 +896,7 @@ class AdminsController extends Controller
 
     }
 
-    public function place_order(){
+    public function place_order($qtybutton){
         $latest = orders::orderBy('created_at','DESC')->first();
         if($latest == null){
             $OrderId = 1;
@@ -838,7 +906,9 @@ class AdminsController extends Controller
         }
         $InvoiceNumber = "pharmex-".$OrderId;
         // /** Send To Supplier **/ //
+
         $Cart = Cart::content();
+
         foreach($Cart as $cart){
             $ProductID = $cart->id;
             $Product = Product::find($ProductID);
@@ -859,13 +929,15 @@ class AdminsController extends Controller
         foreach($OrderProducts as $orderProducts){
             $Product = \App\Models\Product::find($orderProducts->product_id);
             $sales = $Product->sales;
-            $newSales = $sales+$orderProducts->qty;
+            $packs = $Product->packs;
+            $newSales = $sales+$qtybutton;
+            $newPacks = $packs-$qtybutton;
             $updateSales = array (
-                'sales'=>$newSales
+                'sales'=>$newSales,
+                'packs'=>$newPacks
             );
             DB::table('products')->where('id',$orderProducts->product_id)->update($updateSales);
         }
-        return view('admin.thankYou');
         // /** Send To User **/ //
         $email = Auth::User()->email;
         $name = Auth::User()->name;
@@ -994,9 +1066,10 @@ class AdminsController extends Controller
         DB::table('orders')->where('id',$Order)->update($updateDetails);
         $OrderDetails = order::find($Order);
         $User = User::find($OrderDetails->user_id);
-        $MessageToSend = "Your Order has been process with status: $request->status<br> Remark: $request->remark";
+        $MessageToSend = "Your Order has been updated with status: $request->status, Feel free to reach out if you need further clarification. <br> Remark: $request->remark";
         $subject = "Order Update";
         SendEmail::notification($User->name,$User->email,$MessageToSend,$subject);
+        Session::flash('message', "Status Has Been Updated");
         return Redirect::back();
     }
 

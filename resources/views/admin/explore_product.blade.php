@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8"/>
+        <title>Pharmex - Admin & Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
 
-        <meta charset="utf-8" />
-                <title>Pharmex - Admin & Dashboard</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-                <meta content="" name="author" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-                <!-- App favicon -->
-                <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
-
-
-
-         <!-- App css -->
-         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-         <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-         <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -27,7 +24,7 @@
         <div class="left-sidebar">
             <!-- LOGO -->
             <div class="brand">
-                <a href="index.html" class="logo">
+                <a href="{{url('/')}}" class="logo">
                     <span>
                         <img src="{{asset('admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
                     </span>
@@ -90,35 +87,91 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Vendors</h4>
+                                <h4 class="page-title">Add Products</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
                     <!-- end page title end breadcrumb -->
 
 
-                    {{--  --}}
                     <div class="row">
-                        @foreach ($User as $user)
-                        <div class="col-lg-3">
+                        <div class="col-12">
                             <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">{{$user->company}}</h5>
-                                    <span class="text-muted me-3 fw-semibold"><i class="las la-suitecase me-1 text-secondary"></i>{{$user->name}}</span>
-                                    <span class="text-muted me-3 fw-semibold"><i class="las la-map-marker me-1 text-secondary"></i>{{$user->location}}</span><br>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>{{$user->mobile}}</span><br>
-                                    {{-- <p class="text-muted mt-1">It is a long established fact that a reader will be distracted when looking at its layout.</p> --}}
-                                    <a href="{{route('company-details', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</a>
+                                <div class="card-body">
+                                    <center>
+                                        @if(Session::has('message'))
+                                                      <div class="alert alert-danger">{{ Session::get('message') }}</div>
+                                       @endif
+
+                                       @if(Session::has('messageError'))
+                                                      <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
+                                       @endif
+                                    </center>
+                                    <div class="row">
+                                        <div class="col-lg-6 offset-lg-1 align-self-center">
+                                            <div class="">
+                                                <span class="badge badge-soft-danger font-14 fw-semibold mb-2">{{$Product->pharmacological_class}}</span>
+                                                <h5 class="font-30 mb-0">{{$Product->brand_name}}</h5>
+                                                <h6>{{$Product->generic_name}}</h6>
+
+                                                <h6 class="font-30 fw-bold text-primary mb-3">kes {{$Product->bpperpack}}</h6>
+                                                <h6>
+                                                   <strong>Distribution:</strong>{{$Product->distribution}}
+                                                </h6>
+
+                                                @if($Product->content == null)
+
+                                                @else
+                                                   <h6 class="font-13 fw-bold">Distributer Remarks :</h6>
+                                                  <p class="text-muted">{{$Product->content}}</p>
+                                                @endif
+                                                <h6>
+                                                    <strong>Category:</strong>{{$Product->category}}
+                                                </h6>
+                                                <h6>
+                                                    <strong>Dosage:</strong>{{$Product->dosage}}
+                                                 </h6>
+                                                 <h6>
+                                                    <strong>Strength:</strong>{{$Product->strength}}
+                                                 </h6>
+                                                 <h6>
+                                                    <strong>Batch Number:</strong>{{$Product->batch_no}}
+                                                 </h6>
+                                                 <h6>
+                                                    <strong>Expiry Date:</strong>{{$Product->expiry}}
+                                                 </h6>
+                                                 <h6>
+                                                    <strong>Pack Size:</strong>{{$Product->expiry}} | <strong>Number of Packs:</strong>{{$Product->packs}} | <strong>Price Per Pack:</strong>{{$Product->bpperpack}}
+                                                 </h6>
+                                                <h6 class="font-13 fw-bold">Features :</h6>
+                                                <ul class="list-unstyled border-0">
+                                                    <li class="mb-2"><i class="las la-check-circle text-success me-1"></i>There are {{$Product->packs}} packs of this product.</li>
+                                                    <li class="mb-2"><i class="las la-check-circle text-success me-1"></i>Specify the number of packs </li>
+                                                    <li><i class="las la-check-circle text-success me-1"></i>Submit Your Request </li>
+                                                </ul>
+                                                <div class="mt-3">
+                                                    <form method="POST" action="{{route('request-package')}}">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{$Product->id}}">
+                                                        <input name="quantity" class="form-control  d-inline-block" style="width:100px;" type="number" min="0" value="0" id="example-number-input">
+                                                        <button type="submit" class="btn btn-success px-4 d-inline-block"><i class="mdi mdi-cart me-2"></i>Request Package</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div><!--end col-->
+                                        <div class="col-lg-3 offset-lg-1 align-self-center">
+                                            Listed By:
+                                            <span class="text-muted font-13 fw-semibold">
+                                                <div class="col">
+                                                    Posted By: <a target="new" href="{{route('company-details',$Product->UserID)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($Product->UserID)->company}} </a>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div><!--end row-->
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
-                        @endforeach
-
-
                     </div><!--end row-->
-
-
 
 
                 </div><!-- container -->
@@ -193,6 +246,20 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
+        <script>
+            var $rows = $('#table tbody tr');
+            $('#search').keyup(function() {
+
+                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                    reg = RegExp(val, 'i'),
+                    text;
+
+                $rows.show().filter(function() {
+                    text = $(this).text().replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
+        </script>
 
     </body>
     <!--end body-->

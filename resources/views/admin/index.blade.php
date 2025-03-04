@@ -9,6 +9,7 @@
                 <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
                 <meta content="" name="author" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                 <!-- App favicon -->
                 <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
@@ -111,7 +112,7 @@
                     <!-- end page title end breadcrumb -->
                     <div class="row">
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
@@ -187,35 +188,7 @@
                                 </div><!--end col-->
                             </div><!--end row-->
                         </div><!-- end col-->
-                        <div class="col-lg-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h4 class="card-title">Revenu Status</h4>
-                                        </div><!--end col-->
-                                        <div class="col-auto">
-                                            <div class="dropdown">
-                                                <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                   This Month<i class="las la-angle-down ms-1"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Today</a>
-                                                    <a class="dropdown-item" href="#">Last Week</a>
-                                                    <a class="dropdown-item" href="#">Last Month</a>
-                                                    <a class="dropdown-item" href="#">This Year</a>
-                                                </div>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div>  <!--end row-->
-                                </div><!--end card-header-->
-                                <div class="card-body">
-                                    <div class="">
-                                        <div id="Revenu_Status" class="apex-charts"></div>
-                                    </div>
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                        </div><!-- end col-->
+
                     </div><!--end row-->
 
                     <div class="row">
@@ -224,13 +197,13 @@
                                 <div class="card-header">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h4 class="card-title">Orders Reports</h4>
+                                            <h4 class="card-title">Pending Orders</h4>
                                         </div><!--end col-->
                                     </div>  <!--end row-->
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <?php $Orders = \App\Models\orders::limit(5)->get(); ?>
+                                        <?php $Orders = \App\Models\orders::where('status','pending')->limit(10)->get(); ?>
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
@@ -281,19 +254,18 @@
                                     </div><!--end /div-->
                                 </div><!--end card-body-->
                             </div><!--end card-->
-                        </div> <!--end col-->
-                        <div class="col-lg-6">
+                            {{--  --}}
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h4 class="card-title">Most Populer Products</h4>
+                                            <h4 class="card-title">Most Popular Products</h4>
                                         </div><!--end col-->
                                     </div>  <!--end row-->
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <?php $Products = DB::table('products')->orderBy('sales','DESC')->limit('10')->get(); ?>
+                                        <?php $Products = DB::table('products')->orderBy('sales','DESC')->limit('5')->get(); ?>
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
@@ -353,8 +325,65 @@
                                                     </td>
                                                 </tr>
                                             @endif
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div><!--end /div-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            {{--  --}}
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h4 class="card-title">Pending Approval</h4>
+                                        </div><!--end col-->
+                                    </div>  <!--end row-->
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <?php $Product = \App\Models\Product::where('status','0')->limit(10)->get(); ?>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Brand Name</th>
+                                                <th>Pharmacological Class</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                            @foreach ($Product as $product)
+                                            <tr>
+                                                <td>{{$product->id}}</td>
+                                                <td>
+                                                    <p class="d-inline-block align-middle mb-0">
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$product->brand_name}}</a>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    {{$product->pharmacological_class}}
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <div class="form-check form-switch form-switch-success">
+                                                            <input class="form-check-input task_{{$product->id}}" id="{{$product->id}}" @if($product->status == 1) checked @endif type="checkbox">
+                                                        </div>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('explore-product', $product->id)}}" class="btn btn-de-warning btn-sm"> Explore <span class="fas fa-binoculars"></span></a>
+
+                                                    {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
+                                                </td>
+                                            </tr>
                                             <script>
-                                                $('.task_{{$products->id}}').change(function(){
+                                                $('.task_{{$product->id}}').change(function(){
                                                     var id = $(this).attr('id');
                                                     var status =  $(this).val();
                                                     confirm('Are you sure you want to change this status?')
@@ -392,30 +421,32 @@
                                                 });
                                             </script>
                                             @endforeach
-
                                             </tbody>
                                         </table>
                                     </div><!--end /div-->
                                 </div><!--end card-body-->
                             </div><!--end card-->
+                            {{--  --}}
+                        </div> <!--end col-->
+                        <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h4 class="card-title">Slow Moving Products</h4>
+                                            <h4 class="card-title">All Listed Products</h4>
                                         </div><!--end col-->
                                     </div>  <!--end row-->
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <?php $Products = DB::table('products')->orderBy('sales','ASC')->limit('10')->get(); ?>
+                                        <?php $Products = DB::table('products')->paginate(10); ?>
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
 
                                                 <th>Pharmacological Class</th>
-                                                <th>Sales</th>
+                                                <th>Brand Name</th>
                                                 <th>Category</th>
 
                                                 <th>Price</th>
@@ -445,7 +476,7 @@
                                                     <td>
                                                         <?php
 
-                                                            echo $products->sales;
+                                                            echo $products->brand_name;
                                                         ?>
                                                     </td>
                                                     <td>
@@ -464,49 +495,19 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            <script>
-                                                $('.task_{{$products->id}}').change(function(){
-                                                    var id = $(this).attr('id');
-                                                    var status =  $(this).val();
-                                                    confirm('Are you sure you want to change this status?')
-                                                    if($(this).is(':checked')){
-                                                        // processing ajax request
-                                                        $.ajax({
-                                                            url: "{{ route('statusTask') }}",
-                                                            type: 'POST',
-                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                            dataType: "json",
-                                                            data: {
-                                                                id: id,
-                                                                status: status
-                                                            },
-                                                            success: function(data) {
-                                                                alert('Success')
-                                                            }
-                                                        });
-                                                    }else{
-                                                        // processing ajax request
-                                                            $.ajax({
-                                                                url: "{{ route('statusTask') }}",
-                                                                type: 'POST',
-                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                                dataType: "json",
-                                                                data: {
-                                                                    id: id,
-                                                                    status: status
-                                                                },
-                                                                success: function(data) {
-                                                                    alert('Success')
-                                                                }
-                                                            });
-                                                    }
-                                                });
-                                            </script>
                                             @endforeach
 
                                             </tbody>
                                         </table>
                                     </div><!--end /div-->
+                                    <div class="row">
+                                        <div class="col">
+                                            {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
+                                        </div><!--end col-->
+                                        <div class="col-auto">
+                                            {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
+                                         </div> <!--end col-->
+                                    </div><!--end row-->
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div> <!--end col-->

@@ -93,7 +93,15 @@
                     </div>
                     <!-- end page title end breadcrumb -->
 
+                    <center>
+                        @if(Session::has('message'))
+                                      <div class="alert alert-success">{{ Session::get('message') }}</div>
+                       @endif
 
+                       @if(Session::has('messageError'))
+                                      <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
+                       @endif
+                    </center>
                     {{--  --}}
                     <div class="row">
                         <div class="col-12">
@@ -125,7 +133,7 @@
 
                                                          @else
                                                              @foreach ($Products as $Product)
-                                                                <img src="{{$Product->image}}" alt="" height="85">
+                                                                {{-- <img src="{{$Product->image}}" alt="" height="85"> --}}
                                                                 <p class="d-inline-block align-middle mb-0">
                                                                     <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->brand_name}}</a>
                                                                     <br>
@@ -160,7 +168,7 @@
 
                                                         <br>
 
-                                                        <button type="submit" class="btn btn-de-success btn-md">Accept <span class="fas fa-check-square"></span></button>
+                                                        <button type="submit" class="btn btn-de-success btn-md">Confirm <span class="fas fa-check-square"></span></button>
                                                     </form>
 
                                                     {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}

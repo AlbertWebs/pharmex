@@ -21,7 +21,7 @@ class SendEmail extends Model
 
     // mailAdmin($Subject,$MessageToSend);
 
-    public static function mmailAdmin($Subject,$MessageToSend){
+    public static function mailAdmin($Subject,$MessageToSend){
         $data = array(
             'content'=>$MessageToSend,
             'subject'=>$Subject,
@@ -126,10 +126,10 @@ class SendEmail extends Model
             'CartItems'=>$CartItems,
 
         );
-        $appName = config('app.name');
-        $appEmail = config('mail.username');
+        $appName = "Pharmex";
+        $appEmail = "no-reply@africanpharmaceuticalreview.com";
 
-        $FromVariable = "no-reply@pharmex.com";
+        $FromVariable = "no-reply@africanpharmaceuticalreview.com";
         $FromVariableName = "Pharmex Works";
 
         $toVariable = $email;

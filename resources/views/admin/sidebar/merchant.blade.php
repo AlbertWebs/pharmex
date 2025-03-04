@@ -9,10 +9,10 @@
                         <div class="collapse " id="sidebarEmail">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('addProduct')}}">Add Products</a>
+                                    <a class="nav-link" href="{{route('addProduct')}}">Add Medicine</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('products')}}">All Products</a>
+                                    <a class="nav-link" href="{{route('products')}}">All Medicines</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end sidebarEmail-->
@@ -21,11 +21,11 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
+                        {{-- <a class="nav-link" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarOrders">
                             <i class="ti ti-shopping-cart menu-icon"></i>
                             <span>Orders</span>
-                        </a>
+                        </a> --}}
                         <div class="collapse " id="sidebarOrders">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
@@ -39,12 +39,13 @@
                         <a class="nav-link" href="#sidebarOrdersListedProducts" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarOrdersListedProducts">
                             <i class="ti ti-folder menu-icon"></i>
-                            <span>Listed Products</span>
+                            <span>Approved Medicines</span>
+
                         </a>
                         <div class="collapse " id="sidebarOrdersListedProducts">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('listed-products')}}">All Products</a>
+                                    <a class="nav-link" href="{{route('listed-products')}}">Request Medicine</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end sidebarEmail-->

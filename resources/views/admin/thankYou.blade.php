@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="error-inner">
                                             <h1 class="dz_error">Thank You</h1>
-                                            <p class="error-head">Thank You For Shopping With Us.</p>
+                                            <p class="error-head">Thank You For Your Order, We will contact you soon.</p>
                                             <a href="{{url('/')}}/admin-panel" class="btn btn-secondary  text-uppercase">Go to Dashboard</a>
                                         </div>
                                     </div>

@@ -127,12 +127,11 @@
                                             ?>
                                             @foreach ($OrderProducts as $products)
                                             <?php
-                                                if(Auth::User()->admin == "1"){
+                                                if(Auth::User()->admin == "1" || Auth::User()->type == "1"){
                                                     $Products = \App\Models\Product::where('id',$products->id)->get();
                                                 }else{
                                                     $Products = \App\Models\Product::where('user_id',Auth::User()->id)->get();
                                                 }
-
                                             ?>
                                             @if($Products->isEmpty())
 

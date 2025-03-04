@@ -14,6 +14,9 @@
                 <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
 
 
+                  <!-- Sweet Alert -->
+        <link href="{{asset('admin/assets/plugins/sweet-alert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('admin/assets/plugins/animate/animate.min.css')}}" rel="stylesheet" type="text/css">
 
          <!-- App css -->
          <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -83,158 +86,158 @@
                             <div class="page-title-box">
                                 <div class="float-end">
                                     <ol class="breadcrumb">
-                                        {{-- <li class="breadcrumb-item"><a href="#">Unikit</a>
+                                        <li class="breadcrumb-item"><a href="#">Pharmex</a>
                                         </li><!--end nav-item-->
-                                        <li class="breadcrumb-item"><a href="#">Ecommerce</a>
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a>
                                         </li><!--end nav-item-->
-                                        <li class="breadcrumb-item active">Products</li> --}}
+                                        <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Products</h4>
+                                <h4 class="page-title">All Orders</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
                     <!-- end page title end breadcrumb -->
-                    @if($Products->isEmpty())
-                    <div class="row">
-                        <div class="col-12">
+                     {{--  --}}
+                     <div class="row">
+
+                        <div class="col-lg-12">
                             <div class="card">
-                                <h6>
-                                    No Products Posted
-                                    <br>
-                                    <div class="col">
-                                        {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
-                                    </div><!--end col-->
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    @else
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col align-self-center">
+                                            <div class="media">
+                                                <img src="{{asset('admin/assets/images/logos/money-beg.png')}}" alt="" class="align-self-center" height="40">
+                                                <div class="media-body align-self-center ms-3">
+
+                                                    <h6 class="m-0 font-24 fw-bold">kes {{number_format(\App\Models\orders::where('status','pending')->sum('total'), 2)}}</h6>
+                                                    <p class="text-muted mb-0">Total Value of Pending Orders</p>
+                                                </div><!--end media body-->
+                                            </div><!--end media-->
+                                        </div><!--end col-->
+                                        <div class="col-auto align-self-center">
+                                            <div class="">
+                                                <div id="Revenu_Status_bar" class="apex-charts mb-n4"></div>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold"> {{\App\Models\orders::where('status','pending')->count()}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed for Donation</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold"> {{\App\Models\orders::where('status','completed')->count()}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed as Discounted</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!-- end col-->
+
+                    </div><!--end row-->
+                    {{--  --}}
+
+
                     {{--  --}}
                     <div class="row">
                         <div class="col-12">
-
-                            <input type="search" id="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
-                            <br>
-
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Brand Name</th>
-                                                <th>Generic Name</th>
-                                                <th>Pharmacological Class</th>
-                                                <th>Category</th>
-                                                <th>Packs</th>
+                                                <th>Product Name</th>
+
+
                                                 <th>Price</th>
-                                                <th>Stock</th>
-                                                <th></th>
+                                                <th>Total</th>
+                                                <th>QTY</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                            @foreach ($Orders as $orders)
+                                            <?php
+                                               $OrderProducts = DB::table('orders_product')->where('orders_id',$orders->id)->get();
+                                            ?>
+                                            @foreach ($OrderProducts as $products)
+                                            <?php
+                                                if(Auth::User()->admin == "1" || Auth::User()->type == "1"){
+                                                    $Products = \App\Models\Product::where('id',$products->id)->get();
+                                                }else{
+                                                    $Products = \App\Models\Product::where('user_id',Auth::User()->id)->get();
+                                                }
+                                            ?>
+                                            @if($Products->isEmpty())
 
-                                            @foreach ($Products as $products)
+                                            @else
+                                            @foreach ($Products as $Product)
                                             <tr>
                                                 <td>
-                                                    <?php
-
-                                                        echo $products->id;
-                                                    ?>
-                                                </td>
-                                                <td>
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand_name}}</a>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->brand_name}}</a>
                                                         <br>
-                                                        <span class="text-muted font-13 fw-semibold">
-                                                            <div class="col">
-                                                                Posted By: <a href="{{route('company-details',$products->UserID)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($products->UserID)->company}} </a>
-                                                            </div>
-                                                        </span>
+                                                        <span class="text-muted font-13 fw-semibold">{{$Product->meta}}</span>
                                                     </p>
                                                 </td>
-                                                <td>
-                                                    <?php
 
-                                                        echo $products->generic_name;
-                                                    ?>
-                                                </td>
+                                                <td>{{$Product->price}}</td>
+                                                <td><span class="">{{($products->qty)*($Product->price)}}</span></td>
                                                 <td>
-                                                    <?php
-
-                                                        echo $products->pharmacological_class;
-                                                    ?>
+                                                    {{$products->qty}}
                                                 </td>
                                                 <td>
-                                                    <?php
-
-                                                        echo $products->category;
-                                                    ?>
+                                                    @if($orders->status == "pending")
+                                                     <span class="badge badge-soft-pink">Pending</span>
+                                                    @else($orders->status == "Completed")
+                                                     <span class="badge badge-soft-purple">Completed</span>
+                                                    @endif
                                                 </td>
-                                                <td>{{$products->packs}}</td>
-                                                <td>KES {{$products->price}}</td>
-                                                <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
+                                                <td>
+                                                    <a href="{{route('order-process-accept',$order->id)}}" class="btn btn-de-success btn-md" onclick="executeExample('accept')">Accept <span class="fas fa-check-square"></span></a>
 
-                                                 <td>
-                                                    <td>
-                                                        <a href="{{route('explore-product', $products->id)}}" class="btn btn-de-warning btn-md"> Explore <span class="fas fa-binoculars"></span></a>
-
-                                                        {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
-                                                    </td>
+                                                    {{-- <button type="button" class="btn btn-de-danger btn-md" onclick="executeExample('reject')">Reject <span class="fas fa-window-close"></span></button> --}}
                                                 </td>
+
                                             </tr>
-                                            <script>
-                                                $('.task_{{$products->id}}').change(function(){
-                                                    var id = $(this).attr('id');
-                                                    var status =  $(this).val();
-                                                    confirm('Are you sure you want to change this status?')
-                                                    if($(this).is(':checked')){
-                                                        // processing ajax request
-                                                        $.ajax({
-                                                            url: "{{ route('statusTask') }}",
-                                                            type: 'POST',
-                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                            dataType: "json",
-                                                            data: {
-                                                                id: id,
-                                                                status: status
-                                                            },
-                                                            success: function(data) {
-                                                                alert('Success')
-                                                            }
-                                                        });
-                                                    }else{
-                                                        // processing ajax request
-                                                            $.ajax({
-                                                                url: "{{ route('statusTask') }}",
-                                                                type: 'POST',
-                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                                dataType: "json",
-                                                                data: {
-                                                                    id: id,
-                                                                    status: status
-                                                                },
-                                                                success: function(data) {
-                                                                    alert('Success')
-                                                                }
-                                                            });
-                                                    }
-                                                });
-                                            </script>
+                                            @endforeach
+                                            @endif
+
+
                                             @endforeach
 
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
+                                    <br>
+                                    <hr>
                                     <div class="row">
                                         <div class="col">
                                             {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
                                         </div><!--end col-->
                                         <div class="col-auto">
-                                            {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
+                                            {!! $Orders->withQueryString()->links('pagination::bootstrap-5') !!}
                                          </div> <!--end col-->
                                     </div><!--end row-->
                                 </div><!--end card-body-->
@@ -242,10 +245,6 @@
                         </div> <!-- end col -->
                     </div> <!-- end row -->
                     {{--  --}}
-                    @endif
-                    <div class="col-auto">
-                        {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
-                     </div> <!--end col-->
 
 
                 </div><!-- container -->
@@ -298,7 +297,7 @@
                 <footer class="footer text-center text-sm-start">
                     &copy; <script>
                         document.write(new Date().getFullYear())
-                    </script> Unikit <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
+                    </script> Pharmex <span class="text-muted d-none d-sm-inline-block float-end">MVP Crafted with <i
                             class="mdi mdi-heart text-danger"></i> by Drenla Hub</span>
                 </footer>
                 <!-- end Footer -->
@@ -317,23 +316,11 @@
         <script src="{{asset('admin/assets/pages/form-editor.init.js')}}"></script>
 
         <script src="{{asset('admin/assets/pages/file-upload.init.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/sweet-alert2/sweetalert2.min.js')}}"></script>
+        <script src="{{asset('admin/assets/pages/sweet-alert.init.js')}}"></script>
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
-        <script>
-            var $rows = $('#table tbody tr');
-            $('#search').keyup(function() {
-
-                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
-                    reg = RegExp(val, 'i'),
-                    text;
-
-                $rows.show().filter(function() {
-                    text = $(this).text().replace(/\s+/g, ' ');
-                    return !reg.test(text);
-                }).hide();
-            });
-        </script>
 
     </body>
     <!--end body-->

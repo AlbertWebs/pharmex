@@ -73,7 +73,7 @@
 <li class="nav-item">
     <a class="nav-link" href="{{route('vendors')}}">
         <i class="ti ti-user menu-icon"></i>
-        <span>Vendors</span>
+        <span>Pharmacies</span>
     </a>
 </li><!--end nav-item-->
 <li class="nav-item">
@@ -82,12 +82,12 @@
         <span>Approvals</span>
     </a>
 </li><!--end nav-item-->
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link" href="{{route('request-rfq')}}">
         <i class="ti ti-check menu-icon"></i>
         <span>Request RFQ</span>
     </a>
-</li><!--end nav-item-->
+</li><!--end nav-item--> --}}
 <li class="nav-item">
     <a class="nav-link" href="{{route('expired-products')}}">
         <i class="ti ti-clock menu-icon"></i>

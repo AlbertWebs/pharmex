@@ -118,8 +118,12 @@ All Admin Routes List
         Route::get('update-qty', [AdminsController::class, 'updateProductQuantity'])->name('updateProductQuantity');
 
         // Reports
-        Route::get('exchange-reports', [AdminsController::class, 'exchange_reports'])->name('exchange-reports');
+        Route::get('exchange-reports-pending', [AdminsController::class, 'exchange_reports_pending'])->name('exchange-reports-pending');
+        Route::get('exchange-reports-completed', [AdminsController::class, 'exchange_reports_completed'])->name('exchange-reports-completed');
         Route::get('order-fulfilment-reports', [AdminsController::class, 'fulfilment'])->name('order-fulfilment-reports');
+        Route::get('donated-products', [AdminsController::class, 'donated_products'])->name('donated-products');
+        Route::get('discounted-products', [AdminsController::class, 'discounted_products'])->name('discounted-products');
+
 
         Route::get('add_expired', [AdminsController::class, 'add_expired'])->name('add_expired');
 
@@ -162,6 +166,10 @@ All Admin Routes List
 
         Route::post('accept-order', [AdminsController::class, 'accept_order'])->name('accept-order');
 
+        Route::post('request-package', [AdminsController::class, 'request_package'])->name('request-package');
+
+
+
 
 
 
@@ -181,6 +189,8 @@ All Admin Routes List
         Route::get('editAdmins/{id}', [AdminsController::class, 'editAdmins'])->name('editAdmins');
 
         Route::post('edit-admin/{id}', [AdminsController::class, 'edit_admin_post'])->name('edit-admin-post');
+        Route::get('explore-product/{id}', [AdminsController::class, 'explore_product'])->name('explore-product');
+
 
 
 

@@ -87,11 +87,69 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Add Products</h4>
+                                <h4 class="page-title">Donated Products</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
                     <!-- end page title end breadcrumb -->
+                    {{--  --}}
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col align-self-center">
+                                            <div class="media">
+                                                <img src="{{asset('admin/assets/images/logos/money-beg.png')}}" alt="" class="align-self-center" height="40">
+                                                <div class="media-body align-self-center ms-3">
+                                                    <?php
+                                                       $Orders = \App\Models\orders::where('status', 'Completed')->sum('total');
+
+                                                    ?>
+                                                    <h6 class="m-0 font-24 fw-bold">kes {{number_format(\App\Models\Product::where('distribution','Donation')->sum('price'), 2)}}</h6>
+                                                    <p class="text-muted mb-0">Total Value</p>
+                                                </div><!--end media body-->
+                                            </div><!--end media-->
+                                        </div><!--end col-->
+                                        <div class="col-auto align-self-center">
+                                            <div class="">
+                                                <div id="Revenu_Status_bar" class="apex-charts mb-n4"></div>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold"> {{\App\Models\Product::where('distribution','Donation')->count()}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed for Donation</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                                <div class="col-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col text-center">
+                                                    <span class="h5  fw-bold"> {{\App\Models\Product::where('distribution','Discounted')->count()}}</span>
+                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed as Discounted</h6>
+                                                </div><!--end col-->
+                                            </div> <!-- end row -->
+                                        </div><!--end card-body-->
+                                    </div> <!--end card-body-->
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!-- end col-->
+
+                    </div><!--end row-->
+                    {{--  --}}
 
 
                     @if($Products->isEmpty())
@@ -102,7 +160,7 @@
                                     No Products Posted
                                     <br>
                                     <div class="col">
-                                        <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a>
+                                        {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
                                     </div><!--end col-->
                                 </h6>
                             </div>
@@ -112,14 +170,10 @@
                     {{--  --}}
                     <div class="row">
                         <div class="col-12">
-
-                            <input type="search" id="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
-                            <br>
-
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="table">
+                                        <table class="table table-bordered">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -127,13 +181,8 @@
                                                 <th>Generic Name</th>
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
-                                                <th>Pics</th>
-                                                <th>Price</th>
-                                                <th>Stock</th>
-                                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
-                                                <th>Approve</th>
-                                                @endif
-                                                <th>Action</th>
+                                                <th>Packs</th>
+                                                <th>Price Per Pack</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -148,13 +197,12 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    {{-- <img src="{{$products->image}}" alt="" height="40" width="80" style="object-fit: cover"> --}}
                                                     <p class="d-inline-block align-middle mb-0">
                                                         <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand_name}}</a>
                                                         <br>
                                                         <span class="text-muted font-13 fw-semibold">
                                                             <div class="col">
-                                                                Posted By: <a href="{{route('company-details',$products->UserID)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($products->UserID)->company}} </a>
+                                                                Listed By: <a href="{{route('company-details',$products->UserID)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($products->UserID)->company}} </a>
                                                             </div>
                                                         </span>
                                                     </p>
@@ -177,66 +225,13 @@
                                                         echo $products->category;
                                                     ?>
                                                 </td>
-                                                <td>1</td>
-                                                <td>KES {{$products->price}}</td>
-                                                <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
-                                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
-                                                <td>
-
-                                                        <span>
-                                                            <div class="form-check form-switch form-switch-success">
-                                                                <input class="form-check-input task_{{$products->id}}" id="{{$products->id}}" @if($products->status == 1) checked @endif type="checkbox">
-                                                            </div>
-                                                        </span>
+                                                <td>{{$products->packs}}</td>
+                                                <td>KES {{$products->bpperpack}}</td>
 
 
-                                                </td>
-                                                @endif
-                                                 <td>
-                                                    <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                        <i class="las la-trash-alt text-secondary font-16"></i>
-                                                    </a>
-                                                </td>
+
                                             </tr>
-                                            <script>
-                                                $('.task_{{$products->id}}').change(function(){
-                                                    var id = $(this).attr('id');
-                                                    var status =  $(this).val();
-                                                    confirm('Are you sure you want to change this status?')
-                                                    if($(this).is(':checked')){
-                                                        // processing ajax request
-                                                        $.ajax({
-                                                            url: "{{ route('statusTask') }}",
-                                                            type: 'POST',
-                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                            dataType: "json",
-                                                            data: {
-                                                                id: id,
-                                                                status: status
-                                                            },
-                                                            success: function(data) {
-                                                                alert('Success')
-                                                            }
-                                                        });
-                                                    }else{
-                                                        // processing ajax request
-                                                            $.ajax({
-                                                                url: "{{ route('statusTask') }}",
-                                                                type: 'POST',
-                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                                dataType: "json",
-                                                                data: {
-                                                                    id: id,
-                                                                    status: status
-                                                                },
-                                                                success: function(data) {
-                                                                    alert('Success')
-                                                                }
-                                                            });
-                                                    }
-                                                });
-                                            </script>
+
                                             @endforeach
 
                                             </tbody>
@@ -244,7 +239,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a>
+                                            {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
                                         </div><!--end col-->
                                         <div class="col-auto">
                                             {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
@@ -253,7 +248,7 @@
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div> <!-- end col -->
-                    </div> <!-- end row -->
+                    </div>
                     {{--  --}}
                     @endif
 
@@ -330,20 +325,6 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
-        <script>
-            var $rows = $('#table tbody tr');
-            $('#search').keyup(function() {
-
-                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
-                    reg = RegExp(val, 'i'),
-                    text;
-
-                $rows.show().filter(function() {
-                    text = $(this).text().replace(/\s+/g, ' ');
-                    return !reg.test(text);
-                }).hide();
-            });
-        </script>
 
     </body>
     <!--end body-->
