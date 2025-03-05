@@ -29,4 +29,9 @@
 </li><!--end nav-item-->
 
 
-
+<li class="nav-item">
+    <a class="nav-link" href="{{route('expired-products')}}">
+        <i class="ti ti-clock menu-icon"></i>
+        <span>Expired Products</span>
+    </a>
+</li><!--end nav-item-->
