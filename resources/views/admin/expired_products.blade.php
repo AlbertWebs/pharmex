@@ -128,7 +128,7 @@
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
                                                 <th>Packs</th>
-                                                <th>Price</th>
+
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -174,7 +174,7 @@
                                                     ?>
                                                 </td>
                                                 <td>{{$products->packs}}</td>
-                                                <td>KES {{$products->price}}</td>
+
 
                                                  <td>
 
