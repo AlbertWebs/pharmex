@@ -415,6 +415,7 @@ class AdminsController extends Controller
         // dd($request);
         try{
             Excel::import(new ExpiredsImport, $request->file('file'));
+            SendEmail::notify();
             return response()->json(['data'=>'Users imported successfully.',201]);
         }catch(\Exception $ex){
             Log::info($ex);
@@ -524,18 +525,22 @@ class AdminsController extends Controller
 
     public function request_package(Request $request){
         // \Cart::destroy();
+        // dd();
         $product_id = $request->product_id;
         $qtybutton = $request->quantity;
         $Product = Product::find($product_id);
         $CurrentQty = $Product->packs;
         $PricePerPacks = $Product->bpperpack;
-        $Price = ($qtybutton*$PricePerPacks);
+        $Price = $qtybutton*$PricePerPacks;
+
         if($CurrentQty < $qtybutton){
             echo "<script>alert('You Ordered More Than Its Available in Stock')</script>";
             Session::flash('message', "You Ordered More Than Its Available in Stock");
             return Redirect::back();
         }else{
-            Cart::add($Product->id,$Product->brand_name, $qtybutton, $Price, 550);
+            // dd($Price);
+            Cart::add($Product->id,$Product->brand_name, $qtybutton, $PricePerPacks);
+            // dd(Cart::Content());
             $this->place_order($qtybutton);
             return view('admin.thankYou');
         }
@@ -930,11 +935,14 @@ class AdminsController extends Controller
             $Product = \App\Models\Product::find($orderProducts->product_id);
             $sales = $Product->sales;
             $packs = $Product->packs;
+            $PricePerPack = $Product->bpperpack;
             $newSales = $sales+$qtybutton;
             $newPacks = $packs-$qtybutton;
+            $newPrice = $newPacks*$PricePerPack;
             $updateSales = array (
                 'sales'=>$newSales,
-                'packs'=>$newPacks
+                'packs'=>$newPacks,
+                'price'=>$newPrice
             );
             DB::table('products')->where('id',$orderProducts->product_id)->update($updateSales);
         }
@@ -942,7 +950,7 @@ class AdminsController extends Controller
         $email = Auth::User()->email;
         $name = Auth::User()->name;
         $phone = Auth::User()->mobile;
-        SendEmail::mailUser($email,$name,$InvoiceNumber);
+        // SendEmail::mailUser($email,$name,$InvoiceNumber);
         $SMSMessage = "Dear $name, Your order #$InvoiceNumber has been received for processing, We will contact you about delivery";
         $SMSSupplier= "Dear $SupplierName, You have a new order!! Order number #$InvoiceNumber, Kindly login and fulfill at your earlierst convinience";
         // Create Order
@@ -960,6 +968,12 @@ class AdminsController extends Controller
         $Products = \App\Models\Expired::paginate(12);
         return view('admin.expired_products', compact('Products'));
     }
+
+    public function expired_product($id){
+        $Products = \App\Models\Expired::where('user_id', $id)->paginate(36);
+        return view('admin.expired_products', compact('Products'));
+    }
+
 
 
 
@@ -1063,14 +1077,25 @@ class AdminsController extends Controller
         $updateDetails = array(
             'status'=>$request->status,
         );
-        DB::table('orders')->where('id',$Order)->update($updateDetails);
         $OrderDetails = order::find($Order);
         $User = User::find($OrderDetails->user_id);
-        $MessageToSend = "Your Order has been updated with status: $request->status, Feel free to reach out if you need further clarification. <br> Remark: $request->remark";
-        $subject = "Order Update";
+        if($request->status == "Accepted"){
+            $MessageToSend = "Your Order has been updated with status: $request->status, We will prepare and share an invoice of $OrderDetails->total;<br> Remark: $request->remark";
+            $subject = "Order Acceptance Successfull";
+        }elseif($request->status == "Completed"){
+            $MessageToSend = "Your Order has been updated with status: $request->status, Thank you for choosing Pharmex ReDitribution LLC <br> Remark: $request->remark";
+            $subject = "Order Completed Successfull";
+        }else{
+            $MessageToSend = "Your Order has been updated with status: $request->status, Please Contact Us for more info <br> Remark: $request->remark";
+            $subject = "Order Rejected";
+        }
+
+        DB::table('orders')->where('id',$Order)->update($updateDetails);
         SendEmail::notification($User->name,$User->email,$MessageToSend,$subject);
-        Session::flash('message', "Status Has Been Updated");
+        // Send Notify Supplier
+        Session::flash('message', "Order Acceptance Successfull");
         return Redirect::back();
+
     }
 
 

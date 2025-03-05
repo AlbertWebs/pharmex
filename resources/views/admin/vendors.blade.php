@@ -110,6 +110,7 @@
                                     <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>{{$user->mobile}}</span><br>
                                     {{-- <p class="text-muted mt-1">It is a long established fact that a reader will be distracted when looking at its layout.</p> --}}
                                     <a href="{{route('company-details', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</a>
+                                    <a href="{{route('expired-product', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-clock menu-icon"></i> Expired Products(<?php $Epired = DB::table('expireds')->where('user_id', $user->id)->count(); echo $Epired; ?>)</a>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->

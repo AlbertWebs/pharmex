@@ -6,7 +6,7 @@
     </a>
 </li><!--end nav-item-->
 
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarAnalytics">
         <i class="ti ti-stack menu-icon"></i>
@@ -23,7 +23,7 @@
 
         </ul><!--end nav-->
     </div><!--end sidebarAnalytics-->
-</li><!--end nav-item-->
+</li><!--end nav-item--> --}}
 
 
 <li class="nav-item">
@@ -51,19 +51,20 @@
     <a class="nav-link" href="#sidebarCart" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarCart">
         <i class="ti ti-shopping-cart menu-icon"></i>
-        <span>Redistributions</span>
+        <?php $PendingOrders = \App\Models\orders::where('status','pending')->count(); ?>
+        <span>Redistributions  @if($PendingOrders =="0") @else <small class="text-danger">({{$PendingOrders}})</small> @endif </span>
     </a>
     <div class="collapse " id="sidebarCart">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('all-orders')}}">All Distributions</a>
+                <a class="nav-link" href="{{route('all-orders')}}">All Requests</a>
             </li><!--end nav-item-->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{route('pending-orders')}}">Pending Distributions</a>
             </li><!--end nav-item-->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('completed-orders')}}">Completed Distributions</a>
-            </li><!--end nav-item-->
+            </li><!--end nav-item--> --}}
 
         </ul><!--end nav-->
     </div><!--end sidebarCart-->

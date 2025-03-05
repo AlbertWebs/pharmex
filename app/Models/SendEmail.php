@@ -68,6 +68,26 @@ class SendEmail extends Model
         });
     }
 
+    public static function notify(){
+        $Subject = "Expired Medicines Uploaded";
+        $MessageToSend = "Expired Meds Uploaded Check and confirm fom admin Panel";
+        // dd($SendToID);
+        $data = array(
+            'content'=>$MessageToSend,
+            'subject'=>$Subject,
+        );
+        $Sender = "Pharmex By Pharverse";
+        $SenderId = "mailer@africanpharmaceuticalreview.com";
+        $sendTo = "Admin";
+        $SendToID = "no-reply@africanpharmaceuticalreview.com";
+        Mail::send('mailTheme', $data, function($message) use ($SendToID,$sendTo,$Subject,$Sender,$SenderId){
+            $message->from($SenderId , $Sender);
+            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->subject($Subject);
+        });
+    }
+
+
+
     public static function notification($sendTo,$SendToID,$MessageToSend,$Subject){
         $data = array(
             'content'=>$MessageToSend,
@@ -85,7 +105,7 @@ class SendEmail extends Model
 
     public static function MailSupplier($SupplierEmail,$SupplierName,$InvoiceNumber){
         $message = 'Hello '.$SupplierName.' You have a new Order, We have created a summary of the order below:';
-        $subject = 'Supplier Your Invoice Has Been Created';
+        $subject = 'Supplier: Your Listed Item Has a New Order';
         $CartItems = \Cart::Content();
 
         $data = array(

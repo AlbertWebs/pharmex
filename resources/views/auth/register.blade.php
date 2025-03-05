@@ -106,10 +106,16 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-6">
                                                 <div class="form-group mb-2">
                                                     <label class="form-label" for="license">Practice License Number</label>
                                                     <input type="text" class="form-control" id="license" name="license" placeholder="PPB/R/12345">
+                                                </div><!--end form-group-->
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="license">Premises License Number</label>
+                                                    <input type="text" class="form-control" id="license" name="license_premises" placeholder="PPB/RNSD/12345">
                                                 </div><!--end form-group-->
                                             </div>
                                         </div>

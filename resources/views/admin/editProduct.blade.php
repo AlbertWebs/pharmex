@@ -205,6 +205,7 @@
                                                             <option value="{{$Product->distribution}}" selected="">{{$Product->distribution}}</option>
                                                             <option value="Discounted">Discounted</option>
                                                             <option value="Donation">Donation</option>
+                                                            <option value="FullPrice">Full Price</option>
                                                         </select>
                                                     </div>
 

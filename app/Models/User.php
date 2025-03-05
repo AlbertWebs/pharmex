@@ -25,7 +25,8 @@ class User extends Authenticatable
         'mobile',
         'location',
         'license',
-        'type'
+        'type',
+        'license_premises'
     ];
 
     /**

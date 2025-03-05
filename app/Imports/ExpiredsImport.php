@@ -28,7 +28,7 @@ class ExpiredsImport implements ToModel ,WithHeadingRow
             'dosage_form'     => $row['dosage_form'],
             'strength'     => $row['strength'],
             'batch_no'    => $row['batch_no'],
-            'expiry_date'    => $row['expiry_date'],
+            'expiry_date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['expiry_date']),
             'packsize'     => $row['packsize'],
             'packs'     => $row['packs'],
             'total_quantity'    => $row['total_quantity'],

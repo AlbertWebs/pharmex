@@ -199,6 +199,7 @@ All Admin Routes List
         Route::post('/rfq_request', [AdminsController::class, 'rfq_request'])->name('rfq_request');
 
         Route::get('/expired-products', [AdminsController::class, 'expired_products'])->name('expired-products');
+        Route::get('/expired-product/{id}', [AdminsController::class, 'expired_product'])->name('expired-product');
 
 
 

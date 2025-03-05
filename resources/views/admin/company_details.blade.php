@@ -109,7 +109,9 @@
                                                     <div class="met-profile_user-detail">
                                                         <h5 class="met-user-name">{{$User->company}}</h5>
                                                         <p class="mb-0 met-user-name-post">{{$User->name}}</p>
+                                                        <p class="mb-0 met-user-name-post">{{$User->position}}</p>
                                                         <p class="mb-0 met-user-name-post">License Number: <strong>{{$User->license}}</strong> </p>
+                                                        <p class="mb-0 met-user-name-post">Premises License Number: <strong>{{$User->license_premises}}</strong> </p>
 
                                                     </div>
                                                 </div>

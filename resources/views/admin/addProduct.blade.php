@@ -214,7 +214,7 @@
                                                         <select class="form-select" aria-label="Default select example" name="distribution">
                                                             <option value="Discounted" selected="">Discounted</option>
                                                             <option value="Donation">Donation</option>
-                                                            <option value="Full Price">Full Price</option>
+                                                            <option value="FullPrice">Full Price</option>
                                                         </select>
                                                     </div>
                                                 </div>

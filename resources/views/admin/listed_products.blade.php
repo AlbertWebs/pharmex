@@ -128,7 +128,9 @@
                                                 <th>Generic Name</th>
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
-                                                <th>Packs</th>
+                                                <th>Number of Packs</th>
+                                                <th>Price Per Packs</th>
+                                                <th>Total Cost</th>
                                                 <th>Price</th>
                                                 <th>Stock</th>
                                                 <th></th>
@@ -175,12 +177,21 @@
                                                     ?>
                                                 </td>
                                                 <td>{{$products->packs}}</td>
+                                                <td>{{$products->bpperpack}}</td>
+                                                <td>
+                                                    <?php
+                                                         $bpperpack = $products->bpperpack;
+                                                         $packs = $products->packs;
+                                                        $tt = $packs*$bpperpack;
+                                                        echo $tt;
+                                                    ?>
+                                                </td>
                                                 <td>KES {{$products->price}}</td>
                                                 <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
 
                                                  <td>
                                                     <td>
-                                                        <a href="{{route('explore-product', $products->id)}}" class="btn btn-de-warning btn-md"> Explore <span class="fas fa-binoculars"></span></a>
+                                                        <a href="{{route('explore-product', $products->id)}}" class="btn btn-de-warning btn-md"> Request <span class="fas fa-arrow-right"></span></a>
 
                                                         {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
                                                     </td>

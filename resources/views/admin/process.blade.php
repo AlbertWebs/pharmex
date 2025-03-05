@@ -140,7 +140,13 @@
                                                                     <span class="text-muted font-13 fw-semibold">{{$Product->generic_name}}({{$products->qty}})</span>
                                                                     <br>Tax:  {{$products->tax}}<br>
                                                                     <?php  $User = \App\Models\User::find($Product->UserID) ?>
-                                                                    Listed By <a href="{{route('company-details',$User->id)}}"><?php echo $User->company ?></a>
+                                                                    <hr>
+                                                                    <span>
+                                                                        <strong>Distributor:</strong> <a href="{{route('company-details',$User->id)}}"><?php echo $User->company ?></a>
+                                                                        <br>
+                                                                        <strong>Requested By:</strong> <?php $Buyer = \App\Models\User::find($orders->user_id); ?>
+                                                                        <a href="{{route('company-details',$Buyer->id)}}"><?php echo $Buyer->company ?></a>
+                                                                    </span>
                                                                 </p>
                                                             @endforeach
                                                         @endif
@@ -158,8 +164,8 @@
                                                         <input type="hidden" name="order_id" value="{{$orders->id}}">
                                                         {{-- <input type="text" class="form-control" name="remark" placeholder="Completed or Fullfiled"> --}}
                                                         <select class="form-select" aria-label="Default select example" name="status">
-                                                            <option value="Completed" selected="">Completed</option>
-                                                            <option value="Fullfiled">Fullfiled</option>
+                                                            <option value="Accepted" selected="">Accepted</option>
+                                                            <option value="Completed">Completed</option>
                                                             <option value="Reject">Reject</option>
                                                         </select>
                                                         <br>

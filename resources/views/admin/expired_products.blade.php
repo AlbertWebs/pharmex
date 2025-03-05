@@ -127,6 +127,7 @@
                                                 <th>Generic Name</th>
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
+                                                <th>Expiry Date</th>
                                                 <th>Packs</th>
 
                                                 <th>Action</th>
@@ -171,6 +172,12 @@
                                                     <?php
 
                                                         echo $products->category;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                        echo $exiryDate = $products->expiry_date;
                                                     ?>
                                                 </td>
                                                 <td>{{$products->packs}}</td>

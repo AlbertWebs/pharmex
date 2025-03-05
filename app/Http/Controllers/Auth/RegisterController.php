@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'mobile' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
             'license' => ['required', 'string', 'max:255'],
+            'license_premises' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

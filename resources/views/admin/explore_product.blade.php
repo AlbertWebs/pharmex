@@ -153,7 +153,7 @@
                                                     <form method="POST" action="{{route('request-package')}}">
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{$Product->id}}">
-                                                        <input name="quantity" class="form-control  d-inline-block" style="width:100px;" type="number" min="0" value="0" id="example-number-input">
+                                                        <input name="quantity" class="form-control  d-inline-block" style="width:100px;" type="number" min="1" value="0" id="example-number-input">
                                                         <button type="submit" class="btn btn-success px-4 d-inline-block"><i class="mdi mdi-cart me-2"></i>Request Package</button>
                                                     </form>
                                                 </div>
