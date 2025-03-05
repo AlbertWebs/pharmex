@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Facade;
 return [
 
     /*
@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'aliases' => Facade::defaultAliases()->merge([
+        'Pesapal' => Knox\Pesapal\Facades\Pesapal::class,
+    ])->toArray(),
 ];

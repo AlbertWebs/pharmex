@@ -101,509 +101,546 @@
                   <!--end col-->
                </div>
                {{-- Dashboard Metrix --}}
-
-               {{-- End of Dashboard Metrix --}}
-               @if(Auth::User()->type == "1" || Auth::User()->admin == "1")
-                    {{--  --}}
-                    <div class="row">
-
-                        <div class="col-lg-12">
-                            <div class="card">
+               @if(Auth::User()->status == "0")
+                    <!-- Log In page -->
+                    <div class="container-md">
+                        <div class="row vh-100s d-flex justify-content-center">
+                            <div class="col-12 align-self-center">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col align-self-center">
-                                            <div class="media">
-                                                <img src="{{asset('admin/assets/images/logos/money-beg.png')}}" alt="" class="align-self-center" height="40">
-                                                <div class="media-body align-self-center ms-3">
-
-                                                    <h6 class="m-0 font-24 fw-bold">kes {{number_format(\App\Models\orders::where('status','Completed')->sum('total'), 2)}}</h6>
-                                                    <p class="text-muted mb-0">Total Revenue</p>
-                                                </div><!--end media body-->
-                                            </div><!--end media-->
-                                        </div><!--end col-->
-                                        <div class="col-auto align-self-center">
-                                            <div class="">
-                                                <div id="Revenu_Status_bar" class="apex-charts mb-n4"></div>
-                                            </div>
+                                        <div class="col-lg-5 mx-auto">
+                                            <div class="card">
+                                                <div class="card-body p-0 auth-header-box">
+                                                    <div class="text-center p-3">
+                                                        <h4 class="mt-3 mb-1 fw-semibold text-whites font-18">Oops! Sorry page does not found</h4>
+                                                        {{-- <p class="text-muted  mb-0">Back to dashboard of Unikit.</p> --}}
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="ex-page-content text-center">
+                                                        <img src="{{asset('admin/assets/images/error.svg')}}" alt="0" class="" height="170">
+                                                        <h1 class="mt-5 mb-4">Welcome!</h1>
+                                                        <h5 class="font-16 text-muted mb-5">Subscription Required</h5>
+                                                    </div>
+                                                    <a class="btn btn-primary w-100" href="{{route('make-paymens-post')}}"> Subscribe Now! <i class="fas fa-redo ml-1"></i></a>
+                                                </div><!--end card-body-->
+                                                <div class="card-body bg-light-alt text-center">
+                                                    &copy; <script>
+                                                        document.write(new Date().getFullYear())
+                                                    </script> Pharmex LLC
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
                                         </div><!--end col-->
                                     </div><!--end row-->
                                 </div><!--end card-body-->
-                            </div><!--end card-->
-                            <div class="row">
-                                <div class="col-12 col-lg-2">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"><?php $Product = \App\Models\Product::where('distribution','FullPrice')->get() ?> {{count($Product)}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed At Full Price</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                                <div class="col-12 col-lg-2">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"><?php $Product = \App\Models\Product::where('distribution','Donation')->get() ?> {{count($Product)}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed for Donation</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                                <div class="col-12 col-lg-2">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"> {{count(\App\Models\Product::where('distribution','Discounted')->get())}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed as Discounted</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                                <div class="col-12 col-lg-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"> {{\App\Models\orders::where('status','pending')->count()}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Pending Orders</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                                <div class="col-12 col-lg-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"> {{\App\Models\orders::where('status','Completed')->count()}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Completed Orders</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                            </div><!--end row-->
-                        </div><!-- end col-->
-
-                   </div><!--end row-->
-                    <div class="row">
-                        <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                    <h4 class="card-title">Pending Orders</h4>
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <!--end row-->
-                            </div>
-                            <!--end card-header-->
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <?php $Orders = \App\Models\orders::where('status','pending')->limit(10)->get(); ?>
-                                    <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>OrderID</th>
-                                            <th>Order Details</th>
-                                            <th>Total</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($Orders as $orders)
-                                        <tr>
-                                            <td>{{$orders->id}}</td>
-                                            <td>
-                                                <?php $OrderProducts = DB::table("orders_product")->where("orders_id",$orders->id)->get(); ?>
-                                                @foreach ($OrderProducts as $products)
-                                                <?php
-                                                $Products = \App\Models\Product::where("id", $products->product_id)->get();
-                                                ?>
-                                                @if($Products->isEmpty())
-                                                @else
-                                                @foreach ($Products as $Product)
-                                                <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->brand_name}}</a>
-                                                </p>
-                                                @endforeach
-                                                @endif
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                {{$orders->total}}
-                                            </td>
-                                            <td>
-                                                {{$orders->status}}
-                                            </td>
-                                            <td>
-                                                <a href="{{route('order-process-accept', $orders->id)}}" class="btn btn-de-success btn-sm">Process <span class="fas fa-check-square"></span></a>
-                                                {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                    </table>
-                                </div>
-                                <!--end /div-->
-                            </div>
-                            <!--end card-body-->
-                        </div>
-                        <!--end card-->
-                        {{--  --}}
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                    <h4 class="card-title">Most Popular Products</h4>
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <!--end row-->
-                            </div>
-                            <!--end card-header-->
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <?php $Products = DB::table('products')->orderBy('sales','DESC')->limit('5')->get(); ?>
-                                    <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Pharmacological Class</th>
-                                            <th>Orders</th>
-                                            <th>Category</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                                        @foreach ($Products as $products)
-                                        @if($products->sales == 0)
-                                        @else
-                                        <tr>
-                                            <td>
-                                                <?php
-                                                echo $products->id;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                echo $products->pharmacological_class;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                echo $products->sales;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                echo $products->category;
-                                                ?>
-                                            </td>
-                                            <td>{{$products->price}}</td>
-                                            <td>
-                                                <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                <i class="las la-trash-alt text-secondary font-16"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endif
-                                        @endforeach
-                                    </tbody>
-                                    </table>
-                                </div>
-                                <!--end /div-->
-                            </div>
-                            <!--end card-body-->
-                        </div>
-                        <!--end card-->
-                        {{--  --}}
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                    <h4 class="card-title">Pending Approval</h4>
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <!--end row-->
-                            </div>
-                            <!--end card-header-->
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <?php $Product = \App\Models\Product::where('status','0')->limit(10)->get(); ?>
-                                    <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Brand Name</th>
-                                            <th>Pharmacological Class</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                                        @foreach ($Product as $product)
-                                        <tr>
-                                            <td>{{$product->id}}</td>
-                                            <td>
-                                                <p class="d-inline-block align-middle mb-0">
-                                                <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$product->brand_name}}</a>
-                                                </p>
-                                            </td>
-                                            <td>
-                                                {{$product->pharmacological_class}}
-                                            </td>
-                                            <td>
-                                                <span>
-                                                <div class="form-check form-switch form-switch-success">
-                                                    <input class="form-check-input task_{{$product->id}}" id="{{$product->id}}" @if($product->status == 1) checked @endif type="checkbox">
-                                                </div>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="{{route('explore-product', $product->id)}}" class="btn btn-de-warning btn-sm"> Explore <span class="fas fa-binoculars"></span></a>
-                                                {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
-                                            </td>
-                                        </tr>
-                                        <script>
-                                            $('.task_{{$product->id}}').change(function(){
-                                                var id = $(this).attr('id');
-                                                var status =  $(this).val();
-                                                confirm('Are you sure you want to change this status?')
-                                                if($(this).is(':checked')){
-                                                    // processing ajax request
-                                                    $.ajax({
-                                                        url: "{{ route('statusTask') }}",
-                                                        type: 'POST',
-                                                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                        dataType: "json",
-                                                        data: {
-                                                            id: id,
-                                                            status: status
-                                                        },
-                                                        success: function(data) {
-                                                            alert('Success')
-                                                        }
-                                                    });
-                                                }else{
-                                                    // processing ajax request
-                                                        $.ajax({
-                                                            url: "{{ route('statusTask') }}",
-                                                            type: 'POST',
-                                                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                            dataType: "json",
-                                                            data: {
-                                                                id: id,
-                                                                status: status
-                                                            },
-                                                            success: function(data) {
-                                                                alert('Success')
-                                                            }
-                                                        });
-                                                }
-                                            });
-                                        </script>
-                                        @endforeach
-                                    </tbody>
-                                    </table>
-                                </div>
-                                <!--end /div-->
-                            </div>
-                            <!--end card-body-->
-                        </div>
-                        <!--end card-->
-                        {{--  --}}
-                        </div>
-                        <!--end col-->
-                        <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                    <h4 class="card-title">All Listed Products</h4>
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <!--end row-->
-                            </div>
-                            <!--end card-header-->
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <?php $Products = DB::table('products')->paginate(10); ?>
-                                    <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Pharmacological Class</th>
-                                            <th>Brand Name</th>
-                                            <th>Category</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                                        @foreach ($Products as $products)
-                                        <tr>
-                                            <td>
-                                                <?php
-                                                echo $products->id;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                echo $products->pharmacological_class;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                echo $products->brand_name;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                echo $products->category;
-                                                ?>
-                                            </td>
-                                            <td>{{$products->price}}</td>
-                                            <td>
-                                                <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                <i class="las la-trash-alt text-secondary font-16"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                    </table>
-                                </div>
-                                <!--end /div-->
-                                <div class="row">
-                                    <div class="col">
-                                    {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-auto">
-                                    {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <!--end row-->
-                            </div>
-                            <!--end card-body-->
-                        </div>
-                        <!--end card-->
-                        </div>
-                        <!--end col-->
-                    </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end container-->
                @else
 
+                    {{-- End of Dashboard Metrix --}}
+                    @if(Auth::User()->type == "1" || Auth::User()->admin == "1")
+                            {{--  --}}
+                            <div class="row">
 
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col align-self-center">
+                                                    <div class="media">
+                                                        <img src="{{asset('admin/assets/images/logos/money-beg.png')}}" alt="" class="align-self-center" height="40">
+                                                        <div class="media-body align-self-center ms-3">
 
-                <div class="row">
-
-                        <!--end col-->
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                        <h4 class="card-title">All Listed Products</h4>
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </div>
-                                <!--end card-header-->
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <?php $Products = DB::table('products')->where('UserID',Auth::User()->id)->paginate(10); ?>
-                                        <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Pharmacological Class</th>
-                                                <th>Brand Name</th>
-                                                <th>Category</th>
-                                                <th>Price</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                                            @foreach ($Products as $products)
-                                            <tr>
-                                                <td>
-                                                    <?php
-                                                    echo $products->id;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    echo $products->pharmacological_class;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    echo $products->brand_name;
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    echo $products->category;
-                                                    ?>
-                                                </td>
-                                                <td>{{$products->price}}</td>
-                                                <td>
-                                                    <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                    <i class="las la-trash-alt text-secondary font-16"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                        </table>
-                                    </div>
-                                    <!--end /div-->
+                                                            <h6 class="m-0 font-24 fw-bold">kes {{number_format(\App\Models\orders::where('status','Completed')->sum('total'), 2)}}</h6>
+                                                            <p class="text-muted mb-0">Total Revenue</p>
+                                                        </div><!--end media body-->
+                                                    </div><!--end media-->
+                                                </div><!--end col-->
+                                                <div class="col-auto align-self-center">
+                                                    <div class="">
+                                                        <div id="Revenu_Status_bar" class="apex-charts mb-n4"></div>
+                                                    </div>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
                                     <div class="row">
-                                        <div class="col">
-                                        {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
+                                        <div class="col-12 col-lg-2">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-center">
+                                                            <span class="h5  fw-bold"><?php $Product = \App\Models\Product::where('distribution','FullPrice')->get() ?> {{count($Product)}}</span>
+                                                            <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed At Full Price</h6>
+                                                        </div><!--end col-->
+                                                    </div> <!-- end row -->
+                                                </div><!--end card-body-->
+                                            </div> <!--end card-body-->
+                                        </div><!--end col-->
+                                        <div class="col-12 col-lg-2">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-center">
+                                                            <span class="h5  fw-bold"><?php $Product = \App\Models\Product::where('distribution','Donation')->get() ?> {{count($Product)}}</span>
+                                                            <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed for Donation</h6>
+                                                        </div><!--end col-->
+                                                    </div> <!-- end row -->
+                                                </div><!--end card-body-->
+                                            </div> <!--end card-body-->
+                                        </div><!--end col-->
+                                        <div class="col-12 col-lg-2">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-center">
+                                                            <span class="h5  fw-bold"> {{count(\App\Models\Product::where('distribution','Discounted')->get())}}</span>
+                                                            <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed as Discounted</h6>
+                                                        </div><!--end col-->
+                                                    </div> <!-- end row -->
+                                                </div><!--end card-body-->
+                                            </div> <!--end card-body-->
+                                        </div><!--end col-->
+                                        <div class="col-12 col-lg-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-center">
+                                                            <span class="h5  fw-bold"> {{\App\Models\orders::where('status','pending')->count()}}</span>
+                                                            <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Pending Orders</h6>
+                                                        </div><!--end col-->
+                                                    </div> <!-- end row -->
+                                                </div><!--end card-body-->
+                                            </div> <!--end card-body-->
+                                        </div><!--end col-->
+                                        <div class="col-12 col-lg-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-center">
+                                                            <span class="h5  fw-bold"> {{\App\Models\orders::where('status','Completed')->count()}}</span>
+                                                            <h6 class="text-uppercase text-muted mt-2 m-0 font-11">Completed Orders</h6>
+                                                        </div><!--end col-->
+                                                    </div> <!-- end row -->
+                                                </div><!--end card-body-->
+                                            </div> <!--end card-body-->
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!-- end col-->
+
+                        </div><!--end row-->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                            <h4 class="card-title">Pending Orders</h4>
+                                            </div>
+                                            <!--end col-->
                                         </div>
-                                        <!--end col-->
-                                        <div class="col-auto">
-                                        {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
-                                        </div>
-                                        <!--end col-->
+                                        <!--end row-->
                                     </div>
-                                    <!--end row-->
+                                    <!--end card-header-->
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <?php $Orders = \App\Models\orders::where('status','pending')->limit(10)->get(); ?>
+                                            <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>OrderID</th>
+                                                    <th>Order Details</th>
+                                                    <th>Total</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($Orders as $orders)
+                                                <tr>
+                                                    <td>{{$orders->id}}</td>
+                                                    <td>
+                                                        <?php $OrderProducts = DB::table("orders_product")->where("orders_id",$orders->id)->get(); ?>
+                                                        @foreach ($OrderProducts as $products)
+                                                        <?php
+                                                        $Products = \App\Models\Product::where("id", $products->product_id)->get();
+                                                        ?>
+                                                        @if($Products->isEmpty())
+                                                        @else
+                                                        @foreach ($Products as $Product)
+                                                        <p class="d-inline-block align-middle mb-0">
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->brand_name}}</a>
+                                                        </p>
+                                                        @endforeach
+                                                        @endif
+                                                        @endforeach
+                                                    </td>
+                                                    <td>
+                                                        {{$orders->total}}
+                                                    </td>
+                                                    <td>
+                                                        {{$orders->status}}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{route('order-process-accept', $orders->id)}}" class="btn btn-de-success btn-sm">Process <span class="fas fa-check-square"></span></a>
+                                                        {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end /div-->
+                                    </div>
+                                    <!--end card-body-->
                                 </div>
-                                <!--end card-body-->
+                                <!--end card-->
+                                {{--  --}}
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                            <h4 class="card-title">Most Popular Products</h4>
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end card-header-->
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <?php $Products = DB::table('products')->orderBy('sales','DESC')->limit('5')->get(); ?>
+                                            <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Pharmacological Class</th>
+                                                    <th>Orders</th>
+                                                    <th>Category</th>
+                                                    <th>Price</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                                @foreach ($Products as $products)
+                                                @if($products->sales == 0)
+                                                @else
+                                                <tr>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->id;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->pharmacological_class;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->sales;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->category;
+                                                        ?>
+                                                    </td>
+                                                    <td>{{$products->price}}</td>
+                                                    <td>
+                                                        <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
+                                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @endif
+                                                @endforeach
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end /div-->
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end card-->
+                                {{--  --}}
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                            <h4 class="card-title">Pending Approval</h4>
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end card-header-->
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <?php $Product = \App\Models\Product::where('status','0')->limit(10)->get(); ?>
+                                            <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Brand Name</th>
+                                                    <th>Pharmacological Class</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                                @foreach ($Product as $product)
+                                                <tr>
+                                                    <td>{{$product->id}}</td>
+                                                    <td>
+                                                        <p class="d-inline-block align-middle mb-0">
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$product->brand_name}}</a>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        {{$product->pharmacological_class}}
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                        <div class="form-check form-switch form-switch-success">
+                                                            <input class="form-check-input task_{{$product->id}}" id="{{$product->id}}" @if($product->status == 1) checked @endif type="checkbox">
+                                                        </div>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{route('explore-product', $product->id)}}" class="btn btn-de-warning btn-sm"> Explore <span class="fas fa-binoculars"></span></a>
+                                                        {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
+                                                    </td>
+                                                </tr>
+                                                <script>
+                                                    $('.task_{{$product->id}}').change(function(){
+                                                        var id = $(this).attr('id');
+                                                        var status =  $(this).val();
+                                                        confirm('Are you sure you want to change this status?')
+                                                        if($(this).is(':checked')){
+                                                            // processing ajax request
+                                                            $.ajax({
+                                                                url: "{{ route('statusTask') }}",
+                                                                type: 'POST',
+                                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                                dataType: "json",
+                                                                data: {
+                                                                    id: id,
+                                                                    status: status
+                                                                },
+                                                                success: function(data) {
+                                                                    alert('Success')
+                                                                }
+                                                            });
+                                                        }else{
+                                                            // processing ajax request
+                                                                $.ajax({
+                                                                    url: "{{ route('statusTask') }}",
+                                                                    type: 'POST',
+                                                                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                                                    dataType: "json",
+                                                                    data: {
+                                                                        id: id,
+                                                                        status: status
+                                                                    },
+                                                                    success: function(data) {
+                                                                        alert('Success')
+                                                                    }
+                                                                });
+                                                        }
+                                                    });
+                                                </script>
+                                                @endforeach
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end /div-->
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end card-->
+                                {{--  --}}
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                            <h4 class="card-title">All Listed Products</h4>
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end card-header-->
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <?php $Products = DB::table('products')->paginate(10); ?>
+                                            <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Pharmacological Class</th>
+                                                    <th>Brand Name</th>
+                                                    <th>Category</th>
+                                                    <th>Price</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                                @foreach ($Products as $products)
+                                                <tr>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->id;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->pharmacological_class;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->brand_name;
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        echo $products->category;
+                                                        ?>
+                                                    </td>
+                                                    <td>{{$products->price}}</td>
+                                                    <td>
+                                                        <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                        <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
+                                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end /div-->
+                                        <div class="row">
+                                            <div class="col">
+                                            {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-auto">
+                                            {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end card-->
+                                </div>
+                                <!--end col-->
                             </div>
-                            <!--end card-->
-                            </div>
-                            <!--end col-->
+                    @else
+
+
+
+                        <div class="row">
+
+                                <!--end col-->
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                <h4 class="card-title">All Listed Products</h4>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-header-->
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <?php $Products = DB::table('products')->where('UserID',Auth::User()->id)->paginate(10); ?>
+                                                <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Pharmacological Class</th>
+                                                        <th>Brand Name</th>
+                                                        <th>Category</th>
+                                                        <th>Price</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                                    @foreach ($Products as $products)
+                                                    <tr>
+                                                        <td>
+                                                            <?php
+                                                            echo $products->id;
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            echo $products->pharmacological_class;
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            echo $products->brand_name;
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            echo $products->category;
+                                                            ?>
+                                                        </td>
+                                                        <td>{{$products->price}}</td>
+                                                        <td>
+                                                            <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
+                                                            <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
+                                                            <i class="las la-trash-alt text-secondary font-16"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                            <!--end /div-->
+                                            <div class="row">
+                                                <div class="col">
+                                                {{-- <a href="{{route('addProduct')}}" class="btn btn-outline-light btn-sm px-4 ">+ Add New</a> --}}
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-auto">
+                                                {!! $Products->withQueryString()->links('pagination::bootstrap-5') !!}
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div>
+                                    <!--end card-->
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
                         </div>
-                        <!--end row-->
-                </div>
 
 
-               @endif
+                    @endif
+                @endif
 
             </div>
             <!-- container -->

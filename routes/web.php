@@ -213,4 +213,10 @@ All Admin Routes List
     });
 
 // });
+Route::get('/make-subscription', [App\Http\Controllers\PaymentsController::class, 'payment'])->name('make-paymens-post');
 
+Route::group(['prefix' => '/webhooks'], function () {
+    //PESAPAL
+    Route::get('donepayment', [App\Http\Controllers\PaymentsController::class, 'paymentsuccess'])->name('paymentsuccess');
+    Route::get('paymentconfirmation', [App\Http\Controllers\PaymentsController::class, 'paymentconfirmation']);
+});

@@ -12,10 +12,12 @@
                         @include('admin.sidebar.payments')
                         @include('admin.sidebar.settings')
                     @else
-                        {{-- @include('admin.sidebar.admin') --}}
-                        @include('admin.sidebar.merchant')
-                        {{-- @include('admin.sidebar.landing') --}}
-                        @include('admin.sidebar.mysettings')
+                        @if(Auth::User()->status == "0")
+
+                        @else
+                            @include('admin.sidebar.merchant')
+                            @include('admin.sidebar.mysettings')
+                        @endif
                     @endif
 
                 </ul>
