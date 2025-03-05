@@ -100,7 +100,7 @@
                   </div>
                   <!--end col-->
                </div>
-               @if(Auth::User()->type == "1" || Auth::User()->admin = "1")
+               @if(Auth::User()->type == "0" || Auth::User()->admin = "0")
 
                     <div class="row">
 
