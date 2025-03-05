@@ -127,7 +127,7 @@
                                                 <th>Generic Name</th>
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
-                                                <th>Pics</th>
+                                                <th>Packs</th>
                                                 <th>Price</th>
                                                 <th>Action</th>
                                             </tr>
@@ -173,7 +173,7 @@
                                                         echo $products->category;
                                                     ?>
                                                 </td>
-                                                <td>1</td>
+                                                <td>{{$products->packs}}</td>
                                                 <td>KES {{$products->price}}</td>
 
                                                  <td>
