@@ -100,6 +100,15 @@
                   </div>
                   <!--end col-->
                </div>
+               <center>
+                @if(Session::has('message'))
+                              <div class="alert alert-success">{{ Session::get('message') }}</div>
+               @endif
+
+               @if(Session::has('messageError'))
+                              <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
+               @endif
+            </center>
                {{-- Dashboard Metrix --}}
                @if(Auth::User()->status == "0")
                     <!-- Log In page -->

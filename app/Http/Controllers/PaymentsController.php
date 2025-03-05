@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 use DB;
+use Session;
+use BinaryCats\Sku\HasSku;
+use Redirect;
 
 class PaymentsController extends Controller
 {
@@ -117,6 +120,7 @@ class PaymentsController extends Controller
         //go back home
         $payments=Payment::all();
         // return view('admin.index', compact('payments'));
+        Session::flash('message', "Subscription Was Successfull");
         return redirect()->route('admin.home');
     }
     //This method just tells u that there is a change in pesapal for your transaction..
