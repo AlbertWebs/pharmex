@@ -116,7 +116,8 @@ class PaymentsController extends Controller
         //
         //go back home
         $payments=Payment::all();
-        return view('admin.index', compact('payments'));
+        // return view('admin.index', compact('payments'));
+        return redirect()->route('admin.home');
     }
     //This method just tells u that there is a change in pesapal for your transaction..
     //u need to now query status..retrieve the change...CANCELLED? CONFIRMED?

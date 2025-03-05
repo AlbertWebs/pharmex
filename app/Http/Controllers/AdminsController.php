@@ -1034,6 +1034,7 @@ class AdminsController extends Controller
         $User->location = $request->location;
         $User->license = $request->license;
         $User->type = $request->type;
+        $User->status = "1";
         $User->admin = $request->admin;
         $User->password = Hash::make($request->password);
         $User->save();
