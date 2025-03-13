@@ -15,7 +15,7 @@ class SendEmail extends Model
         );
         Mail::send('mailTheme', $data, function($message) use ($Subject,$Sender,$SenderId,$SubscriberId,$SubscriberName){
             $message->from($Sender , $SenderId);
-            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
         });
     }
 
@@ -31,7 +31,7 @@ class SendEmail extends Model
         $SenderEmail = "mail@pharverse.com";
         Mail::send('mailTheme', $data, function($message) use ($email,$Subject,$Sender,$SenderEmail){
             $message->from($SenderEmail , $Sender);
-            $message->to($email, $Sender)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($email, $Sender)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
         });
     }
 
@@ -47,7 +47,7 @@ class SendEmail extends Model
         $SenderEmail = "mail@pharverse.com";
         Mail::send('mailTheme', $data, function($message) use ($email,$Subject,$Sender,$SenderEmail){
             $message->from($SenderEmail , $Sender);
-            $message->to($email, $Sender)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($email, $Sender)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
         });
     }
 
@@ -64,7 +64,7 @@ class SendEmail extends Model
         $SenderId = "mailer@africanpharmaceuticalreview.com";
         Mail::send('mailTheme', $data, function($message) use ($SendToID,$sendTo,$Subject,$Sender,$SenderId){
             $message->from($SenderId , $Sender);
-            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
         });
     }
 
@@ -82,7 +82,7 @@ class SendEmail extends Model
         $SendToID = "no-reply@africanpharmaceuticalreview.com";
         Mail::send('mailTheme', $data, function($message) use ($SendToID,$sendTo,$Subject,$Sender,$SenderId){
             $message->from($SenderId , $Sender);
-            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
         });
     }
 
@@ -97,7 +97,7 @@ class SendEmail extends Model
         $SenderId = "mailer@africanpharmaceuticalreview.com";
         Mail::send('mailTheme', $data, function($message) use ($SendToID,$sendTo,$Subject,$Sender,$SenderId){
             $message->from($SenderId , $Sender);
-            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
         });
     }
 
@@ -126,7 +126,7 @@ class SendEmail extends Model
 
         Mail::send('emailSupplier', $data, function($message) use ($subject,$FromVariable,$FromVariableName,$toVariable,$toVariableName){
             $message->from($FromVariable , $FromVariableName);
-            $message->to($toVariable, $toVariableName)->cc('info@designekta.com')->bcc('albertmuhatia@gmail.com')->subject($subject);
+            $message->to($toVariable, $toVariableName)->cc('bevinlikuyani@gmail.com')->bcc('albertmuhatia@gmail.com')->subject($subject);
         });
     }
 
@@ -159,7 +159,7 @@ class SendEmail extends Model
 
         Mail::send('emailClient', $data, function($message) use ($subject,$FromVariable,$FromVariableName,$toVariable,$toVariableName){
             $message->from($FromVariable , $FromVariableName);
-            $message->to($toVariable, $toVariableName)->cc('info@designekta.com')->bcc('albertmuhatia@gmail.com')->subject($subject);
+            $message->to($toVariable, $toVariableName)->cc('bevinlikuyani@gmail.com')->bcc('albertmuhatia@gmail.com')->subject($subject);
         });
     }
 
