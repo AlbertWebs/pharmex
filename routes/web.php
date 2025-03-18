@@ -142,6 +142,9 @@ All Admin Routes List
          //Orders
          Route::get('orders', [AdminsController::class, 'orders'])->name('orders');
          Route::get('vendors', [AdminsController::class, 'vendors'])->name('vendors');
+         Route::get('vendors-list', [AdminsController::class, 'vendors_list'])->name('vendors-list');
+
+
          Route::get('video', [AdminsController::class, 'video'])->name('video');
          Route::post('update-embeded-video', [AdminsController::class, 'update_embeded'])->name('update-embeded-video');
 
@@ -149,6 +152,7 @@ All Admin Routes List
          Route::get('orders', [AdminsController::class, 'orders'])->name('orders');
          Route::get('listed-products', [AdminsController::class, 'listed_products'])->name('listed-products');
 
+         Route::get('approve-vendor/{id}', [AdminsController::class, 'approve_vendor'])->name('approve-vendor');
 
 
         //Users

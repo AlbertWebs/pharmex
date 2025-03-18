@@ -77,6 +77,15 @@ class AdminsController extends Controller
         return view('admin.vendors',compact('page_title','User','page_name'));
     }
 
+    public function vendors_list(){
+        activity()->log('Accessed All Categories');
+        $User = User::all();
+        $page_title = 'list';
+        $page_name = 'Categories';
+        return view('admin.vendors_list',compact('page_title','User','page_name'));
+    }
+
+
 
     /* Vednors Module */
     public function orders(){
@@ -425,6 +434,32 @@ class AdminsController extends Controller
     }
 
 
+    public function approve_vendor($id){
+
+        $User = User::find($id);
+        if($User->status=="0"){
+            $status="1";
+        }else{
+            $status="0";
+        }
+
+        $updateDetails =  array(
+            'status'=>$status,
+        );
+
+        if($status == 1){
+            Session::flash('message', "$User->company Has Been Approved");
+        }else{
+            Session::flash('messageError', "$User->company Has Been Revoked");
+        }
+
+
+
+        DB::table('users')->where('id',$id)->update($updateDetails);
+
+        return Redirect::back();
+    }
+
 
     public function statusTask(Request $request){
         $productId = $request->id;
@@ -474,9 +509,6 @@ class AdminsController extends Controller
             $SaveFilePath = $request->image_cheat;
         }
 
-
-
-
         $priceFinal = ($request->bpperpack)*($request->packs);
 
         $Product = new Product;
@@ -510,7 +542,7 @@ class AdminsController extends Controller
         $MessageToSend = "Hello Admin, User Called $username has Listed $request->brand_name and requesting Physical Inspection, Quality Checks & Approval";
         // Email
         SendEmail::mailAdmin($Subject,$MessageToSend);
-        if (isset($request->expired)) {
+        if (isset($request->expired_yes)) {
             return view('admin.addExpiredMedicines');
         }else{
             if(Auth::User()->type == "1" || Auth::User()->type == "admin"){

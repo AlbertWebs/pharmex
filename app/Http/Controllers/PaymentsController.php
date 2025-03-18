@@ -98,7 +98,7 @@ class PaymentsController extends Controller
         // Clear Cart
         // \Cart::clear();
         $update = array(
-            'status'=>1
+            'payment'=>1
         );
         DB::table('users')->where('id', Auth::User()->id)->update($update);
         $trackingid = $request->input('tracking_id');
@@ -110,17 +110,17 @@ class PaymentsController extends Controller
         $payments -> save();
         // Send SMS
         $u = Auth::User()->name;
-        $sms_u = "Hello $u, Your Order Was Posted Successfully, Our delivery agent will contact you shortly";
-        $sms_a = "New Order! You have received a new order, check your email for the order details";
+        $sms_u = "Hello $u, Your Payment Was Successfull, Please wait for admins approval";
+        $sms_a = "New Order! You have received a new request for approval, check admins dashboard";
 
-        // $phone = "254790841987";
-        // $this->sendSMS($sms_u,Auth::User()->mobile);
-        // $this->sendSMS($sms_a,$phone);
+        $phone = "254725154328";
+        $this->sendSMS($sms_u,Auth::User()->mobile);
+        $this->sendSMS($sms_a,$phone);
         //
         //go back home
         $payments=Payment::all();
         // return view('admin.index', compact('payments'));
-        Session::flash('message', "Subscription Was Successfull");
+        Session::flash('message-success', "Payment Was Successfull, Please wait for admins approval");
         return redirect()->route('admin.home');
     }
     //This method just tells u that there is a change in pesapal for your transaction..

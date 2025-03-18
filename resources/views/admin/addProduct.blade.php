@@ -231,8 +231,10 @@
 
                                                     <div class="col-sm-10">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input name="expired" type="checkbox" class="custom-control-input" id="horizontalCheckbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                            <label class="custom-control-label" for="horizontalCheckbox">Do you have any Expired Medicine?</label>
+                                                            <label class="custom-control-label" for="horizontalCheckbox">Do you have any Expired Medicine?</label><br>
+                                                            Yes: <input name="expired_yes" type="checkbox" class="custom-control-input" id="horizontalCheckbox" data-parsley-multiple="groups" data-parsley-mincheck="2"><br>
+                                                            No:&nbsp; <input name="expired_no" type="checkbox" class="custom-control-input" id="horizontalCheckbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
+
                                                         </div>
                                                     </div>
                                                 </div>

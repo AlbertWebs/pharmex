@@ -127,8 +127,10 @@
                                                 <th>Generic Name</th>
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
-                                                <th>Pics</th>
-                                                <th>Price</th>
+
+                                                <th>No of Packs</th>
+                                                <th>Cost Per Pack</th>
+                                                <th>Total Cost</th>
                                                 <th>Stock</th>
                                                 @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
                                                 <th>Approve</th>
@@ -177,8 +179,10 @@
                                                         echo $products->category;
                                                     ?>
                                                 </td>
-                                                <td>1</td>
-                                                <td>KES {{$products->price}}</td>
+                                                <td>{{$products->packs}}</td>
+                                                <td>{{$products->bpperpack}}</td>
+
+                                                <td>KES {{$products->packs*$products->bpperpack}}</td>
                                                 <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
                                                 @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
                                                 <td>

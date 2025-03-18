@@ -35,3 +35,10 @@
         <span>Expired Products</span>
     </a>
 </li><!--end nav-item-->
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('vendors-list')}}">
+        <i class="ti ti-home menu-icon"></i>
+        <span>Pharmacies</span>
+    </a>
+</li><!--end nav-item-->

@@ -106,32 +106,76 @@
                        @endif
                     </center>
 
+
                     {{--  --}}
                     <div class="row">
-                        @foreach ($User as $user)
-                        <div class="col-lg-3">
+                        <div class="col-12">
+
+                            <input type="search" id="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                            <br>
+
                             <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="user" class="rounded-circle thumb-xl">
-                                    <h5 class="font-16 fw-bold">{{$user->company}}</h5>
-                                    <span class="text-muted me-3 fw-semibold"><i class="las la-suitecase me-1 text-secondary"></i>{{$user->name}}</span>
-                                    <span class="text-muted me-3 fw-semibold"><i class="las la-map-marker me-1 text-secondary"></i>{{$user->location}}</span><br>
-                                    <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>{{$user->mobile}}</span><br>
-                                    {{-- <p class="text-muted mt-1">It is a long established fact that a reader will be distracted when looking at its layout.</p> --}}
-                                    <a href="{{route('company-details', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> View Products</a>
-                                    <a href="{{route('expired-product', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-clock menu-icon"></i> Expired Products(<?php $Epired = DB::table('expireds')->where('user_id', $user->id)->count(); echo $Epired; ?>)</a>
-                                    @if($user->status == "0")
-                                        <a onclick="return confirm('Do You Want To Approve {{$user->company}}')" href="{{route('approve-vendor', $user->id)}}"  class="btn btn-sm btn-success"><i class="ti ti-check menu-icon"></i> Approve Vendor</a>
-                                    @else
-                                         <a onclick="return confirm('Do You Want To Revoke {{$user->company}}')" href="{{route('approve-vendor', $user->id)}}"  class="btn btn-sm btn-danger"><i class="ti ti-trash menu-icon"></i> Revoke Vendor</a>
-                                    @endif
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="table">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Company</th>
+                                                <th>Contact Person</th>
+                                                <th>Location</th>
+                                                <th>Contacts</th>
+
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+                                                @foreach ($User as $user)
+                                            <tr>
+                                                <td>
+                                                    <?php
+
+                                                        echo $user->id;
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <?php
+
+                                                        echo $user->company;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                        echo $user->name;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                        echo $user->location;
+                                                    ?>
+                                                </td>
+                                                <td>{{$user->mobile}}<br>{{$user->email}}</td>
+
+
+
+                                            </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div><!--end card-body-->
                             </div><!--end card-->
-                        </div><!--end col-->
-                        @endforeach
-
-
-                    </div><!--end row-->
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+                    {{--  --}}
 
 
 
@@ -208,6 +252,20 @@
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
+        <script>
+            var $rows = $('#table tbody tr');
+            $('#search').keyup(function() {
+
+                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                    reg = RegExp(val, 'i'),
+                    text;
+
+                $rows.show().filter(function() {
+                    text = $(this).text().replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
+        </script>
 
     </body>
     <!--end body-->

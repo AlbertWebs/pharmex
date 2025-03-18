@@ -5,12 +5,16 @@
                 <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
 
                     @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
-                        @include('admin.sidebar.admin')
-                        @include('admin.sidebar.merchant')
-                        @include('admin.sidebar.landing')
-                        @include('admin.sidebar.reports')
-                        @include('admin.sidebar.payments')
-                        @include('admin.sidebar.settings')
+                        @if(Auth::User()->status == "0")
+
+                        @else
+                            @include('admin.sidebar.admin')
+                            @include('admin.sidebar.merchant')
+                            @include('admin.sidebar.landing')
+                            @include('admin.sidebar.reports')
+                            @include('admin.sidebar.payments')
+                            @include('admin.sidebar.settings')
+                        @endif
                     @else
                         @if(Auth::User()->status == "0")
 

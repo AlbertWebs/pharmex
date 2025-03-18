@@ -117,6 +117,26 @@
                             <div class="col-12 align-self-center">
                                 <div class="card-body">
                                     <div class="row">
+                                        @if(Session::has('message-success'))
+                                        <div class="col-lg-5 mx-auto">
+                                            <div class="card">
+                                                <div class="card-body p-0 auth-header-box">
+                                                    <div class="text-center p-3">
+                                                        <h4 class="mt-3 mb-1 fw-semibold text-whites font-18">
+                                                            <div class="alert alert-success">{{ Session::get('message-success') }}</div>
+                                                        </h4>
+                                                        {{-- <p class="text-muted  mb-0">Back to dashboard of Unikit.</p> --}}
+                                                    </div>
+                                                </div>
+
+                                                <div class="card-body bg-light-alt text-center">
+                                                    &copy; <script>
+                                                        document.write(new Date().getFullYear())
+                                                    </script> Pharmex LLC
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
+                                        </div><!--end col-->
+                                        @else
                                         <div class="col-lg-5 mx-auto">
                                             <div class="card">
                                                 <div class="card-body p-0 auth-header-box">
@@ -140,6 +160,9 @@
                                                 </div><!--end card-body-->
                                             </div><!--end card-->
                                         </div><!--end col-->
+                                        @endif
+
+
                                     </div><!--end row-->
                                 </div><!--end card-body-->
                             </div><!--end col-->
