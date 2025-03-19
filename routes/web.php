@@ -125,6 +125,10 @@ All Admin Routes List
         Route::get('discounted-products', [AdminsController::class, 'discounted_products'])->name('discounted-products');
 
 
+
+        Route::get('add-Product-Upload', [AdminsController::class, 'addProductUpload'])->name('addProductUpload');
+        Route::post('add-Product-Upload', [AdminsController::class, 'add_product_file_post'])->name('add-Product-Upload-post');
+
         Route::get('add_expired', [AdminsController::class, 'add_expired'])->name('add_expired');
 
         Route::post('add_expired', [AdminsController::class, 'add_expired_post'])->name('add_expired_post');

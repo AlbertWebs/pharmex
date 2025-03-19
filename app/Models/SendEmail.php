@@ -86,6 +86,25 @@ class SendEmail extends Model
         });
     }
 
+    public static function notifies(){
+        $Subject = "New Listings Uploaded";
+        $MessageToSend = "User Has Uploaded New Product(s)";
+        // dd($SendToID);
+        $data = array(
+            'content'=>$MessageToSend,
+            'subject'=>$Subject,
+        );
+        $Sender = "Pharmex By Pharverse";
+        $SenderId = "mailer@africanpharmaceuticalreview.com";
+        $sendTo = "Admin";
+        $SendToID = "no-reply@africanpharmaceuticalreview.com";
+        Mail::send('mailTheme', $data, function($message) use ($SendToID,$sendTo,$Subject,$Sender,$SenderId){
+            $message->from($SenderId , $Sender);
+            $message->to($SendToID, $sendTo)->cc('albertmuhatia@gmail.com')->cc('bevinlikuyani@gmail.com')->subject($Subject);
+        });
+    }
+
+
 
 
     public static function notification($sendTo,$SendToID,$MessageToSend,$Subject){

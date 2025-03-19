@@ -29,6 +29,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 use App\Imports\ExpiredsImport;
+use App\Imports\ProductImport;
+
 use App\Models\Expired;
 
 class AdminsController extends Controller
@@ -433,6 +435,22 @@ class AdminsController extends Controller
         }
     }
 
+    public function add_product_file_post(Request $request)
+    {
+        // dd($request);
+        try{
+            Excel::import(new ProductImport, $request->file('file'));
+            SendEmail::notifies();
+            return response()->json(['data'=>'Users imported successfully.',201]);
+        }catch(\Exception $ex){
+            Log::info($ex);
+            return response()->json(['data'=>'Some error has occur.',400]);
+
+        }
+    }
+
+
+
 
     public function approve_vendor($id){
 
@@ -488,6 +506,13 @@ class AdminsController extends Controller
             "status" => true,
             "data" => $status
         ]);
+    }
+
+
+    public function addProductUpload(Request $request)
+    {
+        $Products = \App\Models\Expired::all();
+       return view('admin.addProductUpload', compact('Products'));
     }
 
     public function add_expired(Request $request)

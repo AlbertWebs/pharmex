@@ -20,7 +20,19 @@ class Product extends Model
         'brand_name',
         'generic_name',
         'pharmacological_class',
-        'category'
+        'category',
+        'user_id',
+        'dosage',
+        'strength',
+        'batch_no',
+        'expiry',
+        'packsize',
+        'packs',
+        'quantity',
+        'price',
+        'bpperpack',
+        'distribution',
+        'UserID'
     ];
 
 }
