@@ -12,7 +12,7 @@
                             @include('admin.sidebar.merchant')
                             @include('admin.sidebar.landing')
                             @include('admin.sidebar.reports')
-                            @include('admin.sidebar.payments')
+                            {{-- @include('admin.sidebar.payments') --}}
                             @include('admin.sidebar.settings')
                         @endif
                     @else
