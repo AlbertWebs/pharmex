@@ -93,66 +93,12 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">All Orders</h4>
+                                <h4 class="page-title">Pending Orders</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
                     <!-- end page title end breadcrumb -->
-                     {{--  --}}
-                     <div class="row">
 
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col align-self-center">
-                                            <div class="media">
-                                                <img src="{{asset('admin/assets/images/logos/money-beg.png')}}" alt="" class="align-self-center" height="40">
-                                                <div class="media-body align-self-center ms-3">
-
-                                                    <h6 class="m-0 font-24 fw-bold">kes {{number_format(\App\Models\orders::where('status','pending')->sum('total'), 2)}}</h6>
-                                                    <p class="text-muted mb-0">Total Value of Pending Orders</p>
-                                                </div><!--end media body-->
-                                            </div><!--end media-->
-                                        </div><!--end col-->
-                                        <div class="col-auto align-self-center">
-                                            <div class="">
-                                                <div id="Revenu_Status_bar" class="apex-charts mb-n4"></div>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div><!--end row-->
-                                </div><!--end card-body-->
-                            </div><!--end card-->
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"> {{\App\Models\orders::where('status','pending')->count()}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed for Donation</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                                <div class="col-12 col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col text-center">
-                                                    <span class="h5  fw-bold"> {{\App\Models\orders::where('status','completed')->count()}}</span>
-                                                    <h6 class="text-uppercase text-muted mt-2 m-0 font-11">No of Products Listed as Discounted</h6>
-                                                </div><!--end col-->
-                                            </div> <!-- end row -->
-                                        </div><!--end card-body-->
-                                    </div> <!--end card-body-->
-                                </div><!--end col-->
-                            </div><!--end row-->
-                        </div><!-- end col-->
-
-                    </div><!--end row-->
-                    {{--  --}}
 
 
                     {{--  --}}
