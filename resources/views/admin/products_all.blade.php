@@ -115,7 +115,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" id="table">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -123,13 +123,12 @@
                                                 <th>Generic Name</th>
                                                 <th>Pharmacological Class</th>
                                                 <th>Category</th>
-                                                <th>Pics</th>
+                                                <th>Number of Packs</th>
+                                                <th>Price Per Packs</th>
+                                                <th>Total Cost</th>
                                                 <th>Price</th>
                                                 <th>Stock</th>
-                                                @if(Auth::User()->type == '1' || Auth::User()->type == 'admin')
-                                                <th>Approve</th>
-                                                @endif
-                                                <th>Action</th>
+                                                <th></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -144,7 +143,6 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <img src="{{$products->image}}" alt="" height="40" width="80" style="object-fit: cover">
                                                     <p class="d-inline-block align-middle mb-0">
                                                         <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$products->brand_name}}</a>
                                                         <br>
@@ -173,26 +171,25 @@
                                                         echo $products->category;
                                                     ?>
                                                 </td>
-                                                <td>1</td>
+                                                <td>{{$products->packs}}</td>
+                                                <td>{{$products->bpperpack}}</td>
+                                                <td>
+                                                    <?php
+                                                         $bpperpack = $products->bpperpack;
+                                                         $packs = $products->packs;
+                                                        $tt = $packs*$bpperpack;
+                                                        echo $tt;
+                                                    ?>
+                                                </td>
                                                 <td>KES {{$products->price}}</td>
                                                 <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
-                                                @if(Auth::User()->type == '1' || Auth::User()->type == 'admin')
-                                                <td>
 
-                                                        <span>
-                                                            <div class="form-check form-switch form-switch-success">
-                                                                <input class="form-check-input task_{{$products->id}}" id="{{$products->id}}" @if($products->status == 1) checked @endif type="checkbox">
-                                                            </div>
-                                                        </span>
-
-
-                                                </td>
-                                                @endif
                                                  <td>
-                                                    <a href="{{url('/')}}/admin-panel/editProduct/{{$products->id}}" class="mr-2"><i class="las la-pen text-secondary font-16"></i></a>
-                                                    <a onclick="return confirm('Do You Wish To Delete This?')" href="{{url('/')}}/admin-panel/deleteProduct/{{$products->id}}">
-                                                        <i class="las la-trash-alt text-secondary font-16"></i>
-                                                    </a>
+                                                    <td>
+                                                        <a href="{{route('explore-product', $products->id)}}" class="btn btn-de-warning btn-md"> Request <span class="fas fa-arrow-right"></span></a>
+
+                                                        {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
+                                                    </td>
                                                 </td>
                                             </tr>
                                             <script>
