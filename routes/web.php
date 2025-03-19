@@ -182,6 +182,9 @@ All Admin Routes List
         Route::get('place-order', [AdminsController::class, 'place_order'])->name('place-order');
 
         Route::get('all-orders-listings', [AdminsController::class, 'all_orders'])->name('all-orders');
+        Route::get('all-orders-listings-report', [AdminsController::class, 'all_orders_reports'])->name('all-orders-reports');
+        Route::get('completed-orders-reports', [AdminsController::class, 'all_orders_reports_completed'])->name('completed-orders-reports');
+
         Route::get('pending-orders', [AdminsController::class, 'pending_orders'])->name('pending-orders');
         Route::get('completed-orders', [AdminsController::class, 'completed_orders'])->name('completed-orders');
 

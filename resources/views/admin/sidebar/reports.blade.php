@@ -42,3 +42,17 @@
         <span>Pharmacies</span>
     </a>
 </li><!--end nav-item-->
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('all-orders-reports')}}">
+        <i class="ti ti-shopping-cart menu-icon"></i>
+        <span>All Orders</span>
+    </a>
+</li><!--end nav-item-->
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('completed-orders-reports')}}">
+        <i class="ti ti-shopping-cart menu-icon"></i>
+        <span>Completed Orders</span>
+    </a>
+</li><!--end nav-item-->

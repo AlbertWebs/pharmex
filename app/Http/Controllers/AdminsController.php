@@ -1040,6 +1040,18 @@ class AdminsController extends Controller
         return view('admin.all_orders', compact('Orders'));
     }
 
+    public function all_orders_reports(){
+        $Orders = Order::paginate(100);
+        return view('admin.all_orders_reports', compact('Orders'));
+    }
+
+    public function all_orders_reports_completed(){
+        $Orders = Order::where('status','complete')->paginate(100);
+        return view('admin.all_orders_reports_completed', compact('Orders'));
+    }
+
+
+
     public function pending_orders(){
         $Orders = Order::where('status','pending')->paginate(12);
         return view('admin.all_orders', compact('Orders'));

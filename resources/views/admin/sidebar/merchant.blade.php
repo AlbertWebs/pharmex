@@ -12,6 +12,9 @@
                                     <a class="nav-link" href="{{route('addProduct')}}">Add Medicine</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{route('add_expired')}}">Add Expired Medicine</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{route('products')}}">All Medicines</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
