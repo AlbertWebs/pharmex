@@ -26,7 +26,7 @@
 </li><!--end nav-item--> --}}
 
 
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link" href="#sidebarAnalyticss" data-bs-toggle="collapse" role="button"
         aria-expanded="false" aria-controls="sidebarAnalyticss">
         <i class="ti ti-stack menu-icon"></i>
@@ -43,7 +43,7 @@
 
         </ul><!--end nav-->
     </div><!--end sidebarAnalytics-->
-</li><!--end nav-item-->
+</li><!--end nav-item--> --}}
 
 
 
@@ -52,20 +52,13 @@
         aria-expanded="false" aria-controls="sidebarCart">
         <i class="ti ti-shopping-cart menu-icon"></i>
         <?php $PendingOrders = \App\Models\orders::where('status','pending')->count(); ?>
-        <span>Redistributions  @if($PendingOrders =="0") @else <small class="text-danger">({{$PendingOrders}})</small> @endif </span>
+        <span>Medicine Requests  @if($PendingOrders =="0") @else <small class="text-danger">({{$PendingOrders}})</small> @endif </span>
     </a>
     <div class="collapse " id="sidebarCart">
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="{{route('all-orders')}}">Process Requests</a>
             </li><!--end nav-item-->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{route('pending-orders')}}">Pending Distributions</a>
-            </li><!--end nav-item-->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('completed-orders')}}">Completed Distributions</a>
-            </li><!--end nav-item--> --}}
-
         </ul><!--end nav-->
     </div><!--end sidebarCart-->
 </li><!--end nav-item-->
@@ -77,34 +70,19 @@
         <span>Pharmacies</span>
     </a>
 </li><!--end nav-item-->
+<?php $PendingListing = \App\Models\Product::where('status','0')->count(); ?>
 <li class="nav-item">
     <a class="nav-link" href="{{route('all-products')}}">
         <i class="ti ti-check menu-icon"></i>
-        <span>Approvals</span>
+        <span>Approve Listing @if($PendingListing =="0") @else <small class="text-danger">({{$PendingListing}})</small> @endif</span>
     </a>
 </li><!--end nav-item-->
-{{-- <li class="nav-item">
-    <a class="nav-link" href="{{route('request-rfq')}}">
-        <i class="ti ti-check menu-icon"></i>
-        <span>Request RFQ</span>
-    </a>
-</li><!--end nav-item--> --}}
-
 
 <li class="nav-item">
-    <a class="nav-link" href="#admins" data-bs-toggle="collapse" role="button"
-        aria-expanded="false" aria-controls="admins">
+    <a class="nav-link" href="{{route('add-admin')}}">
         <i class="ti ti-user menu-icon"></i>
-        <span>Admins</span>
+        <span>Add Admins</span>
     </a>
-    <div class="collapse " id="admins">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('add-admin')}}">Add Admin</a>
-            </li><!--end nav-item-->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{route('all-admin')}}">All Admins</a>
-            </li><!--end nav-item--> --}}
-        </ul><!--end nav-->
-    </div><!--end sidebarCart-->
 </li><!--end nav-item-->
+
+

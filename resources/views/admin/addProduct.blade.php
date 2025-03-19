@@ -190,10 +190,10 @@
                                                 <input type="hidden" name="image_cheat" value="https://pharmex.africanpharmaceuticalreview.com/uploads/products/24e76dbd-ecf7-4831-9458-6722ef1a311d.jpg">
 
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Cost Per Pack</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">Cost Per Pack(Zero if for donation)</label>
 
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="bpperpack" placeholder="Cost Per Pac" id="example-text-input">
+                                                        <input class="form-control" type="text" name="bpperpack" placeholder="Cost Per Pack" id="example-text-input">
                                                     </div>
                                                 </div>
 

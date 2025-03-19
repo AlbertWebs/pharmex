@@ -171,7 +171,7 @@
                                                 <th>Total</th>
                                                 <th>QTY</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+
 
                                             </tr>
                                             </thead>
@@ -202,7 +202,7 @@
                                                 </td>
 
                                                 <td>{{$Product->price}}</td>
-                                                <td><span class="">{{($products->qty)*($Product->price)}}</span></td>
+                                                <td><span class="">{{($products->qty)*($Product->bpperpack)}}</span></td>
                                                 <td>
                                                     {{$products->qty}}
                                                 </td>
@@ -213,11 +213,7 @@
                                                      <span class="badge badge-soft-purple">Completed</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <a href="{{route('order-process-accept',$order->id)}}" class="btn btn-de-success btn-md" onclick="executeExample('accept')">Accept <span class="fas fa-check-square"></span></a>
 
-                                                    {{-- <button type="button" class="btn btn-de-danger btn-md" onclick="executeExample('reject')">Reject <span class="fas fa-window-close"></span></button> --}}
-                                                </td>
 
                                             </tr>
                                             @endforeach

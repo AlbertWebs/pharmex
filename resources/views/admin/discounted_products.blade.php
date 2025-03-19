@@ -87,7 +87,7 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Discounted Products</h4>
+                                <h4 class="page-title">Discounted Medicines</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>

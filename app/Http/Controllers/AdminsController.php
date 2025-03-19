@@ -534,20 +534,24 @@ class AdminsController extends Controller
             $SaveFilePath = $request->image_cheat;
         }
 
-        $priceFinal = ($request->bpperpack)*($request->packs);
+        if($request->distribution == "Donation"){
+           $bpperpack = "0";
+        }else{
+            $bpperpack = $request->bpperpack;
+        }
 
+        $priceFinal = ($bpperpack)*($request->packs);
         $Product = new Product;
         $Product->brand_name = $request->brand_name;
         $Product->generic_name = $request->generic_name;
         $Product->pharmacological_class = $request->pharmacological_class;
-
         $Product->dosage = $request->dosage;
         $Product->strength = $request->strength;
         $Product->batch_no = $request->batch_no;
         $Product->expiry = $request->expiry;
         $Product->packsize = $request->packsize;
         $Product->packs = $request->packs;
-        $Product->bpperpack = $request->bpperpack;
+        $Product->bpperpack = $bpperpack;
         $Product->distribution = $request->distribution;
         $Product->quantity = $request->packs;
         $Product->UserID = Auth::User()->id;
@@ -575,7 +579,8 @@ class AdminsController extends Controller
             }else{
                 $Products = Product::where('UserID', Auth::User()->id)->paginate(12);
             }
-            return view('admin.products', compact('Products'));
+            // return view('admin.products', compact('Products'));
+            return redirect()->route('all-products', [$Products]);
         }
 
     }
@@ -1071,7 +1076,7 @@ class AdminsController extends Controller
     }
 
     public function all_orders_reports_completed(){
-        $Orders = Order::where('status','complete')->paginate(100);
+        $Orders = Order::where('status','Completed')->paginate(100);
         return view('admin.all_orders_reports_completed', compact('Orders'));
     }
 

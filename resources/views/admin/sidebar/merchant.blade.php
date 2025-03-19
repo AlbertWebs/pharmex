@@ -4,21 +4,21 @@
                         <a class="nav-link" href="#sidebarEmail" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarEmail">
                             <i class="ti ti-database menu-icon"></i>
-                            <span>Products</span>
+                            <span>Medicines</span>
                         </a>
                         <div class="collapse " id="sidebarEmail">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('addProduct')}}">Add Medicine</a>
+                                    <a class="nav-link" href="{{route('addProduct')}}">List Medicine</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('addProductUpload')}}">Upload Sheet Medicine</a>
+                                    <a class="nav-link" href="{{route('addProductUpload')}}">Upload Bulk Medicine</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('add_expired')}}">Add Expired Medicine</a>
+                                    <a class="nav-link" href="{{route('add_expired')}}">List Expired Medicine</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('products')}}">All Medicines</a>
+                                    <a class="nav-link" href="{{route('products')}}">All Listed Medicines</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end sidebarEmail-->
@@ -42,18 +42,10 @@
                     </li><!--end nav-item-->
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarOrdersListedProducts" data-bs-toggle="collapse" role="button"
-                            aria-expanded="false" aria-controls="sidebarOrdersListedProducts">
+                        <a class="nav-link" href="{{route('listed-products')}}">
                             <i class="ti ti-folder menu-icon"></i>
-                            <span>Approved Medicines</span>
-
+                            <span>Request Medicine</span>
                         </a>
-                        <div class="collapse " id="sidebarOrdersListedProducts">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('listed-products')}}">Request Medicine</a>
-                                </li><!--end nav-item-->
-                            </ul><!--end nav-->
-                        </div><!--end sidebarEmail-->
                     </li><!--end nav-item-->
+
 

@@ -151,6 +151,26 @@
                                                                 Posted By: <a href="{{route('company-details',$products->UserID)}}" class="btn btn-outline-light btn-sm px-4 "> {{\App\Models\User::find($products->UserID)->company}} </a>
                                                             </div>
                                                         </span>
+                                                        @if($products->meta == null OR $products->meta == "0")
+
+                                                        @else
+                                                        <br>
+                                                        Remark:
+                                                        <?php
+
+                                                            echo $products->meta;
+                                                        ?>
+                                                        @endif
+                                                        <br>
+                                                        <hr>
+                                                        Listed for:
+                                                        <strong>
+                                                            <?php
+
+                                                            echo $products->distribution;
+                                                        ?>
+                                                        </strong>
+
                                                     </p>
                                                 </td>
                                                 <td>

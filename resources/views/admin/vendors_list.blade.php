@@ -121,6 +121,7 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Licenses</th>
                                                 <th>Company</th>
                                                 <th>Contact Person</th>
                                                 <th>Location</th>
@@ -141,6 +142,19 @@
                                                     ?>
                                                 </td>
 
+                                                <td>
+                                                    License:
+                                                    <?php
+
+                                                        echo $user->license;
+                                                    ?>
+                                                    <br>
+                                                    Premises License Number:
+                                                    <?php
+
+                                                        echo $user->license_premises;
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <?php
 
