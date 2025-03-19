@@ -123,7 +123,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-5">
-                                                        <span class="fa fa-file-excel fa-2x"></span> <a download href="{{url('/')}}/uploads/templates/expired.xlsx">Download Templete</a>
+                                                        <span class="fa fa-file-excel fa-2x"></span> <a  href="{{url('/')}}/uploads/templates/expired.xlsx">Download Templete</a>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
