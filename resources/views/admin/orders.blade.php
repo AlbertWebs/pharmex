@@ -120,7 +120,7 @@
                                                 <th>Total</th>
                                                 <th>QTY</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                {{-- <th>Action</th> --}}
 
                                             </tr>
                                             </thead>
@@ -141,7 +141,9 @@
                                             <tr>
                                                 <td>
                                                     <p class="d-inline-block align-middle mb-0">
-                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->name}}</a>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Brand Name:{{$Product->brand_name}}</a>
+                                                        <br>
+                                                        <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">Generic Name:{{$Product->generic_name}}</a>
                                                         <br>
                                                         <span class="text-muted font-13 fw-semibold">{{$Product->meta}}</span>
                                                     </p>
@@ -154,16 +156,12 @@
                                                 </td>
                                                 <td>
                                                     @if($orders->status == "pending")
-                                                     <span class="badge badge-soft-pink">Stock</span>
-                                                    @elseif($orders->status == "pending")
-                                                     <span class="badge badge-soft-purple">Stock</span>
+                                                     <span class="badge badge-soft-pink">{{$orders->status}}</span>
+                                                    @else
+                                                     <span class="badge badge-soft-purple">{{$orders->status}}</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-de-success btn-md" onclick="executeExample('accept')">Accept <span class="fas fa-check-square"></span></button>
 
-                                                    <button type="button" class="btn btn-de-danger btn-md" onclick="executeExample('reject')">Reject <span class="fas fa-window-close"></span></button>
-                                                </td>
 
                                             </tr>
                                             @endforeach
