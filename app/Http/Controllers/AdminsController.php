@@ -94,7 +94,11 @@ class AdminsController extends Controller
     /* Vednors Module */
     public function orders(){
         activity()->log('Accessed All Categories');
-        $Orders = Order::all();
+        if(Auth::User()->type == "1" || Auth::User()->type == "admin"){
+            $Orders = Order::all();
+        }else{
+            $Orders = Order::where('user_id',Auth::User()->id)->get();
+        }
         $page_title = 'list';
         $page_name = 'Orders';
         return view('admin.orders',compact('page_title','Orders','page_name'));

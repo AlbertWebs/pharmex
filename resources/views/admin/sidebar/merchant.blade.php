@@ -26,16 +26,21 @@
 
 
 
+
                     <li class="nav-item">
-                        {{-- <a class="nav-link" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
+                        <a class="nav-link" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarOrders">
                             <i class="ti ti-shopping-cart menu-icon"></i>
                             <span>Orders</span>
-                        </a> --}}
+                        </a>
                         <div class="collapse " id="sidebarOrders">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a onclick="alert('Work in Progress')" class="nav-link" href="{{route('orders')}}">All Orders</a>
+                                    @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
+                                    <a  class="nav-link" href="{{route('orders')}}">All Orders</a>
+                                    @else
+                                    <a  class="nav-link" href="{{route('orders')}}">My Orders</a>
+                                    @endif
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end sidebarEmail-->

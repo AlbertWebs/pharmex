@@ -93,7 +93,11 @@
                                         <li class="breadcrumb-item active">Analytics</li>
                                     </ol>
                                 </div>
+                                @if(Auth::User()->type == "1" || Auth::User()->type == "admin")
                                 <h4 class="page-title">All Orders</h4>
+                                @else
+                                <h4 class="page-title">My Orders</h4>
+                                @endif
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -139,7 +143,6 @@
                                             @foreach ($Products as $Product)
                                             <tr>
                                                 <td>
-                                                    <img src="{{$Product->image}}" alt="" height="40">
                                                     <p class="d-inline-block align-middle mb-0">
                                                         <a href="" class="d-inline-block align-middle mb-0 product-name fw-semibold">{{$Product->name}}</a>
                                                         <br>
@@ -176,26 +179,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="row">
 
-                                        <div class="col-auto">
-                                            <nav aria-label="...">
-                                                <ul class="pagination pagination-sm mb-0">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                    </li>
-                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">Next</a>
-                                                    </li>
-                                                </ul><!--end pagination-->
-                                            </nav><!--end nav-->
-                                         </div> <!--end col-->
-                                    </div><!--end row-->
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div> <!-- end col -->
