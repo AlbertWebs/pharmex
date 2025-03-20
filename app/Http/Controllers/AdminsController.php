@@ -98,6 +98,7 @@ class AdminsController extends Controller
             $Orders = Order::all();
         }else{
             $Orders = Order::where('user_id',Auth::User()->id)->get();
+            dd($Orders);
         }
         $page_title = 'list';
         $page_name = 'Orders';
