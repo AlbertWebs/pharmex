@@ -116,7 +116,7 @@
                                                 <th>Product Name</th>
 
 
-                                                <th>Price</th>
+
                                                 <th>Total</th>
                                                 <th>QTY</th>
                                                 <th>Status</th>
@@ -131,8 +131,7 @@
                                             ?>
                                             @foreach ($OrderProducts as $products)
                                             <?php
-                                                $Products = \App\Models\Product::where('id',$products->product_id)->get();
-
+                                                $Products = \App\Models\Product::where('id', $products->product_id)->get();
                                             ?>
                                             @if($Products->isEmpty())
 
@@ -149,8 +148,7 @@
                                                     </p>
                                                 </td>
 
-                                                <td>{{$Product->price}}</td>
-                                                <td><span class="">{{($products->qty)*($Product->price)}}</span></td>
+                                                <td><span class="">{{$products->total}}</span></td>
                                                 <td>
                                                     {{$products->qty}}
                                                 </td>
