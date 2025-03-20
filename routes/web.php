@@ -21,7 +21,7 @@ Route::get('autocompletez', [SearchController::class, 'autocompletez'])->name('a
 
 
 Route::get('users', [ProductController::class, 'index']);
-Route::get('users-export', [ProductController::class, 'export'])->name('users.export');
+Route::get('orders-export', [ProductController::class, 'export'])->name('orders-export');
 Route::post('users-import', [ProductController::class, 'import'])->name('users.import');
 
 Route::prefix('stock-exchange')->group(function () {
@@ -67,7 +67,7 @@ All Admin Routes List
         Route::get('/', [AdminsController::class, 'index'])->name('admin.home');
         Route::get('/mysettings', [AdminsController::class, 'mysettings'])->name('mysettings');
 
-
+        Route::get('orders-export', [AdminsController::class, 'export'])->name('orders-export');
         // Categories
         Route::get('categories', [AdminsController::class, 'categories'])->name('all-category');
         Route::get('addCategory', [AdminsController::class, 'addCategory'])->name('add-category');

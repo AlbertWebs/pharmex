@@ -67,7 +67,8 @@
 <li class="nav-item">
     <a class="nav-link" href="{{route('vendors')}}">
         <i class="ti ti-user menu-icon"></i>
-        <span>Pharmacies</span>
+        <?php $PendingPharmacies = \App\Models\User::where('status','0')->count(); ?>
+        <span>Pharmacies @if($PendingPharmacies =="0") @else <small class="text-danger">({{$PendingPharmacies}})</small> @endif </span>
     </a>
 </li><!--end nav-item-->
 <?php $PendingListing = \App\Models\Product::where('status','0')->count(); ?>

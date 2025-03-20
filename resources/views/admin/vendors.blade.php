@@ -118,8 +118,13 @@
                                     <span class="text-muted me-3 fw-semibold"><i class="las la-map-marker me-1 text-secondary"></i>{{$user->location}}</span><br>
                                     <span  class="text-muted fw-semibold"><i class="las la-phone me-1 text-secondary"></i>{{$user->mobile}}</span><br>
                                     {{-- <p class="text-muted mt-1">It is a long established fact that a reader will be distracted when looking at its layout.</p> --}}
-                                    <a href="{{route('company-details', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-shopping-cart menu-icon"></i> Explore </a>
-                                    <a href="{{route('expired-product', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-clock menu-icon"></i> Expired Products(<?php $Epired = DB::table('expireds')->where('user_id', $user->id)->count(); echo $Epired; ?>)</a>
+                                    <a href="{{route('company-details', $user->id)}}"  class="btn btn-sm btn-primary"><i class="fa fa-suitcase menu-icon"></i> Explore </a>
+                                    <?php $Epired = DB::table('expireds')->where('user_id', $user->id)->count(); ?>
+                                    @if($Epired == 0)
+
+                                    @else
+                                      <a href="{{route('expired-product', $user->id)}}"  class="btn btn-sm btn-primary"><i class="ti ti-clock menu-icon"></i> Expired Products(<?php  echo $Epired; ?>)</a>
+                                    @endif
                                     @if($user->status == "0")
                                         <a onclick="return confirm('Do You Want To Approve {{$user->company}}')" href="{{route('approve-vendor', $user->id)}}"  class="btn btn-sm btn-success"><i class="ti ti-check menu-icon"></i> Approve Vendor</a>
                                     @else

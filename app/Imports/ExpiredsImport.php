@@ -20,6 +20,7 @@ class ExpiredsImport implements ToModel ,WithHeadingRow
     public function model(array $row)
     {
         // dd($row);
+        $total = ($row['bp_per_pack'])*($row['packs']);
         return new Expired([
             'brand_name'     => $row['brand_name'],
             'generic_name'     => $row['generic_name'],
@@ -31,10 +32,9 @@ class ExpiredsImport implements ToModel ,WithHeadingRow
             'expiry_date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['expiry_date']),
             'packsize'     => $row['packsize'],
             'packs'     => $row['packs'],
-            'total_quantity'    => $row['total_quantity'],
             'user_id' => Auth::User()->id,
             'bp_per_pack'    => $row['bp_per_pack'],
-            'total_cost'    => $row['total_cost'],
+            'total_cost'    => $total,
         ]);
     }
 

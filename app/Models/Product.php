@@ -32,6 +32,7 @@ class Product extends Model
         'price',
         'bpperpack',
         'distribution',
+        'meta',
         'UserID'
     ];
 

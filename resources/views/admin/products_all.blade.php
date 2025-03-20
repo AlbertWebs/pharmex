@@ -126,9 +126,8 @@
                                                 <th>Number of Packs</th>
                                                 <th>Price Per Packs</th>
                                                 <th>Total Cost</th>
-                                                <th>Price</th>
                                                 <th>Stock</th>
-                                                <th></th>
+                                                <th>Status</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -201,14 +200,16 @@
                                                         echo $tt;
                                                     ?>
                                                 </td>
-                                                <td>KES {{$products->price}}</td>
+
                                                 <td><span class="badge badge-soft-purple">{{$products->stock}}</span></td>
 
                                                  <td>
                                                     <td>
-                                                        <a href="{{route('explore-product', $products->id)}}" class="btn btn-de-warning btn-md"> Request <span class="fas fa-arrow-right"></span></a>
-
-                                                        {{-- <a href="{{route('order-process-reject', $orders->id)}}" class="btn btn-de-danger btn-md">Reject <span class="fas fa-window-close"></span></a> --}}
+                                                        <span>
+                                                            <div class="form-check form-switch form-switch-success">
+                                                                <input class="form-check-input task_{{$products->id}}" id="{{$products->id}}" @if($products->status == 1) checked @endif type="checkbox">
+                                                            </div>
+                                                            </span>
                                                     </td>
                                                 </td>
                                             </tr>

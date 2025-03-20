@@ -30,6 +30,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 use App\Imports\ExpiredsImport;
 use App\Imports\ProductImport;
+use App\Exports\OrderExport;
+
 
 use App\Models\Expired;
 
@@ -426,7 +428,7 @@ class AdminsController extends Controller
         // dd($request);
         try{
             Excel::import(new ExpiredsImport, $request->file('file'));
-            SendEmail::notify();
+            // SendEmail::notify();
             return response()->json(['data'=>'Users imported successfully.',201]);
         }catch(\Exception $ex){
             Log::info($ex);
@@ -1218,6 +1220,15 @@ class AdminsController extends Controller
         $response = curl_exec($ch);
         curl_close($ch);
     }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function export()
+    {
+        return Excel::download(new OrderExport, 'orders.xlsx');
+    }
+
     /* Generic location Module*/
     public function currentUserInfo()
     {
