@@ -97,7 +97,7 @@ class AdminsController extends Controller
         if(Auth::User()->type == "1" || Auth::User()->type == "admin"){
             $Orders = Order::all();
         }else{
-            $Orders = Order::where('user_id',Auth::User()->id)->get();
+            $Orders = Order::where('user_id', Auth::User()->id)->get();
             // dd($Orders);
         }
         $page_title = 'list';
