@@ -6,7 +6,7 @@
         <span>Logout</span>
     </a>
 </li><!--end nav-item-->
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link" href="{{route('mysettings')}}">
         <i class="ti ti-ti ti-settings ti-spin menu-icon"></i>
         <span>My Settingss</span>
@@ -28,7 +28,7 @@
             </li><!--end nav-item-->
         </ul><!--end nav-->
     </div><!--end sidebarAuthentication-->
-</li><!--end nav-item-->
+</li><!--end nav-item--> --}}
 
 
 {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
