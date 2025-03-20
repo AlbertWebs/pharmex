@@ -428,7 +428,7 @@ class AdminsController extends Controller
         // dd($request);
         try{
             Excel::import(new ExpiredsImport, $request->file('file'));
-            // SendEmail::notify();
+            SendEmail::notify();
             return response()->json(['data'=>'Users imported successfully.',201]);
         }catch(\Exception $ex){
             Log::info($ex);
