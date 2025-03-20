@@ -157,8 +157,10 @@
                                                 <td>
                                                     @if($orders->status == "pending")
                                                      <span class="badge badge-soft-pink">{{$orders->status}}</span>
-                                                    @else
+                                                    @elseif($orders->status == "Accepted")
                                                      <span class="badge badge-soft-purple">{{$orders->status}}</span>
+                                                    @else
+                                                    <span class="badge badge-success">{{$orders->status}}</span>
                                                     @endif
                                                 </td>
 
